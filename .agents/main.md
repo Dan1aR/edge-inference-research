@@ -146,6 +146,9 @@ python -m src.run_experiment [OPTIONS]
 Options:
   --coco-root PATH        COCO 2017 data directory
   --precision [fp32|bf16_default|bf16_accum]  (required)
+  --bf16-accum-linear/--no-bf16-accum-linear  Toggle BF16-accum linears (default: enabled)
+  --bf16-accum-patch-embed/--no-bf16-accum-patch-embed  Toggle BF16-accum patch embedding conv (default: enabled)
+  --bf16-accum-attention/--no-bf16-accum-attention  Toggle BF16-accum attention matmuls (default: enabled)
   --batch-size INTEGER    Default: 8
   --max-samples INTEGER   Limit images for testing
   --output PATH           Results JSON path
@@ -160,6 +163,8 @@ Options:
 - **Path validation**: Checks COCO paths exist before running
 - **Progress reporting**: Prints configuration and progress via tqdm
 - **Result persistence**: Saves JSON with metrics and metadata
+- **BF16-accum component toggles**: The bf16-accum precision mode can selectively patch linears, the patch embedding convolution,
+  and attention matmuls based on CLI flags, enabling targeted experiments on accumulator sensitivity.
 
 ---
 
