@@ -273,24 +273,41 @@ def replace_conv_with_bf16_accum(module: nn.Module) -> None:
 
 
 def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, output_attentions=False):
+    """
+    BF16-accumulating forward pass for YolosSelfAttention.
+    
+    Matches the current transformers API which uses manual reshape/transpose
+    instead of transpose_for_scores method.
+    """
     hidden_states = hidden_states.to(torch.bfloat16)
+    batch_size = hidden_states.shape[0]
+    
+    # Reshape and transpose for multi-head attention
+    # Shape: (batch_size, seq_len, hidden_size) -> (batch_size, num_heads, seq_len, head_size)
+    new_shape = (batch_size, -1, self.num_attention_heads, self.attention_head_size)
+    
+    key_layer = self.key(hidden_states).view(*new_shape).transpose(1, 2)
+    value_layer = self.value(hidden_states).view(*new_shape).transpose(1, 2)
+    query_layer = self.query(hidden_states).view(*new_shape).transpose(1, 2)
 
-    mixed_query_layer = self.query(hidden_states)
-    key_layer = self.transpose_for_scores(self.key(hidden_states))
-    value_layer = self.transpose_for_scores(self.value(hidden_states))
-    query_layer = self.transpose_for_scores(mixed_query_layer)
-
+    # BF16-accumulating attention scores: Q @ K^T
     attention_scores = bf16_accum_bmm(query_layer, key_layer, transpose_b=True)
     attention_scores = attention_scores / math.sqrt(self.attention_head_size)
 
+    # Softmax in fp32 for numerical stability, then back to bf16
     attention_probs = F.softmax(attention_scores.to(torch.float32), dim=-1).to(torch.bfloat16)
-    attention_probs = self.dropout(attention_probs)
+    
+    # Apply dropout during training
+    if self.training and self.dropout_prob > 0:
+        attention_probs = F.dropout(attention_probs, p=self.dropout_prob, training=True)
 
     if head_mask is not None:
         attention_probs = attention_probs * head_mask.to(torch.bfloat16)
 
+    # BF16-accumulating context: attn_probs @ V
     context_layer = bf16_accum_bmm(attention_probs, value_layer)
 
+    # Reshape back: (batch_size, num_heads, seq_len, head_size) -> (batch_size, seq_len, hidden_size)
     context_layer = context_layer.permute(0, 2, 1, 3).contiguous()
     new_context_layer_shape = context_layer.size()[:-2] + (self.all_head_size,)
     context_layer = context_layer.view(new_context_layer_shape)
