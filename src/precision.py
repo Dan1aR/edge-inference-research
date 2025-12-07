@@ -12,7 +12,11 @@ import torch.nn as nn
 from transformers import YolosForObjectDetection, YolosImageProcessor
 
 from .config import MODEL_NAME, PrecisionMode
-from .bf16_accum import replace_linear_with_bf16_accum
+from .bf16_accum import (
+    patch_yolos_self_attention_bf16,
+    replace_conv_with_bf16_accum,
+    replace_linear_with_bf16_accum,
+)
 
 
 def load_base_model() -> tuple[YolosForObjectDetection, YolosImageProcessor]:
@@ -75,6 +79,10 @@ def build_bf16_default_model(
 def build_bf16_accum_model(
     base_model: YolosForObjectDetection,
     device: torch.device,
+    *,
+    use_bf16_accum_linears: bool = True,
+    use_bf16_accum_patch_embed: bool = True,
+    use_bf16_accum_attention: bool = True,
 ) -> YolosForObjectDetection:
     """
     Build a BF16 model with software-emulated BF16 accumulators.
@@ -90,10 +98,17 @@ def build_bf16_accum_model(
         Model ready for BF16 inference with emulated BF16 accumulators
     """
     model = copy.deepcopy(base_model)
-    # Replace linear layers FIRST (while still on CPU) to avoid device mismatch
-    # when BF16AccumLinear.from_linear() creates new parameters
-    replace_linear_with_bf16_accum(model)
-    # Then move entire model (including replaced layers) to device and convert to bf16
+
+    if hasattr(model, "set_attn_implementation"):
+        model.set_attn_implementation("eager")
+
+    if use_bf16_accum_linears:
+        replace_linear_with_bf16_accum(model)
+    if use_bf16_accum_patch_embed:
+        replace_conv_with_bf16_accum(model)
+    if use_bf16_accum_attention:
+        patch_yolos_self_attention_bf16(model)
+
     model = model.to(device=device, dtype=torch.bfloat16)
     model.eval()
     return model
@@ -103,6 +118,7 @@ def build_model(
     base_model: YolosForObjectDetection,
     precision_mode: PrecisionMode,
     device: torch.device,
+    **bf16_accum_kwargs,
 ) -> YolosForObjectDetection:
     """
     Build a model for the specified precision mode.
@@ -122,5 +138,7 @@ def build_model(
     }
     
     builder = builders[precision_mode]
+    if precision_mode == PrecisionMode.BF16_ACCUM:
+        return builder(base_model, device, **bf16_accum_kwargs)
     return builder(base_model, device)
 

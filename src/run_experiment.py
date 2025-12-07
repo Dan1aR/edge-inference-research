@@ -96,6 +96,24 @@ def get_device() -> torch.device:
     default=0.0,
     help="Score threshold for predictions. Default: 0.0",
 )
+@click.option(
+    "--bf16-accum-linears/--no-bf16-accum-linears",
+    default=True,
+    show_default=True,
+    help="When using bf16_accum, replace Linear layers with BF16AccumLinear.",
+)
+@click.option(
+    "--bf16-accum-patch-embed/--no-bf16-accum-patch-embed",
+    default=True,
+    show_default=True,
+    help="When using bf16_accum, replace patch embedding conv with BF16AccumConv2d.",
+)
+@click.option(
+    "--bf16-accum-attention/--no-bf16-accum-attention",
+    default=True,
+    show_default=True,
+    help="When using bf16_accum, patch attention matmuls to use BF16 accumulators.",
+)
 def main(
     coco_root: str | None,
     precision: str,
@@ -105,6 +123,9 @@ def main(
     num_workers: int,
     seed: int,
     threshold: float,
+    bf16_accum_linears: bool,
+    bf16_accum_patch_embed: bool,
+    bf16_accum_attention: bool,
 ) -> None:
     """
     Evaluate YOLOS-tiny on COCO 2017 validation under different precision modes.
@@ -184,10 +205,24 @@ def main(
         max_samples=max_samples,
     )
     print(f"Dataset size: {len(dataset)} images")
-    
+
     # Build model for specified precision
     print(f"\nBuilding {precision_mode.value} model...")
-    model = build_model(base_model, precision_mode, device)
+    if precision_mode == PrecisionMode.BF16_ACCUM:
+        print(
+            "BF16-accum component toggles -> "
+            f"linears: {bf16_accum_linears}, "
+            f"patch_embed: {bf16_accum_patch_embed}, "
+            f"attention: {bf16_accum_attention}"
+        )
+    model = build_model(
+        base_model,
+        precision_mode,
+        device,
+        use_bf16_accum_linears=bf16_accum_linears,
+        use_bf16_accum_patch_embed=bf16_accum_patch_embed,
+        use_bf16_accum_attention=bf16_accum_attention,
+    )
     print(f"Model ready on {device}")
     
     # Run evaluation
