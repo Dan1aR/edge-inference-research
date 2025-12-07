@@ -146,7 +146,7 @@ python -m src.run_experiment [OPTIONS]
 Options:
   --coco-root PATH        COCO 2017 data directory
   --precision [fp32|bf16_default|bf16_accum]  (required)
-  --bf16-accum-linear/--no-bf16-accum-linear  Toggle BF16-accum linears (default: enabled)
+  --bf16-accum-linears/--no-bf16-accum-linears  Toggle BF16-accum linears (default: enabled)
   --bf16-accum-patch-embed/--no-bf16-accum-patch-embed  Toggle BF16-accum patch embedding conv (default: enabled)
   --bf16-accum-attention/--no-bf16-accum-attention  Toggle BF16-accum attention matmuls (default: enabled)
   --batch-size INTEGER    Default: 8
