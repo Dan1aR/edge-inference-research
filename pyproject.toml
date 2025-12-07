@@ -1,0 +1,47 @@
+[project]
+name = "edge-inference-research"
+version = "0.1.0"
+description = "Evaluate YOLOS-tiny on COCO 2017 under FP32, BF16, and BF16-accum precision modes"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Edge Inference Research" }
+]
+keywords = ["pytorch", "yolos", "coco", "bfloat16", "precision", "object-detection"]
+
+dependencies = [
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "transformers>=4.40.0",
+    "pycocotools>=2.0.7",
+    "numpy>=1.24.0",
+    "tqdm>=4.66.0",
+    "click>=8.1.0",
+    "Pillow>=10.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+run-experiment = "src.run_experiment:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+

@@ -1,0 +1,16 @@
+# PyTorch and related
+torch>=2.2.0
+torchvision>=0.17.0
+
+# Hugging Face
+transformers>=4.40.0
+
+# COCO evaluation
+pycocotools>=2.0.7
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.66.0
+click>=8.1.0
+Pillow>=10.0.0
+
