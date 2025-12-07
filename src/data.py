@@ -88,11 +88,23 @@ class CocoYolosDataset(Dataset):
 
 class CollateFn:
     """
-    Callable collate class for DataLoader.
+    Collate function for YOLOS + COCO.
     
-    Pads pixel_values to the same size and collects metadata.
-    This is a class rather than a closure to allow pickling for multiprocessing.
+    Uses YolosImageProcessor.pad(...) to:
+      - pad images in the batch to a common size
+      - create a pixel_mask (1 = real pixel, 0 = padding)
+    
+    This follows the official HuggingFace object detection pipeline pattern.
     """
+    
+    def __init__(self, image_processor: YolosImageProcessor):
+        """
+        Initialize the collate function.
+        
+        Args:
+            image_processor: YolosImageProcessor instance for padding
+        """
+        self.image_processor = image_processor
     
     def __call__(self, batch: list[dict[str, Any]]) -> dict[str, Any]:
         """
@@ -104,36 +116,27 @@ class CollateFn:
         Returns:
             Batched dictionary ready for model input
         """
+        # Lists of per-sample data
+        pixel_values_list = [item["pixel_values"] for item in batch]
         image_ids = [item["image_id"] for item in batch]
         original_sizes = [item["original_size"] for item in batch]
         
-        # Get all pixel values - these may have different sizes
-        pixel_values_list = [item["pixel_values"] for item in batch]
+        # Use the processor's padding logic instead of manual F.pad
+        # This pads to the max height/width in the batch, bottom/right, with zeros
+        encoding = self.image_processor.pad(pixel_values_list, return_tensors="pt")
         
-        # Pad to the maximum size in the batch
-        max_h = max(pv.shape[1] for pv in pixel_values_list)
-        max_w = max(pv.shape[2] for pv in pixel_values_list)
-        
-        # Pad each image to max size
-        padded_pixel_values = []
-        for pv in pixel_values_list:
-            c, h, w = pv.shape
-            pad_h = max_h - h
-            pad_w = max_w - w
-            # Pad on the right and bottom
-            if pad_h > 0 or pad_w > 0:
-                padded = torch.nn.functional.pad(pv, (0, pad_w, 0, pad_h), value=0)
-            else:
-                padded = pv
-            padded_pixel_values.append(padded)
-        
-        pixel_values = torch.stack(padded_pixel_values)
-        
-        return {
-            "pixel_values": pixel_values,
+        out = {
+            "pixel_values": encoding["pixel_values"],  # [B, 3, H_max, W_max]
             "image_ids": image_ids,
             "original_sizes": original_sizes,
         }
+        
+        # YOLOS doesn't require pixel_mask, but pad() provides it;
+        # include it in case it's useful for debugging or future use
+        if "pixel_mask" in encoding:
+            out["pixel_mask"] = encoding["pixel_mask"]  # [B, H_max, W_max]
+        
+        return out
 
 
 def create_dataloader(
@@ -170,7 +173,7 @@ def create_dataloader(
         batch_size=batch_size,
         shuffle=False,  # Keep deterministic order for evaluation
         num_workers=num_workers,
-        collate_fn=CollateFn(),
+        collate_fn=CollateFn(processor),
         pin_memory=False,  # Disable for MPS/CPU compatibility
     )
     

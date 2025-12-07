@@ -90,10 +90,11 @@ def build_bf16_accum_model(
         Model ready for BF16 inference with emulated BF16 accumulators
     """
     model = copy.deepcopy(base_model)
-    # First move to device and convert to bf16
-    model = model.to(device=device, dtype=torch.bfloat16)
-    # Then replace linear layers with bf16-accumulating versions
+    # Replace linear layers FIRST (while still on CPU) to avoid device mismatch
+    # when BF16AccumLinear.from_linear() creates new parameters
     replace_linear_with_bf16_accum(model)
+    # Then move entire model (including replaced layers) to device and convert to bf16
+    model = model.to(device=device, dtype=torch.bfloat16)
     model.eval()
     return model
 

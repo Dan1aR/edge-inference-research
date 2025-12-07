@@ -66,9 +66,11 @@ Core module implementing software emulation of true BF16 accumulation semantics.
 
 #### Batching:
 - **`CollateFn`**: Picklable collate class for DataLoader multiprocessing
-  - Pads images to maximum size in batch (right/bottom padding)
+  - Takes `YolosImageProcessor` as constructor argument
+  - Uses `image_processor.pad()` for batch padding (aligns with official HuggingFace object detection pipeline)
+  - Automatically creates `pixel_mask` distinguishing real pixels from padding
   - Collects image IDs and original sizes for post-processing
-  - Returns batched `pixel_values`, `image_ids`, `original_sizes`
+  - Returns batched `pixel_values`, `pixel_mask`, `image_ids`, `original_sizes`
 
 #### DataLoader Factory:
 - **`create_dataloader()`**: Creates DataLoader with:
@@ -194,7 +196,7 @@ Options:
 
 2. **Picklable collate function**: Used class instead of closure to support DataLoader multiprocessing
 
-3. **Image padding strategy**: Pads to batch max size (not fixed size) to minimize wasted computation
+3. **Image padding strategy**: Uses `YolosImageProcessor.pad()` for official HuggingFace-compatible padding with `pixel_mask` generation
 
 4. **Evaluation scope limiting**: Passes processed image IDs to COCOeval to correctly compute metrics when using `max_samples`
 
