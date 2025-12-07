@@ -16,6 +16,11 @@ class PrecisionMode(Enum):
 # Model configuration
 MODEL_NAME = "hustvl/yolos-tiny"
 
+# Fixed image size for consistent batching
+# YOLOS (ViT-based) doesn't support pixel_mask, so we use a fixed size
+# to ensure consistent results across different batch sizes
+FIXED_IMAGE_SIZE = {"height": 512, "width": 512}
+
 # COCO paths - can be overridden via environment variable or CLI
 DEFAULT_COCO_ROOT = os.environ.get("COCO_ROOT", "./coco")
 

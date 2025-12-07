@@ -11,6 +11,8 @@ from transformers import YolosImageProcessor
 from pathlib import Path
 from typing import Any
 
+from .config import FIXED_IMAGE_SIZE
+
 
 class CocoYolosDataset(Dataset):
     """
@@ -69,11 +71,13 @@ class CocoYolosDataset(Dataset):
         # Get original image size
         original_size = (image.height, image.width)
         
-        # Preprocess image using YOLOS processor
-        # We just need the pixel_values for inference
+        # Preprocess image using YOLOS processor with fixed size
+        # Fixed size ensures consistent tensor shapes across all images,
+        # which is required because YOLOS (ViT-based) doesn't support pixel_mask
         encoding = self.processor(
             images=image,
             return_tensors="pt",
+            size=FIXED_IMAGE_SIZE,
         )
         
         # Remove batch dimension (will be added by collate_fn)
@@ -90,21 +94,13 @@ class CollateFn:
     """
     Collate function for YOLOS + COCO.
     
-    Uses YolosImageProcessor.pad(...) to:
-      - pad images in the batch to a common size
-      - create a pixel_mask (1 = real pixel, 0 = padding)
+    Since we use a fixed image size during preprocessing, all tensors have
+    identical dimensions and can be simply stacked without padding.
     
-    This follows the official HuggingFace object detection pipeline pattern.
+    Note: YOLOS (ViT-based) doesn't support pixel_mask for attention masking,
+    so we must use fixed-size images to ensure consistent results across
+    different batch sizes.
     """
-    
-    def __init__(self, image_processor: YolosImageProcessor):
-        """
-        Initialize the collate function.
-        
-        Args:
-            image_processor: YolosImageProcessor instance for padding
-        """
-        self.image_processor = image_processor
     
     def __call__(self, batch: list[dict[str, Any]]) -> dict[str, Any]:
         """
@@ -116,27 +112,16 @@ class CollateFn:
         Returns:
             Batched dictionary ready for model input
         """
-        # Lists of per-sample data
-        pixel_values_list = [item["pixel_values"] for item in batch]
+        # All images have the same fixed size, so we can simply stack them
+        pixel_values = torch.stack([item["pixel_values"] for item in batch])
         image_ids = [item["image_id"] for item in batch]
         original_sizes = [item["original_size"] for item in batch]
         
-        # Use the processor's padding logic instead of manual F.pad
-        # This pads to the max height/width in the batch, bottom/right, with zeros
-        encoding = self.image_processor.pad(pixel_values_list, return_tensors="pt")
-        
-        out = {
-            "pixel_values": encoding["pixel_values"],  # [B, 3, H_max, W_max]
+        return {
+            "pixel_values": pixel_values,  # [B, 3, H, W]
             "image_ids": image_ids,
             "original_sizes": original_sizes,
         }
-        
-        # YOLOS doesn't require pixel_mask, but pad() provides it;
-        # include it in case it's useful for debugging or future use
-        if "pixel_mask" in encoding:
-            out["pixel_mask"] = encoding["pixel_mask"]  # [B, H_max, W_max]
-        
-        return out
 
 
 def create_dataloader(
@@ -173,7 +158,7 @@ def create_dataloader(
         batch_size=batch_size,
         shuffle=False,  # Keep deterministic order for evaluation
         num_workers=num_workers,
-        collate_fn=CollateFn(processor),
+        collate_fn=CollateFn(),
         pin_memory=False,  # Disable for MPS/CPU compatibility
     )
     

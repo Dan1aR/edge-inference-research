@@ -20,6 +20,7 @@ A PyTorch-based evaluation framework that compares object detection accuracy of 
 
 - **`PrecisionMode` enum**: Defines the three supported precision modes (`FP32`, `BF16_DEFAULT`, `BF16_ACCUM`)
 - **`MODEL_NAME`**: Constant for the HuggingFace model identifier (`hustvl/yolos-tiny`)
+- **`FIXED_IMAGE_SIZE`**: Fixed image dimensions `{"height": 512, "width": 512}` for consistent batching (see Key Technical Decisions)
 - **`get_coco_paths()`**: Returns paths for COCO images and annotations, supporting:
   - Environment variable `COCO_ROOT`
   - CLI override via `--coco-root`
@@ -59,18 +60,16 @@ Core module implementing software emulation of true BF16 accumulation semantics.
 
 #### Dataset:
 - **`CocoYolosDataset(Dataset)`**: Wraps `torchvision.datasets.CocoDetection`
-  - Preprocesses images using `YolosImageProcessor`
+  - Preprocesses images using `YolosImageProcessor` with fixed size (`FIXED_IMAGE_SIZE`)
   - Returns `pixel_values`, `image_id`, and `original_size` per sample
   - Supports `max_samples` parameter for quick testing
   - Exposes `self.coco` for access to underlying COCO API object
 
 #### Batching:
-- **`CollateFn`**: Picklable collate class for DataLoader multiprocessing
-  - Takes `YolosImageProcessor` as constructor argument
-  - Uses `image_processor.pad()` for batch padding (aligns with official HuggingFace object detection pipeline)
-  - Automatically creates `pixel_mask` distinguishing real pixels from padding
+- **`CollateFn`**: Simple collate class for DataLoader
+  - Stacks fixed-size tensors directly (no padding needed)
   - Collects image IDs and original sizes for post-processing
-  - Returns batched `pixel_values`, `pixel_mask`, `image_ids`, `original_sizes`
+  - Returns batched `pixel_values`, `image_ids`, `original_sizes`
 
 #### DataLoader Factory:
 - **`create_dataloader()`**: Creates DataLoader with:
@@ -196,7 +195,7 @@ Options:
 
 2. **Picklable collate function**: Used class instead of closure to support DataLoader multiprocessing
 
-3. **Image padding strategy**: Uses `YolosImageProcessor.pad()` for official HuggingFace-compatible padding with `pixel_mask` generation
+3. **Fixed image size for batching**: YOLOS is ViT-based and **does not support `pixel_mask`** for attention masking (unlike DETR). When images of different sizes are padded per-batch, the padding is treated as real content and position embeddings are interpolated differently, causing batch-size-dependent metric variations. Solution: resize all images to a fixed size (512×512) during preprocessing, ensuring identical tensor shapes and consistent results regardless of batch size.
 
 4. **Evaluation scope limiting**: Passes processed image IDs to COCOeval to correctly compute metrics when using `max_samples`
 

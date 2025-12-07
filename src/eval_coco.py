@@ -212,6 +212,8 @@ def evaluate_coco(
                 pixel_values = pixel_values.to(torch.bfloat16)
             
             # Forward pass
+            # Note: YOLOS (ViT-based) doesn't support pixel_mask, so we use
+            # fixed-size images to ensure consistent results across batch sizes
             outputs = model(pixel_values=pixel_values)
             
             # Convert original_sizes to tensor for post-processing
