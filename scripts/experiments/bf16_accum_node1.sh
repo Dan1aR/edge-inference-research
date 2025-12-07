@@ -1,4 +1,6 @@
-# Node 1: 2 parallel runs
+#!/usr/bin/env bash
+set -euo pipefail
+
 mkdir -p results logs
 
 # 1) lin=1, patch=1, attn=1  (all BF16-accum enabled)
@@ -8,7 +10,7 @@ nohup uv run python -m src.run_experiment \
   --bf16-accum-patch-embed \
   --bf16-accum-attention \
   --output results/bf16_accum_lin1_patch1_attn1.json \
-  > logs/bf16_accum_lin1_patch1_attn1.log 2>&1 &
+  > logs/bf16_accum_lin1_patch1_attn1.log 2>&1
 
 # 2) lin=0, patch=1, attn=1
 nohup uv run python -m src.run_experiment \
@@ -17,5 +19,5 @@ nohup uv run python -m src.run_experiment \
   --bf16-accum-patch-embed \
   --bf16-accum-attention \
   --output results/bf16_accum_lin0_patch1_attn1.json \
-  > logs/bf16_accum_lin0_patch1_attn1.log 2>&1 &
+  > logs/bf16_accum_lin0_patch1_attn1.log 2>&1
 
