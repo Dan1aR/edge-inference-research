@@ -16,6 +16,7 @@ from transformers.models.yolos.modeling_yolos import (
 )
 
 from .triton_kernels.triton_bf16acc_linear_ste import TritonBF16AccLinearSTE
+from .triton_kernels.triton_bf16acc_bmm import triton_bf16acc_matmul
 
 
 def to_bf16(x: torch.Tensor) -> torch.Tensor:
@@ -169,7 +170,11 @@ class BF16AccumConv2d(nn.Module):
 
         x2d = patches_T.reshape(B_ * L, K)
         W_t = W_flat.transpose(0, 1)
-        out2d = bf16_accum_matmul(x2d, W_t)
+
+        if x2d.is_cuda:
+            out2d = triton_bf16acc_matmul(x2d, W_t)
+        else:
+            out2d = bf16_accum_matmul(x2d, W_t)
 
         out = out2d.reshape(B_, L, self.out_channels).transpose(1, 2)
 
@@ -298,7 +303,10 @@ def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, outpu
     query_layer = self.query(hidden_states).view(*new_shape).transpose(1, 2)
 
     # BF16-accumulating attention scores: Q @ K^T
-    attention_scores = bf16_accum_bmm(query_layer, key_layer, transpose_b=True)
+    if query_layer.is_cuda:
+        attention_scores = triton_bf16acc_matmul(query_layer, key_layer.transpose(-1, -2))
+    else:
+        attention_scores = bf16_accum_bmm(query_layer, key_layer, transpose_b=True)
     attention_scores = attention_scores / math.sqrt(self.attention_head_size)
 
     # Softmax in fp32 for numerical stability, then back to bf16
@@ -312,7 +320,10 @@ def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, outpu
         attention_probs = attention_probs * head_mask.to(torch.bfloat16)
 
     # BF16-accumulating context: attn_probs @ V
-    context_layer = bf16_accum_bmm(attention_probs, value_layer)
+    if attention_probs.is_cuda:
+        context_layer = triton_bf16acc_matmul(attention_probs, value_layer)
+    else:
+        context_layer = bf16_accum_bmm(attention_probs, value_layer)
 
     # Reshape back: (batch_size, num_heads, seq_len, head_size) -> (batch_size, seq_len, hidden_size)
     context_layer = context_layer.permute(0, 2, 1, 3).contiguous()
