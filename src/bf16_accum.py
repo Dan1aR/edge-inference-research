@@ -15,6 +15,8 @@ from transformers.models.yolos.modeling_yolos import (
     YolosSelfAttention,
 )
 
+from triton_bf16acc_linear_ste import TritonBF16AccLinearSTE
+
 
 def to_bf16(x: torch.Tensor) -> torch.Tensor:
     """Ensure tensor values are representable in bfloat16."""
@@ -255,7 +257,12 @@ def replace_linear_with_bf16_accum(module: nn.Module) -> None:
     """
     for name, child in list(module.named_children()):
         if isinstance(child, nn.Linear):
-            setattr(module, name, BF16AccumLinear.from_linear(child))
+            device_type = child.weight.device.type if child.weight is not None else None
+            if device_type == "cuda":
+                new_linear = TritonBF16AccLinearSTE.from_linear(child)
+            else:
+                new_linear = BF16AccumLinear.from_linear(child)
+            setattr(module, name, new_linear)
         else:
             replace_linear_with_bf16_accum(child)
 
