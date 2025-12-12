@@ -15,7 +15,7 @@ from transformers.models.yolos.modeling_yolos import (
     YolosSelfAttention,
 )
 
-from triton_bf16acc_linear_ste import TritonBF16AccLinearSTE
+from .triton_kernels.triton_bf16acc_linear_ste import TritonBF16AccLinearSTE
 
 
 def to_bf16(x: torch.Tensor) -> torch.Tensor:
@@ -26,11 +26,11 @@ def to_bf16(x: torch.Tensor) -> torch.Tensor:
 def bf16_mul(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
     """
     Elementwise multiply with bf16 rounding on inputs and outputs.
-    
+
     Args:
         a: First tensor
         b: Second tensor (must be broadcastable with a)
-    
+
     Returns:
         Product in bfloat16
     """
@@ -40,11 +40,11 @@ def bf16_mul(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
 def bf16_add(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
     """
     Elementwise add with bf16 rounding on inputs and outputs.
-    
+
     Args:
         a: First tensor
         b: Second tensor (must be broadcastable with a)
-    
+
     Returns:
         Sum in bfloat16
     """
@@ -186,11 +186,11 @@ class BF16AccumConv2d(nn.Module):
 class BF16AccumLinear(nn.Module):
     """
     Linear layer that uses BF16-accumulating matmul.
-    
+
     This module emulates the behavior of hardware that uses BF16 for both
     operands and accumulators in matrix multiply operations.
     """
-    
+
     def __init__(self, in_features: int, out_features: int, bias: bool = True):
         super().__init__()
         self.in_features = in_features
@@ -202,15 +202,15 @@ class BF16AccumLinear(nn.Module):
             self.bias = nn.Parameter(torch.empty(out_features, dtype=torch.bfloat16))
         else:
             self.register_parameter("bias", None)
-    
+
     @classmethod
     def from_linear(cls, linear: nn.Linear) -> "BF16AccumLinear":
         """
         Create a BF16AccumLinear from an existing nn.Linear module.
-        
+
         Args:
             linear: Source linear layer
-        
+
         Returns:
             New BF16AccumLinear with weights copied from source
         """
@@ -219,14 +219,14 @@ class BF16AccumLinear(nn.Module):
         if linear.bias is not None:
             new.bias.data.copy_(linear.bias.data.to(torch.bfloat16))
         return new
-    
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass using BF16-accumulating matmul.
-        
+
         Args:
             x: Input tensor of shape (..., in_features)
-        
+
         Returns:
             Output tensor of shape (..., out_features) in bfloat16
         """
@@ -237,7 +237,7 @@ class BF16AccumLinear(nn.Module):
         if self.bias is not None:
             y = bf16_add(y, self.bias)
         return y
-    
+
     def extra_repr(self) -> str:
         return (
             f"in_features={self.in_features}, out_features={self.out_features}, "
@@ -248,10 +248,10 @@ class BF16AccumLinear(nn.Module):
 def replace_linear_with_bf16_accum(module: nn.Module) -> None:
     """
     Recursively replace all nn.Linear layers with BF16AccumLinear.
-    
+
     This function modifies the module in-place, replacing standard Linear
     layers with custom ones that use BF16-accumulating matmul.
-    
+
     Args:
         module: Root module to patch
     """
@@ -282,17 +282,17 @@ def replace_conv_with_bf16_accum(module: nn.Module) -> None:
 def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, output_attentions=False):
     """
     BF16-accumulating forward pass for YolosSelfAttention.
-    
+
     Matches the current transformers API which uses manual reshape/transpose
     instead of transpose_for_scores method.
     """
     hidden_states = hidden_states.to(torch.bfloat16)
     batch_size = hidden_states.shape[0]
-    
+
     # Reshape and transpose for multi-head attention
     # Shape: (batch_size, seq_len, hidden_size) -> (batch_size, num_heads, seq_len, head_size)
     new_shape = (batch_size, -1, self.num_attention_heads, self.attention_head_size)
-    
+
     key_layer = self.key(hidden_states).view(*new_shape).transpose(1, 2)
     value_layer = self.value(hidden_states).view(*new_shape).transpose(1, 2)
     query_layer = self.query(hidden_states).view(*new_shape).transpose(1, 2)
@@ -303,7 +303,7 @@ def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, outpu
 
     # Softmax in fp32 for numerical stability, then back to bf16
     attention_probs = F.softmax(attention_scores.to(torch.float32), dim=-1).to(torch.bfloat16)
-    
+
     # Apply dropout during training
     if self.training and self.dropout_prob > 0:
         attention_probs = F.dropout(attention_probs, p=self.dropout_prob, training=True)
