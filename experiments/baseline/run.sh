@@ -10,8 +10,11 @@ accelerate launch --config_file "experiments/$EXP_NAME/config.yaml" train_yolos_
     --output_dir $RESULT_DIR \
     --dataset coco2017 \
     --coco_dir ./coco \
-    --per_device_train_batch_size 64 \
-    --per_device_eval_batch_size 64 \
+    --per_device_train_batch_size 128 \
+    --per_device_eval_batch_size 128 \
+    --warmup_ratio 0.15 \
+    --max_steps 10000 \
+    --lr_scheduler cosine \
     --report_to wandb \
     --precision bf16 \
     --wandb_project "devcluster-test" \

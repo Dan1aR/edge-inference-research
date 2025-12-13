@@ -35,6 +35,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max_steps", type=int, default=0)
     parser.add_argument("--warmup_steps", type=int, default=0)
     parser.add_argument("--warmup_ratio", type=float, default=0.0)
+    parser.add_argument("--lr_scheduler", type=str, default="linear", choices=["linear", "cosine"])
     parser.add_argument("--eval_steps", type=int, default=50)
     parser.add_argument("--save_steps", type=int, default=100)
     parser.add_argument("--gradient_accumulation_steps", type=int, default=1)
@@ -120,7 +121,7 @@ def main() -> None:
         warmup_steps = int(max_steps * args.warmup_ratio)
 
     lr_scheduler = get_scheduler(
-        name="linear",
+        name=args.lr_scheduler,
         optimizer=optimizer,
         num_warmup_steps=warmup_steps,
         num_training_steps=max_steps,
