@@ -6,6 +6,8 @@ wandb/
 
 # checkpoints
 results/*/logs/
+results/*/step*/
+batched-metrics-*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
