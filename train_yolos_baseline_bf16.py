@@ -199,6 +199,9 @@ def main() -> None:
         (output_dir / "metrics_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     accelerator.wait_for_everyone()
 
+    if wandb_run:
+        wandb_run.finish()
+
 
 if __name__ == "__main__":
     main()

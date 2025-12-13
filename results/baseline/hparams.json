@@ -1,0 +1,23 @@
+{
+  "output_dir": "results/baseline",
+  "dataset": "coco2017",
+  "coco_dir": "./coco",
+  "per_device_train_batch_size": 1024,
+  "per_device_eval_batch_size": 1024,
+  "learning_rate": 5e-05,
+  "weight_decay": 0.01,
+  "num_train_epochs": 1,
+  "max_steps": 0,
+  "warmup_steps": 0,
+  "warmup_ratio": 0.0,
+  "eval_steps": 50,
+  "save_steps": 100,
+  "gradient_accumulation_steps": 1,
+  "seed": 42,
+  "precision": "bf16",
+  "max_train_samples": null,
+  "max_eval_samples": null,
+  "report_to": "wandb",
+  "wandb_project": "devcluster-test",
+  "wandb_run_name": "baseline"
+}

@@ -25,6 +25,7 @@ dependencies = [
     "albumentations",
     "wandb",
     "weave",
+    "yandex-underdeep>=1.0.25",
 ]
 
 [project.optional-dependencies]
@@ -35,6 +36,9 @@ dev = [
 
 [project.scripts]
 run-experiment = "src.run_experiment:main"
+
+[[tool.uv.index]]
+url = "https://pypi.yandex-team.ru/simple/"
 
 [build-system]
 requires = ["hatchling"]
