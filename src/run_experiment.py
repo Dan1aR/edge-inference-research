@@ -19,7 +19,7 @@ from .config import (
 )
 from .precision import load_base_model, build_model
 from .data import create_dataloader
-from .eval_coco import evaluate_coco, save_results, print_metrics
+from .eval.map import evaluate_coco, save_results, print_metrics
 
 
 def set_seed(seed: int) -> None:
