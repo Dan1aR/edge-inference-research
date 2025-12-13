@@ -64,4 +64,5 @@ def evaluate_map(
                 ),
             )
     computed = metric.compute()
+    print(f"{computed=}")
     return {k: v.item() for k, v in computed.items()}
