@@ -1,161 +1,236 @@
-"""
-COCO Dataset and Preprocessing for YOLOS
+from __future__ import annotations
 
-This module provides dataset classes and utilities for loading COCO 2017
-validation data and preprocessing it for the YOLOS model.
-"""
-import errno
-import time
-import warnings
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
+import datasets
 import torch
-from torch.utils.data import Dataset, DataLoader
+import numpy as np
+from PIL import Image
+from torch.utils.data import DataLoader, Dataset, Subset
 from torchvision.datasets import CocoDetection
 from transformers import YolosImageProcessor
-from PIL import Image  # pillow
+
+import albumentations as A
 
 from .config import FIXED_IMAGE_SIZE
 
-
-def _is_permission_denied(exc: BaseException) -> bool:
-    if isinstance(exc, PermissionError):
-        return True
-    if isinstance(exc, OSError):
-        if getattr(exc, "errno", None) == errno.EACCES:
-            return True
-        # Some environments don’t populate errno reliably:
-        if "permission denied" in str(exc).lower():
-            return True
-    return False
+ImageLike = Image.Image | torch.Tensor | Any
 
 
-class CocoYolosDataset(Dataset):
+@dataclass
+class DetectionDataConfig:
+    dataset: str
+    coco_dir: Optional[str] = None
+    split: str = "train"
+    max_samples: Optional[int] = None
+    transform: Optional[str] = None
+
+
+def build_transform(pipeline: str | None = None) -> Callable[[Sequence[ImageLike]], List[ImageLike]]:
+    """Build an augmentation pipeline.
+
+    Args:
+        pipeline: Optional pipeline identifier. When ``None`` or ``"none"`` a
+            no-op transform is returned.
+
+    Returns:
+        Callable that accepts a sequence of images and returns a list of transformed
+        images.
     """
-    COCO dataset wrapper for YOLOS model.
 
-    Wraps torchvision's CocoDetection and preprocesses images using
-    HuggingFace's YolosImageProcessor.
-    """
+    if pipeline is None or pipeline.lower() == "none":
+        def _noop(images: Sequence[ImageLike]) -> List[ImageLike]:
+            return [img for img in images]
 
-    def __init__(
-        self,
-        images_dir: str | Path,
-        annotations_file: str | Path,
-        processor: YolosImageProcessor,
-        max_samples: int | None = None,
-        permission_retry_sleep_s: int = 300,   # 5 minutes
-        permission_retry_count: int = 3,       # retry 3 times (after first failure)
-    ):
-        self.coco_dataset = CocoDetection(
-            root=str(images_dir),
-            annFile=str(annotations_file),
+        return _noop
+
+    if pipeline.lower() == "basic":
+        aug = A.Compose(
+            [
+                A.HorizontalFlip(p=0.5),
+                A.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1, hue=0.05, p=0.5),
+            ]
         )
-        self.processor = processor
-        self.max_samples = max_samples
 
-        self.permission_retry_sleep_s = int(permission_retry_sleep_s)
-        self.permission_retry_count = int(permission_retry_count)
+        def _apply(images: Sequence[ImageLike]) -> List[ImageLike]:
+            outputs: List[ImageLike] = []
+            for img in images:
+                img_np = np.array(img) if isinstance(img, Image.Image) else np.array(img)
+                transformed = aug(image=img_np)["image"]
+                outputs.append(Image.fromarray(transformed))
+            return outputs
 
-        # Store reference to underlying COCO object for evaluation
-        self.coco = self.coco_dataset.coco
+        return _apply
 
-    def __len__(self) -> int:
-        if self.max_samples is not None:
-            return min(self.max_samples, len(self.coco_dataset))
-        return len(self.coco_dataset)
+    def _default(images: Sequence[ImageLike]) -> List[ImageLike]:
+        return [img for img in images]
 
-    def _process_pil(self, image: Image.Image) -> torch.Tensor:
-        encoding = self.processor(
-            images=image,
-            return_tensors="pt",
-            size=FIXED_IMAGE_SIZE,
-        )
-        return encoding["pixel_values"].squeeze(0)
+    return _default
 
-    def __getitem__(self, idx: int) -> dict[str, Any]:
-        """
-        Get a preprocessed sample.
 
-        Returns:
-            Dictionary containing:
-                - pixel_values: Preprocessed image tensor
-                - image_id: Original COCO image ID
-                - original_size: Original image dimensions (height, width)
-                - skipped: True if we had to skip due to repeated permission errors
-        """
-        image_id = self.coco_dataset.ids[idx]
+def _ensure_pil(image: Any) -> Image.Image:
+    if isinstance(image, Image.Image):
+        return image
+    if torch.is_tensor(image):
+        image = image.detach().cpu().numpy()
+    return Image.fromarray(image)
 
-        # Prefer COCO metadata for size (does not require opening the file)
-        img_info = self.coco.imgs.get(image_id, None)
-        if img_info is not None and "height" in img_info and "width" in img_info:
-            original_size = (int(img_info["height"]), int(img_info["width"]))
-        else:
-            original_size = (0, 0)
 
-        last_exc: BaseException | None = None
-
-        # Attempt normal load + preprocess
-        for attempt in range(self.permission_retry_count + 1):  # 0..count (initial + retries)
-            try:
-                image, _raw_target = self.coco_dataset[idx]
-                pixel_values = self._process_pil(image)
-                return {
-                    "pixel_values": pixel_values,
-                    "image_id": image_id,
-                    "original_size": original_size if original_size != (0, 0) else (image.height, image.width),
-                    "skipped": False,
+def _format_annotations(example: Dict[str, Any]) -> List[Dict[str, Any]]:
+    if "annotations" in example:
+        return example["annotations"]
+    if "objects" in example:
+        anns = []
+        for obj in example["objects"]:
+            bbox = obj.get("bbox", obj.get("bboxes", [0, 0, 1, 1]))
+            bbox = [float(x) for x in bbox]
+            w = max(0.0, bbox[2])
+            h = max(0.0, bbox[3])
+            anns.append(
+                {
+                    "bbox": bbox,
+                    "category_id": int(obj.get("category_id", obj.get("id", 0))),
+                    "area": float(obj.get("area", w * h)),
+                    "iscrowd": int(obj.get("iscrowd", 0)),
                 }
-            except BaseException as e:
-                last_exc = e
-                if _is_permission_denied(e) and attempt < self.permission_retry_count:
-                    warnings.warn(
-                        f"[COCO] Permission denied for idx={idx} (image_id={image_id}). "
-                        f"Sleeping {self.permission_retry_sleep_s}s then retrying "
-                        f"({attempt+1}/{self.permission_retry_count}). Error: {e!r}"
-                    )
-                    time.sleep(self.permission_retry_sleep_s)
-                    continue
-                # Non-permission errors, or retries exhausted: break and “skip”
-                break
+            )
+        return anns
+    return []
 
-        # Skip behavior: return a dummy (black) image processed identically.
-        # This prevents the dataloader/eval loop from crashing.
-        warnings.warn(
-            f"[COCO] Skipping idx={idx} (image_id={image_id}) after permission retries. "
-            f"Returning dummy sample. Last error: {last_exc!r}"
+
+class TorchvisionCocoDetection(Dataset):
+    """Thin wrapper to expose torchvision CocoDetection in HF-like dict format."""
+
+    def __init__(self, images_dir: Path, annotations_file: Path):
+        if not images_dir.exists():
+            raise FileNotFoundError(f"COCO images dir not found: {images_dir}")
+        if not annotations_file.exists():
+            raise FileNotFoundError(f"COCO annotations file not found: {annotations_file}")
+        self.ds = CocoDetection(root=str(images_dir), annFile=str(annotations_file))
+        self.ids = self.ds.ids
+
+    def __len__(self) -> int:  # pragma: no cover - simple proxy
+        return len(self.ds)
+
+    def __getitem__(self, idx: int) -> Dict[str, Any]:
+        image, targets = self.ds[idx]
+        anns: List[Dict[str, Any]] = []
+        for ann in targets:
+            bbox = ann.get("bbox", [0, 0, 1, 1])  # COCO is [x, y, w, h]
+            bbox = [float(x) for x in bbox]
+            w = max(0.0, bbox[2])
+            h = max(0.0, bbox[3])
+            anns.append(
+                {
+                    "bbox": bbox,
+                    "category_id": int(ann.get("category_id", 0)),
+                    "area": float(ann.get("area", w * h)),
+                    "iscrowd": int(ann.get("iscrowd", 0)),
+                    # optional but harmless:
+                    **({"id": int(ann["id"])} if "id" in ann else {}),
+                }
+            )
+
+        return {
+            "image": image,
+            "annotations": anns,
+            "image_id": self.ids[idx],
+        }
+
+    @property
+    def coco(self):  # pragma: no cover - passthrough for evaluation
+        return self.ds.coco
+
+
+def load_dataset(config: DetectionDataConfig):
+    if config.dataset == "coco2017":
+        if config.coco_dir is None:
+            raise ValueError("coco_dir is required for coco2017 mode")
+        split = "val" if config.split.startswith("val") else "train"
+        coco_dir = Path(config.coco_dir)
+        images_dir = coco_dir / f"{split}2017"
+        annotations_file = coco_dir / "annotations" / f"instances_{split}2017.json"
+        ds: Dataset = TorchvisionCocoDetection(images_dir=images_dir, annotations_file=annotations_file)
+        if config.max_samples is not None:
+            ds = Subset(ds, range(min(config.max_samples, len(ds))))
+        return ds
+    else:
+        raise ValueError(f"unknown dataset {config.dataset}")
+
+
+def collate_fn_builder(
+    image_processor: YolosImageProcessor,
+    *,
+    transform: Optional[str] = None,
+    processor_kwargs: Optional[Dict[str, Any]] = None,
+):
+    augment = build_transform(transform)
+    processor_kwargs = processor_kwargs or {}
+
+    def _collate(batch: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
+        images: List[Image.Image] = []
+        annotations: List[Dict[str, Any]] = []
+        sizes: List[Tuple[int, int]] = []
+        image_ids: List[int] = []
+        for idx, example in enumerate(batch):
+            img = _ensure_pil(example["image"])
+            images.append(img)
+            anns = _format_annotations(example)
+            annotations.append({"image_id": example.get("image_id", idx), "annotations": anns})
+            sizes.append((img.height, img.width))
+            image_ids.append(int(example.get("image_id", idx)))
+
+        images = augment(images)
+        processed = image_processor(images=images, annotations=annotations, return_tensors="pt", **processor_kwargs)
+        processed["target_sizes"] = torch.tensor(sizes, dtype=torch.long)
+        processed["original_sizes"] = sizes
+        processed["image_ids"] = image_ids
+        return processed
+
+    return _collate
+
+
+def build_dataloaders(
+    *,
+    processor: YolosImageProcessor,
+    train_config: DetectionDataConfig,
+    eval_config: Optional[DetectionDataConfig],
+    per_device_train_batch_size: int,
+    per_device_eval_batch_size: int,
+    num_workers: int = 4,
+) -> Tuple[DataLoader, Optional[DataLoader]]:
+    train_ds = load_dataset(train_config)
+    train_dl = DataLoader(
+        train_ds,
+        batch_size=per_device_train_batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        collate_fn=collate_fn_builder(processor, transform=train_config.transform, processor_kwargs={
+                "size": FIXED_IMAGE_SIZE,
+                "do_convert_annotations": True,
+                "do_pad": False,
+            }
+        ),
+    )
+
+    eval_dl = None
+    if eval_config is not None:
+        eval_ds = load_dataset(eval_config)
+        eval_dl = DataLoader(
+            eval_ds,
+            batch_size=per_device_eval_batch_size,
+            shuffle=False,
+            num_workers=num_workers,
+            collate_fn=collate_fn_builder(processor, transform=eval_config.transform, processor_kwargs={
+                "size": FIXED_IMAGE_SIZE,
+                "do_convert_annotations": True,
+                "do_pad": False,
+            }
+        ),
         )
-        dummy = Image.new("RGB", (1, 1), (0, 0, 0))
-        pixel_values = self._process_pil(dummy)
-        return {
-            "pixel_values": pixel_values,
-            "image_id": image_id,
-            "original_size": original_size,
-            "skipped": True,
-        }
-
-
-class CollateFn:
-    """
-    Collate function for YOLOS + COCO.
-
-    Since we use a fixed image size during preprocessing, all tensors have
-    identical dimensions and can be simply stacked without padding.
-    """
-
-    def __call__(self, batch: list[dict[str, Any]]) -> dict[str, Any]:
-        pixel_values = torch.stack([item["pixel_values"] for item in batch])
-        image_ids = [item["image_id"] for item in batch]
-        original_sizes = [item["original_size"] for item in batch]
-        skipped = [bool(item.get("skipped", False)) for item in batch]
-
-        return {
-            "pixel_values": pixel_values,  # [B, 3, H, W]
-            "image_ids": image_ids,
-            "original_sizes": original_sizes,
-            "skipped": skipped,            # [B] flags
-        }
+    return train_dl, eval_dl
 
 
 def create_dataloader(
@@ -165,21 +240,29 @@ def create_dataloader(
     batch_size: int = 8,
     num_workers: int = 4,
     max_samples: int | None = None,
-) -> tuple[DataLoader, CocoYolosDataset]:
-    dataset = CocoYolosDataset(
-        images_dir=images_dir,
-        annotations_file=annotations_file,
-        processor=processor,
-        max_samples=max_samples,
-    )
+) -> tuple[DataLoader, Dataset]:
+    dataset: Dataset = TorchvisionCocoDetection(Path(images_dir), Path(annotations_file))
+    if max_samples is not None:
+        dataset = Subset(dataset, range(min(max_samples, len(dataset))))
 
     dataloader = DataLoader(
         dataset,
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
-        collate_fn=CollateFn(),
+        collate_fn=collate_fn_builder(processor, processor_kwargs={"size": FIXED_IMAGE_SIZE}),
         pin_memory=False,
     )
 
     return dataloader, dataset
+
+
+__all__ = [
+    "DetectionDataConfig",
+    "TorchvisionCocoDetection",
+    "build_transform",
+    "load_dataset",
+    "collate_fn_builder",
+    "build_dataloaders",
+    "create_dataloader",
+]
