@@ -95,19 +95,6 @@ def evaluate_map(
         "AR_large": coco_metrics["AR_large"],
         "num_predictions": len(all_predictions),
         "num_images": len(processed_image_ids),
-        # Legacy aliases
-        "map": coco_metrics["AP"],
-        "map_50": coco_metrics["AP50"],
-        "map_75": coco_metrics["AP75"],
-        "map_small": coco_metrics["AP_small"],
-        "map_medium": coco_metrics["AP_medium"],
-        "map_large": coco_metrics["AP_large"],
-        "mar_1": coco_metrics["AR_1"],
-        "mar_10": coco_metrics["AR_10"],
-        "mar_100": coco_metrics["AR_100"],
-        "mar_small": coco_metrics["AR_small"],
-        "mar_medium": coco_metrics["AR_medium"],
-        "mar_large": coco_metrics["AR_large"],
     }
 
     return combined
