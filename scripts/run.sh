@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 -m src.run_experiment \
+uv run python3 -m src.run_experiment \
     --coco-root ./coco \
     --precision bf16_default \
     --batch-size 64 \
