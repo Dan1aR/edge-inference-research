@@ -36,7 +36,10 @@ def evaluate_map(
             pixel_values = batch["pixel_values"].to(device)
             # target_sizes = torch.stack(batch["target_sizes"]).to(device)
             target_sizes = batch["target_sizes"]
-            labels = [{"boxes": l["boxes"].to(device), "class_labels": l["class_labels"].to(device)} for l in batch["labels"]]
+            labels = [
+                {"boxes": l["boxes"].to(device), "class_labels": l["class_labels"].to(device)}
+                for l in batch["labels"]
+            ]
             with autocast_ctx:
                 outputs = model(pixel_values=pixel_values, labels=labels)
             processed = image_processor.post_process_object_detection(outputs, threshold=threshold, target_sizes=target_sizes)
@@ -48,6 +51,17 @@ def evaluate_map(
                 }
                 for p in processed
             ]
-            metric.update(preds, _labels_to_targets(labels))
+            metric.update(
+                preds,
+                _labels_to_targets(
+                    [
+                        {
+                            "boxes": label["boxes"].cpu(),
+                            "class_labels": label["class_labels"].cpu(),
+                        }
+                        for label in labels
+                    ]
+                ),
+            )
     computed = metric.compute()
     return {k: v.item() for k, v in computed.items()}
