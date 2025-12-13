@@ -62,6 +62,24 @@ def maybe_get_grad_scaler(precision: str) -> Optional[torch.cuda.amp.GradScaler]
     return None
 
 
+def debug_batch(batch, step):
+    labels = batch["labels"]
+    # labels: List[Dict[str, Tensor]]
+    num_objs = [int(l["class_labels"].numel()) for l in labels]
+    print(f"[step {step}] objects per image: min={min(num_objs)} max={max(num_objs)} mean={sum(num_objs)/len(num_objs):.2f}")
+
+    # boxes should be relative in [0,1] if converted correctly
+    for i, l in enumerate(labels[:4]):  # inspect first 4
+        if l["boxes"].numel() == 0:
+            print(f"  img{i}: EMPTY")
+            continue
+        bmin = float(l["boxes"].min().item())
+        bmax = float(l["boxes"].max().item())
+        cmin = int(l["class_labels"].min().item())
+        cmax = int(l["class_labels"].max().item())
+        print(f"  img{i}: boxes[min,max]=({bmin:.4f},{bmax:.4f}) class_labels[min,max]=({cmin},{cmax})")
+
+
 def main() -> None:
     args = parse_args()
     accelerator = Accelerator(gradient_accumulation_steps=args.gradient_accumulation_steps)
@@ -129,6 +147,21 @@ def main() -> None:
     global_step = 0
     completed_steps = 0
     for epoch in range(args.num_train_epochs):
+        metrics = evaluate_map(
+            accelerator.unwrap_model(model),
+            eval_dl,
+            image_processor=processor,
+            device=accelerator.device,
+            use_autocast=args.precision in {"bf16", "fp16"},
+        )
+        log_metrics(
+            logger=eval_logger,
+            metrics=metrics,
+            step=global_step,
+            epoch=epoch,
+            lr=lr_scheduler.get_last_lr()[0],
+            wandb_run=wandb_run,
+        )
         model.train()
         for step, batch in enumerate(train_dl):
             with accelerator.accumulate(model):

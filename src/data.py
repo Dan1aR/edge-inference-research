@@ -207,7 +207,7 @@ def build_dataloaders(
         batch_size=per_device_train_batch_size,
         shuffle=True,
         num_workers=num_workers,
-        collate_fn=collate_fn_builder(processor, transform=train_config.transform),
+        collate_fn=collate_fn_builder(processor, transform=train_config.transform, processor_kwargs={"size": FIXED_IMAGE_SIZE}),
     )
 
     eval_dl = None
@@ -218,7 +218,7 @@ def build_dataloaders(
             batch_size=per_device_eval_batch_size,
             shuffle=False,
             num_workers=num_workers,
-            collate_fn=collate_fn_builder(processor, transform=eval_config.transform),
+            collate_fn=collate_fn_builder(processor, transform=eval_config.transform, processor_kwargs={"size": FIXED_IMAGE_SIZE}),
         )
     return train_dl, eval_dl
 
