@@ -26,9 +26,11 @@ def maybe_init_wandb(report_to: str, *, project: Optional[str], run_name: Option
         return None
     try:
         import wandb
-    except Exception as exc:  # pragma: no cover - optional
-        print(f"[wandb] unavailable: {exc}. Continuing without W&B.")
-        return None
+    except ImportError as exc:  # pragma: no cover - explicit failure when requested
+        raise ImportError(
+            "wandb is required when report_to='wandb'. Install wandb and ensure you are logged in."
+        ) from exc
+    wandb.login()
     wandb.init(project=project, name=run_name, config=config, mode=os.environ.get("WANDB_MODE"))
     return wandb
 

@@ -5,7 +5,7 @@ This repository fine-tunes [hustvl/yolos-tiny](https://huggingface.co/hustvl/yol
 1. **Baseline AMP bf16/fp16/fp32** using standard PyTorch accumulators.
 2. **Progressive bf16-accum forward + STE-like backward** where YOLOS attention and linear layers are patched to use custom bf16 accumulating implementations.
 
-The project is self-contained: metrics are logged to stdout and local JSONL files; optional W&B reporting can be enabled but is not required.
+The project is self-contained: metrics are logged to stdout and local JSONL files; W&B reporting is available for remote tracking when enabled.
 
 ## Install
 
@@ -15,7 +15,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Requirements: Python 3.10+, PyTorch, transformers, datasets, accelerate, torchmetrics, pycocotools (plus optional albumentations/wandb).
+Requirements: Python 3.10+, PyTorch, transformers, datasets, accelerate, torchmetrics, pycocotools (plus optional albumentations).
 
 ## COCO Data
 
@@ -56,7 +56,7 @@ Progressively enables the bf16-accum attention patch and Triton-based linear rep
 ## Logging and W&B
 
 - Local JSONL logs are always written to `output_dir/logs/`.
-- Optional: `--report_to wandb --wandb_project <project> --wandb_run_name <name>` enables W&B if installed; otherwise the run continues with local logging only.
+- `--report_to wandb --wandb_project <project> --wandb_run_name <name>` requires W&B to be installed and authenticated (e.g., `wandb login`). If `report_to` is set to `wandb` without a working W&B setup, the run will fail fast.
 
 ## Tests
 
