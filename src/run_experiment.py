@@ -18,7 +18,7 @@ from .config import (
     DEFAULT_RESULTS_DIR,
 )
 from .precision import load_base_model, build_model
-from .data import create_dataloader
+from .datasets import create_dataloader
 from .eval_coco import evaluate_coco, save_results, print_metrics
 
 
@@ -129,21 +129,21 @@ def main(
 ) -> None:
     """
     Evaluate YOLOS-tiny on COCO 2017 validation under different precision modes.
-    
+
     Examples:
-    
+
     \b
     # Run FP32 evaluation
     python -m src.run_experiment --precision fp32 --coco-root /path/to/coco
-    
+
     \b
     # Run BF16 (default accumulators) evaluation
     python -m src.run_experiment --precision bf16_default --coco-root /path/to/coco
-    
+
     \b
-    # Run BF16 (emulated BF16 accumulators) evaluation  
+    # Run BF16 (emulated BF16 accumulators) evaluation
     python -m src.run_experiment --precision bf16_accum --coco-root /path/to/coco
-    
+
     \b
     # Quick test with limited samples
     python -m src.run_experiment --precision fp32 --coco-root /path/to/coco --max-samples 50
@@ -151,23 +151,23 @@ def main(
     print("=" * 60)
     print("YOLOS-tiny Precision Evaluation")
     print("=" * 60)
-    
+
     # Set seeds
     set_seed(seed)
     print(f"Random seed: {seed}")
-    
+
     # Get device
     device = get_device()
-    
+
     # Parse precision mode
     precision_mode = PrecisionMode(precision)
     print(f"Precision mode: {precision_mode.value}")
-    
+
     # Get COCO paths
     coco_paths = get_coco_paths(coco_root)
     print(f"COCO images: {coco_paths['images']}")
     print(f"COCO annotations: {coco_paths['annotations']}")
-    
+
     # Validate paths exist
     if not coco_paths["images"].exists():
         raise click.ClickException(
@@ -179,21 +179,21 @@ def main(
             f"COCO annotations file not found: {coco_paths['annotations']}\n"
             "Please download COCO 2017 annotations or specify --coco-root"
         )
-    
+
     # Determine output path
     if output is None:
         output = DEFAULT_RESULTS_DIR / f"results_{precision}.json"
     output = Path(output)
-    
+
     print(f"\nBatch size: {batch_size}")
     print(f"Max samples: {max_samples or 'all'}")
     print(f"Output: {output}")
-    
+
     # Load base model
     print("\nLoading base model from HuggingFace Hub...")
     base_model, processor = load_base_model()
     print("Base model loaded successfully")
-    
+
     # Create dataloader
     print("\nCreating DataLoader...")
     dataloader, dataset = create_dataloader(
@@ -224,7 +224,7 @@ def main(
         use_bf16_accum_attention=bf16_accum_attention,
     )
     print(f"Model ready on {device}")
-    
+
     # Run evaluation
     results = evaluate_coco(
         model=model,
@@ -235,13 +235,13 @@ def main(
         precision_mode=precision_mode,
         threshold=threshold,
     )
-    
+
     # Print metrics
     print_metrics(results["metrics"])
-    
+
     # Save results
     save_results(results, output)
-    
+
     print("\nEvaluation complete!")
 
 

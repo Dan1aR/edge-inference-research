@@ -12,14 +12,7 @@ from torch.utils.data import DataLoader, Dataset, Subset
 from torchvision.datasets import CocoDetection
 from transformers import YolosImageProcessor
 
-# Optional augmentations
-try:  # pragma: no cover - optional dependency
-    import albumentations as A
-
-    _HAVE_ALBUMENTATIONS = True
-except Exception:  # pragma: no cover - optional dependency
-    _HAVE_ALBUMENTATIONS = False
-    A = None
+import albumentations as A
 
 from .config import FIXED_IMAGE_SIZE
 
@@ -53,7 +46,7 @@ def build_transform(pipeline: str | None = None) -> Callable[[Sequence[ImageLike
 
         return _noop
 
-    if pipeline.lower() == "basic" and _HAVE_ALBUMENTATIONS:
+    if pipeline.lower() == "basic":
         aug = A.Compose(
             [
                 A.HorizontalFlip(p=0.5),
@@ -144,13 +137,6 @@ def load_dataset(config: DetectionDataConfig):
         if config.max_samples is not None:
             ds = Subset(ds, range(min(config.max_samples, len(ds))))
         return ds
-    elif config.dataset == "cppe5":
-        ds = datasets.load_dataset("cppe-5")
-        split = "validation" if config.split.startswith("val") else config.split
-        subset = ds[split]
-        if config.max_samples is not None:
-            subset = subset.select(range(config.max_samples))
-        return subset
     else:
         raise ValueError(f"unknown dataset {config.dataset}")
 

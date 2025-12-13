@@ -14,7 +14,7 @@ from transformers import (
     get_scheduler,
 )
 
-from src.data import DetectionDataConfig, build_dataloaders
+from src.datasets import DetectionDataConfig, build_dataloaders
 from src.eval.map import evaluate_map
 from src.patching import apply_attention_patch, apply_triton_linear_patches, ProgressiveSchedule
 from src.utils.checkpoints import save_checkpoint
