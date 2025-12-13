@@ -14,19 +14,11 @@ import torch
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 from torch.utils.data import DataLoader
-from torchmetrics.detection.mean_ap import MeanAveragePrecision
 from tqdm import tqdm
 from transformers import YolosForObjectDetection, YolosImageProcessor
 
 from ..config import PrecisionMode
 from ..data import TorchvisionCocoDetection
-
-
-def _labels_to_targets(labels: List[Dict[str, torch.Tensor]]) -> List[Dict[str, torch.Tensor]]:
-    targets: List[Dict[str, torch.Tensor]] = []
-    for label in labels:
-        targets.append({"boxes": label["boxes"], "labels": label["class_labels"]})
-    return targets
 
 
 def evaluate_map(
@@ -38,50 +30,87 @@ def evaluate_map(
     threshold: float = 0.0,
     use_autocast: bool = True,
 ):
-    metric = MeanAveragePrecision()
     model.eval()
+
+    def _unwrap_dataset(ds):
+        while hasattr(ds, "dataset"):
+            ds = ds.dataset
+        return ds
+
+    coco_ds = _unwrap_dataset(dataloader.dataset)
+    if not hasattr(coco_ds, "coco"):
+        raise ValueError("evaluate_map expects a COCO-style dataset with a 'coco' attribute")
+
+    coco_gt = coco_ds.coco
+    yolos_to_coco = build_category_mapping(model, coco_gt)
+
+    all_predictions: list[dict[str, Any]] = []
+    processed_image_ids: list[int] = []
+
     autocast_ctx = (
         torch.autocast(device_type=str(device), dtype=torch.bfloat16)
         if use_autocast
         else torch.cpu.amp.autocast(enabled=False)
     )
+
     with torch.no_grad():
         for batch in dataloader:
             pixel_values = batch["pixel_values"].to(device)
-            target_sizes = batch["target_sizes"]
-            labels = [
-                {"boxes": l["boxes"].to(device), "class_labels": l["class_labels"].to(device)}
-                for l in batch["labels"]
-            ]
+            image_ids = batch["image_ids"]
+            original_sizes = batch["original_sizes"]
+            target_sizes = torch.tensor(original_sizes, device=device)
+
             with autocast_ctx:
-                outputs = model(pixel_values=pixel_values, labels=labels)
-            processed = image_processor.post_process_object_detection(outputs, threshold=threshold, target_sizes=target_sizes)
-            preds = [
-                {
-                    "boxes": p["boxes"].cpu(),
-                    "scores": p["scores"].cpu(),
-                    "labels": p["labels"].cpu(),
-                }
-                for p in processed
-            ]
-            metric.update(
-                preds,
-                _labels_to_targets(
-                    [
-                        {
-                            "boxes": label["boxes"].cpu(),
-                            "class_labels": label["class_labels"].cpu(),
-                        }
-                        for label in labels
-                    ]
-                ),
+                outputs = model(pixel_values=pixel_values)
+
+            results = image_processor.post_process_object_detection(
+                outputs, threshold=threshold, target_sizes=target_sizes
             )
-    computed = metric.compute()
-    result = {}
-    for key, value in computed.items():
-        if isinstance(value, torch.Tensor):
-            result[key] = value.item() if value.numel() == 1 else value.tolist()
-    return result
+
+            batch_predictions = convert_predictions_to_coco_format(
+                results=results,
+                image_ids=image_ids,
+                original_sizes=original_sizes,
+                yolos_to_coco_mapping=yolos_to_coco,
+            )
+
+            all_predictions.extend(batch_predictions)
+            processed_image_ids.extend(image_ids)
+
+    coco_metrics = run_coco_eval(coco_gt, all_predictions, image_ids=processed_image_ids)
+
+    # Provide both COCO-style keys and the legacy mAP/mAR aliases used by the training logs
+    combined: dict[str, Any] = {
+        "AP": coco_metrics["AP"],
+        "AP50": coco_metrics["AP50"],
+        "AP75": coco_metrics["AP75"],
+        "AP_small": coco_metrics["AP_small"],
+        "AP_medium": coco_metrics["AP_medium"],
+        "AP_large": coco_metrics["AP_large"],
+        "AR_1": coco_metrics["AR_1"],
+        "AR_10": coco_metrics["AR_10"],
+        "AR_100": coco_metrics["AR_100"],
+        "AR_small": coco_metrics["AR_small"],
+        "AR_medium": coco_metrics["AR_medium"],
+        "AR_large": coco_metrics["AR_large"],
+        "num_predictions": len(all_predictions),
+        "num_images": len(processed_image_ids),
+        # Legacy aliases
+        "map": coco_metrics["AP"],
+        "map_50": coco_metrics["AP50"],
+        "map_75": coco_metrics["AP75"],
+        "map_small": coco_metrics["AP_small"],
+        "map_medium": coco_metrics["AP_medium"],
+        "map_large": coco_metrics["AP_large"],
+        "mar_1": coco_metrics["AR_1"],
+        "mar_10": coco_metrics["AR_10"],
+        "mar_100": coco_metrics["AR_100"],
+        "mar_small": coco_metrics["AR_small"],
+        "mar_medium": coco_metrics["AR_medium"],
+        "mar_large": coco_metrics["AR_large"],
+    }
+
+    return combined
 
 
 def build_category_mapping(
