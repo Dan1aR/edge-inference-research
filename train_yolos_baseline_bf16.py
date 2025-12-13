@@ -15,7 +15,7 @@ from transformers import (
     get_scheduler,
 )
 
-from src.data.coco import DetectionDataConfig, build_dataloaders
+from src.data import DetectionDataConfig, build_dataloaders
 from src.eval.map import evaluate_map
 from src.utils.checkpoints import save_checkpoint
 from src.utils.logging import JsonlLogger, log_metrics, maybe_init_wandb
