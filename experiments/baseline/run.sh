@@ -10,6 +10,7 @@ uv run accelerate launch --config_file "experiments/$EXP_NAME/config.yaml" train
     --dataset coco2017 \
     --coco_dir ./coco \
     --per_device_train_batch_size 4 \
-    --per_device_eval_batch_size 4 \
+    --per_device_eval_batch_size 64 \
+    --max_eval_samples 128 \
     --wandb_project dan1ar/edge-inference-research \
     --wandb_run_name $EXP_NAME

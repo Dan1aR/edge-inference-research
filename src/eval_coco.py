@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import PrecisionMode
-from .data import CocoYolosDataset
+from .data import TorchvisionCocoDetection
 
 
 def build_category_mapping(
@@ -170,7 +170,7 @@ def evaluate_coco(
     model: YolosForObjectDetection,
     processor: YolosImageProcessor,
     dataloader: DataLoader,
-    dataset: CocoYolosDataset,
+    dataset: TorchvisionCocoDetection,
     device: torch.device,
     precision_mode: PrecisionMode,
     threshold: float = 0.0,

@@ -23,6 +23,8 @@ dependencies = [
     "click>=8.1.0",
     "Pillow>=10.0.0",
     "albumentations",
+    "wandb",
+    "weave",
 ]
 
 [project.optional-dependencies]

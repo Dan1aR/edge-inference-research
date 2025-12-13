@@ -18,7 +18,7 @@ from .config import (
     DEFAULT_RESULTS_DIR,
 )
 from .precision import load_base_model, build_model
-from .datasets import create_dataloader
+from .data import create_dataloader
 from .eval_coco import evaluate_coco, save_results, print_metrics
 
 

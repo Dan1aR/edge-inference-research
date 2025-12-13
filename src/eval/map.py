@@ -64,5 +64,8 @@ def evaluate_map(
                 ),
             )
     computed = metric.compute()
-    print(f"{computed=}")
-    return {k: v.item() for k, v in computed.items()}
+    result = {}
+    for key, value in computed.items():
+        if isinstance(value, torch.Tensor):
+            result[key] = value.item() if value.numel() == 1 else value.tolist()
+    return result
