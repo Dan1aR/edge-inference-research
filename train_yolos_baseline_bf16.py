@@ -48,6 +48,14 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def move_labels_to_device(labels, device):
+    # labels: List[Dict[str, Tensor]]
+    return [
+        {k: (v.to(device) if torch.is_tensor(v) else v) for k, v in t.items()}
+        for t in labels
+    ]
+
+
 def maybe_get_grad_scaler(precision: str) -> Optional[torch.cuda.amp.GradScaler]:
     if precision == "fp16":
         return torch.cuda.amp.GradScaler()
@@ -126,6 +134,7 @@ def main() -> None:
             with accelerator.accumulate(model):
                 pixel_values = batch["pixel_values"]
                 labels = batch["labels"]
+                labels = move_labels_to_device(batch["labels"], accelerator.device)
                 with torch.autocast(device_type="cuda" if torch.cuda.is_available() else "cpu", dtype=(torch.bfloat16 if args.precision == "bf16" else torch.float16), enabled=args.precision in {"bf16", "fp16"}):
                     outputs = model(pixel_values=pixel_values, labels=labels)
                     loss = outputs.loss

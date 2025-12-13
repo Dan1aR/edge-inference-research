@@ -1,9 +1,9 @@
 {
   "output_dir": "results/baseline",
   "dataset": "coco2017",
-  "coco_dir": "/home/danil-andreev/dc-remote/coco",
-  "per_device_train_batch_size": 32,
-  "per_device_eval_batch_size": 64,
+  "coco_dir": "./coco",
+  "per_device_train_batch_size": 4,
+  "per_device_eval_batch_size": 4,
   "learning_rate": 5e-05,
   "weight_decay": 0.01,
   "num_train_epochs": 1,
@@ -15,8 +15,8 @@
   "gradient_accumulation_steps": 1,
   "seed": 42,
   "precision": "bf16",
-  "max_train_samples": 128,
-  "max_eval_samples": 128,
+  "max_train_samples": null,
+  "max_eval_samples": null,
   "report_to": "none",
   "wandb_project": "dan1ar/edge-inference-research",
   "wandb_run_name": "baseline"

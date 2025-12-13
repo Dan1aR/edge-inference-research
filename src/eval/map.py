@@ -32,8 +32,10 @@ def evaluate_map(
     )
     with torch.no_grad():
         for batch in dataloader:
+            # print(f"Eval {batch['target_sizes']=}")
             pixel_values = batch["pixel_values"].to(device)
-            target_sizes = torch.stack(batch["target_sizes"]).to(device)
+            # target_sizes = torch.stack(batch["target_sizes"]).to(device)
+            target_sizes = batch["target_sizes"]
             labels = [{"boxes": l["boxes"].to(device), "class_labels": l["class_labels"].to(device)} for l in batch["labels"]]
             with autocast_ctx:
                 outputs = model(pixel_values=pixel_values, labels=labels)

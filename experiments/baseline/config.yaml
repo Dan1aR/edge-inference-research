@@ -2,8 +2,6 @@ compute_environment: LOCAL_MACHINE
 debug: false
 distributed_type: 'NO'
 downcast_bf16: 'no'
-dynamo_config:
-  dynamo_backend: EAGER
 enable_cpu_affinity: false
 gpu_ids: all
 machine_rank: 0

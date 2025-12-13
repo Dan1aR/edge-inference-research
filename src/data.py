@@ -84,10 +84,16 @@ def _format_annotations(example: Dict[str, Any]) -> List[Dict[str, Any]]:
     if "objects" in example:
         anns = []
         for obj in example["objects"]:
+            bbox = obj.get("bbox", obj.get("bboxes", [0, 0, 1, 1]))
+            bbox = [float(x) for x in bbox]
+            w = max(0.0, bbox[2])
+            h = max(0.0, bbox[3])
             anns.append(
                 {
-                    "bbox": obj.get("bbox", obj.get("bboxes", [0, 0, 1, 1])),
+                    "bbox": bbox,
                     "category_id": int(obj.get("category_id", obj.get("id", 0))),
+                    "area": float(obj.get("area", w * h)),
+                    "iscrowd": int(obj.get("iscrowd", 0)),
                 }
             )
         return anns
@@ -112,7 +118,20 @@ class TorchvisionCocoDetection(Dataset):
         image, targets = self.ds[idx]
         anns: List[Dict[str, Any]] = []
         for ann in targets:
-            anns.append({"bbox": ann.get("bbox", [0, 0, 1, 1]), "category_id": int(ann.get("category_id", 0))})
+            bbox = ann.get("bbox", [0, 0, 1, 1])  # COCO is [x, y, w, h]
+            bbox = [float(x) for x in bbox]
+            w = max(0.0, bbox[2])
+            h = max(0.0, bbox[3])
+            anns.append(
+                {
+                    "bbox": bbox,
+                    "category_id": int(ann.get("category_id", 0)),
+                    "area": float(ann.get("area", w * h)),
+                    "iscrowd": int(ann.get("iscrowd", 0)),
+                    # optional but harmless:
+                    **({"id": int(ann["id"])} if "id" in ann else {}),
+                }
+            )
 
         return {
             "image": image,
