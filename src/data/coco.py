@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import datasets
 import torch
 from PIL import Image
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset, Subset
+from torchvision.datasets import CocoDetection
 from transformers import YolosImageProcessor
 
 from .transforms import build_transform
@@ -19,9 +21,6 @@ class DetectionDataConfig:
     split: str = "train"
     max_samples: Optional[int] = None
     transform: Optional[str] = None
-
-
-_DEF_REPO = "yonigozlan/coco_detection_dataset_script"
 
 
 def _ensure_pil(image: Any) -> Image.Image:
@@ -41,26 +40,54 @@ def _format_annotations(example: Dict[str, Any]) -> List[Dict[str, Any]]:
     return []
 
 
+class TorchvisionCocoDetection(Dataset):
+    """Thin wrapper to expose torchvision CocoDetection in HF-like dict format."""
+
+    def __init__(self, images_dir: Path, annotations_file: Path):
+        if not images_dir.exists():
+            raise FileNotFoundError(f"COCO images dir not found: {images_dir}")
+        if not annotations_file.exists():
+            raise FileNotFoundError(f"COCO annotations file not found: {annotations_file}")
+        self.ds = CocoDetection(root=str(images_dir), annFile=str(annotations_file))
+        self.ids = self.ds.ids
+
+    def __len__(self) -> int:  # pragma: no cover - simple proxy
+        return len(self.ds)
+
+    def __getitem__(self, idx: int) -> Dict[str, Any]:
+        image, targets = self.ds[idx]
+        anns: List[Dict[str, Any]] = []
+        for ann in targets:
+            anns.append({"bbox": ann.get("bbox", [0, 0, 1, 1]), "category_id": int(ann.get("category_id", 0))})
+
+        return {
+            "image": image,
+            "annotations": anns,
+            "image_id": self.ids[idx],
+        }
+
+
 def load_dataset(config: DetectionDataConfig):
     if config.dataset == "coco2017":
         if config.coco_dir is None:
             raise ValueError("coco_dir is required for coco2017 mode")
-        ds = datasets.load_dataset(
-            _DEF_REPO,
-            "2017",
-            data_dir=config.coco_dir,
-            trust_remote_code=True,
-        )
+        split = "val" if config.split.startswith("val") else "train"
+        coco_dir = Path(config.coco_dir)
+        images_dir = coco_dir / f"{split}2017"
+        annotations_file = coco_dir / "annotations" / f"instances_{split}2017.json"
+        ds: Dataset = TorchvisionCocoDetection(images_dir=images_dir, annotations_file=annotations_file)
+        if config.max_samples is not None:
+            ds = Subset(ds, range(min(config.max_samples, len(ds))))
+        return ds
     elif config.dataset == "cppe5":
         ds = datasets.load_dataset("cppe-5")
+        split = "validation" if config.split.startswith("val") else config.split
+        subset = ds[split]
+        if config.max_samples is not None:
+            subset = subset.select(range(config.max_samples))
+        return subset
     else:
         raise ValueError(f"unknown dataset {config.dataset}")
-
-    split = "validation" if config.split.startswith("val") else config.split
-    subset = ds[split]
-    if config.max_samples is not None:
-        subset = subset.select(range(config.max_samples))
-    return subset
 
 
 def collate_fn_builder(image_processor: YolosImageProcessor, *, transform: Optional[str] = None):

@@ -19,9 +19,9 @@ Requirements: Python 3.10+, PyTorch, transformers, datasets, accelerate, torchme
 
 ## COCO Data
 
-The training scripts expect either the COCO 2017 layout or CPPE-5 for quick debugging. For COCO, download and extract locally then pass `--coco_dir /path/to/coco`.
+The training scripts expect either the COCO 2017 layout or CPPE-5 for quick debugging. For COCO, download and extract locally then pass `--coco_dir /path/to/coco`. The loader uses `torchvision.datasets.CocoDetection` directly and no longer relies on the deprecated Hugging Face loading script `yonigozlan/coco_detection_dataset_script`.
 
-- Local HF loader: `datasets.load_dataset("yonigozlan/coco_detection_dataset_script", "2017", data_dir=/path/to/coco, trust_remote_code=True)` expects `train2017`, `val2017`, and `annotations` in the directory.
+- Expected layout: `${coco_dir}/train2017`, `${coco_dir}/val2017`, `${coco_dir}/annotations/instances_train2017.json`, `${coco_dir}/annotations/instances_val2017.json`.
 - Debug option: `--dataset cppe5` or `--max_train_samples`/`--max_eval_samples` to iterate quickly.
 
 ## Baseline Training (bf16 AMP)
