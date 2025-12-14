@@ -12,8 +12,8 @@ accelerate launch --config_file "experiments/$EXP_NAME/config.yaml" train_yolos_
     --coco_dir ./coco \
     --per_device_train_batch_size 128 \
     --per_device_eval_batch_size 128 \
-    --warmup_ratio 0.15 \
-    --max_steps 10000 \
+    --warmup_ratio 0.10 \
+    --max_steps 2000 \
     --num_train_epochs 2048 \
     --lr_scheduler cosine \
     --report_to wandb \
