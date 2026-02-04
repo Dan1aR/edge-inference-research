@@ -251,6 +251,9 @@ class TritonBF16AccLinearSTE(nn.Module):
             nn.init.uniform_(self.bias, -bound, bound)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # Auto-cast input to bf16 if needed (common when using autocast)
+        if x.dtype != torch.bfloat16:
+            x = x.to(torch.bfloat16)
         return TritonBF16AccLinearSTEFunction.apply(x, self.weight, self.bias)
 
     @staticmethod

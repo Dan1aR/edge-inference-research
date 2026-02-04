@@ -59,6 +59,20 @@ def _cast_parameter_(param: nn.Parameter, dtype: torch.dtype) -> nn.Parameter:
     return param
 
 
+def reset_optimizer_state_for_params(optimizer: torch.optim.Optimizer, params_to_reset: set) -> None:
+    """Reset optimizer state for specific parameters after dtype change.
+    
+    When parameters are cast to a different dtype (e.g., bf16), the optimizer
+    state (exp_avg, exp_avg_sq) becomes incompatible. This function resets
+    the state for those parameters so they start fresh.
+    """
+    for group in optimizer.param_groups:
+        for param in group['params']:
+            if param in params_to_reset and param in optimizer.state:
+                # Clear the state for this parameter - optimizer will reinitialize
+                del optimizer.state[param]
+
+
 def _wrap_with_triton_linear(module: nn.Module, target: LinearTarget) -> nn.Module:
     old = target.module
     # Instantiate wrapper
@@ -86,6 +100,7 @@ def apply_triton_linear_patches(
     *,
     enabled_groups: Set[str],
     max_block: Optional[int] = None,
+    optimizer: Optional[torch.optim.Optimizer] = None,
 ) -> List[str]:
     """Replace selected Linear modules with TritonBF16AccLinearSTE wrappers.
 
@@ -94,21 +109,37 @@ def apply_triton_linear_patches(
         enabled_groups: Which semantic groups to patch (mlp/qkv/head).
         max_block: If provided, only blocks with ``block_idx`` <= max_block will
             be patched.
+        optimizer: If provided, reset optimizer state for patched parameters
+            to avoid dtype mismatch errors.
 
     Returns:
         List of module names that were patched in this call.
     """
 
     patched: List[str] = []
+    patched_params: set = set()
+    
     for target in collect_linear_targets(module):
         if target.group not in enabled_groups:
             continue
         if max_block is not None and target.block_idx is not None and target.block_idx > max_block:
             continue
+        
+        # Collect original parameters before patching
+        old_params = {target.module.weight}
+        if target.module.bias is not None:
+            old_params.add(target.module.bias)
+        patched_params.update(old_params)
+        
         parent_path, _, child_name = target.name.rpartition(".")
         parent = module.get_submodule(parent_path) if parent_path else module
         setattr(parent, child_name, _wrap_with_triton_linear(module, target))
         patched.append(target.name)
+    
+    # Reset optimizer state for patched parameters to avoid dtype mismatch
+    if optimizer is not None and patched_params:
+        reset_optimizer_state_for_params(optimizer, patched_params)
+    
     return patched
 
 

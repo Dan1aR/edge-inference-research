@@ -16,7 +16,7 @@ from transformers.models.yolos.modeling_yolos import (
 )
 
 from .triton_kernels.triton_bf16acc_linear_ste import TritonBF16AccLinearSTE
-from .triton_kernels.triton_bf16acc_bmm import triton_bf16acc_matmul
+from .triton_kernels.triton_bf16acc_bmm import triton_bf16acc_matmul, triton_bf16acc_bmm_ste
 
 
 def to_bf16(x: torch.Tensor) -> torch.Tensor:
@@ -303,8 +303,9 @@ def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, outpu
     query_layer = self.query(hidden_states).view(*new_shape).transpose(1, 2)
 
     # BF16-accumulating attention scores: Q @ K^T
+    # Use STE version for training support (backward uses standard PyTorch ops)
     if query_layer.is_cuda:
-        attention_scores = triton_bf16acc_matmul(query_layer, key_layer.transpose(-1, -2))
+        attention_scores = triton_bf16acc_bmm_ste(query_layer, key_layer.transpose(-1, -2).contiguous())
     else:
         attention_scores = bf16_accum_bmm(query_layer, key_layer, transpose_b=True)
     attention_scores = attention_scores / math.sqrt(self.attention_head_size)
@@ -320,8 +321,9 @@ def yolos_self_attention_forward_bf16(self, hidden_states, head_mask=None, outpu
         attention_probs = attention_probs * head_mask.to(torch.bfloat16)
 
     # BF16-accumulating context: attn_probs @ V
+    # Use STE version for training support (backward uses standard PyTorch ops)
     if attention_probs.is_cuda:
-        context_layer = triton_bf16acc_matmul(attention_probs, value_layer)
+        context_layer = triton_bf16acc_bmm_ste(attention_probs, value_layer)
     else:
         context_layer = bf16_accum_bmm(attention_probs, value_layer)
 

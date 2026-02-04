@@ -1,0 +1,9 @@
+{
+  "final_step": 300,
+  "enabled_groups": [
+    "attn",
+    "head",
+    "mlp",
+    "qkv"
+  ]
+}

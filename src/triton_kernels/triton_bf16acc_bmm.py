@@ -174,3 +174,80 @@ def triton_bf16acc_matmul(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
     )
 
     return c3.reshape(*batch_shape, M, N)
+
+
+# -----------------------------------------------------------------------------
+# Autograd Function with STE backward for training
+# -----------------------------------------------------------------------------
+
+class TritonBF16AccBMMFunction(torch.autograd.Function):
+    """
+    BF16-accumulating batched matmul with STE (Straight-Through Estimator) backward.
+    
+    Forward: Uses Triton kernel with true bf16 accumulation
+    Backward: Uses standard PyTorch matmul for gradients (STE approach)
+    
+    This allows training models to "see" bf16 accumulation numerics in forward
+    while receiving proper gradients for learning.
+    """
+    
+    @staticmethod
+    def forward(ctx, a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
+        """
+        Forward pass using bf16-accumulating Triton kernel.
+        
+        Args:
+            a: Tensor of shape (..., M, K) in bf16
+            b: Tensor of shape (..., K, N) in bf16
+            
+        Returns:
+            c: Tensor of shape (..., M, N) in bf16
+        """
+        # Save for backward - need contiguous tensors
+        a_contig = a.contiguous()
+        b_contig = b.contiguous()
+        ctx.save_for_backward(a_contig, b_contig)
+        
+        # Forward with bf16 accumulation
+        return triton_bf16acc_matmul(a_contig, b_contig)
+    
+    @staticmethod
+    def backward(ctx, grad_out: torch.Tensor):
+        """
+        STE backward: standard PyTorch matmul gradients.
+        
+        For C = A @ B:
+            dA = dC @ B^T
+            dB = A^T @ dC
+        """
+        a, b = ctx.saved_tensors
+        grad_out = grad_out.contiguous()
+        
+        grad_a = grad_b = None
+        
+        # dA = dC @ B^T
+        if ctx.needs_input_grad[0]:
+            grad_a = torch.matmul(grad_out, b.transpose(-1, -2))
+        
+        # dB = A^T @ dC
+        if ctx.needs_input_grad[1]:
+            grad_b = torch.matmul(a.transpose(-1, -2), grad_out)
+        
+        return grad_a, grad_b
+
+
+def triton_bf16acc_bmm_ste(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
+    """
+    BF16-accumulating BMM with STE backward for training.
+    
+    This is the training-compatible version of triton_bf16acc_matmul.
+    Forward uses bf16 accumulation, backward uses standard PyTorch ops.
+    
+    Args:
+        a: Tensor of shape (..., M, K) in bf16
+        b: Tensor of shape (..., K, N) in bf16
+        
+    Returns:
+        c: Tensor of shape (..., M, N) in bf16
+    """
+    return TritonBF16AccBMMFunction.apply(a, b)

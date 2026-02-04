@@ -14,7 +14,7 @@ from transformers import (
     get_scheduler,
 )
 
-from src.datasets import DetectionDataConfig, build_dataloaders
+from src.data import DetectionDataConfig, build_dataloaders
 from src.eval.map import evaluate_map
 from src.patching import apply_attention_patch, apply_triton_linear_patches, ProgressiveSchedule
 from src.utils.checkpoints import save_checkpoint
@@ -23,6 +23,14 @@ from src.utils.seed import set_seed
 
 
 DEFAULT_SCHEDULE = "attn@0.2,mlp@0.4,qkv@0.6,head@0.8"
+
+
+def move_labels_to_device(labels, device):
+    """Move labels list of dicts to specified device."""
+    return [
+        {k: (v.to(device) if torch.is_tensor(v) else v) for k, v in t.items()}
+        for t in labels
+    ]
 
 
 def parse_args() -> argparse.Namespace:
@@ -154,10 +162,13 @@ def main() -> None:
                             global_step, max_steps, blocks_per_stage=args.blocks_per_stage, num_blocks_total=num_blocks_total
                         )
                         block_limit = block_limit - 1 if block_limit > 0 else None
+                    # Get the underlying optimizer to reset state for patched params
+                    underlying_optimizer = optimizer.optimizer if hasattr(optimizer, 'optimizer') else optimizer
                     patched = apply_triton_linear_patches(
                         accelerator.unwrap_model(model),
                         enabled_groups=current_enabled & {"mlp", "qkv", "head"},
                         max_block=block_limit,
+                        optimizer=underlying_optimizer,
                     )
                     if accelerator.is_main_process and patched:
                         print(f"[patch] enabled {len(patched)} linears (groups={current_enabled})")
@@ -170,6 +181,7 @@ def main() -> None:
             with accelerator.accumulate(model):
                 pixel_values = batch["pixel_values"]
                 labels = batch["labels"]
+                labels = move_labels_to_device(labels, accelerator.device)
                 with torch.autocast(device_type="cuda" if torch.cuda.is_available() else "cpu", dtype=torch.bfloat16, enabled=True):
                     outputs = model(pixel_values=pixel_values, labels=labels)
                     loss = outputs.loss
