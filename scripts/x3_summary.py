@@ -1,5 +1,6 @@
 """X2+X3 summary over all available seeds: final-step AP on full val and val-B, paired differences.
 
+ref_B = standard fine-tuning with FP32 accumulation, evaluated in "all" (final@all); ref_B_in_none = same in none.
 Pairs: every variant vs ref_I (runs/e8/lr1e-5_I_s*, same seed); arithmetic variants (cbest, chunk128, e8m13)
 additionally vs B weights deployed in the same arithmetic (results/x2b/B_s<seed>_<arith>.json, full val).
 Writes results/x3/summary.json and prints a table. Paired t-test across seeds (scipy).
@@ -18,8 +19,14 @@ ARITH = ("cbest", "chunk128", "e8m13")
 runs = defaultdict(dict)
 for f in glob.glob("runs/x2/*/summary.json") + glob.glob("runs/e8/lr1e-5_[BI]_s*/summary.json"):
     name, seed = os.path.basename(os.path.dirname(f)).rsplit("_s", 1)
-    v = json.load(open(f))["val"]["coco_val"]["final"]
-    runs[name.replace("lr1e-5_", "ref_")][seed] = {"full": v["AP"], "valB": v.get("valB", {}).get("AP", v.get("valB"))}
+    val = json.load(open(f))["val"]["coco_val"]
+    name = name.replace("lr1e-5_", "ref_")
+    if name == "ref_B":  # B is trained with FP32 accumulation (target none): "final" is AP in none, "final@all" in all
+        runs["ref_B_in_none"][seed] = {"full": val["final"]["AP"], "valB": val["final"]["valB"]["AP"]}
+        v = val["final@all"]
+    else:
+        v = val["final"]
+    runs[name][seed] = {"full": v["AP"], "valB": v.get("valB", {}).get("AP", v.get("valB"))}
 deployed = defaultdict(dict)
 for f in glob.glob("results/x2b/B_s*_*.json"):
     seed, arith = Path(f).stem[len("B_s"):].split("_", 1)

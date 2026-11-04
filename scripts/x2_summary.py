@@ -12,6 +12,10 @@ for f in glob.glob("runs/x2/*/summary.json") + glob.glob("runs/e8/lr1e-5_[BI]_s*
     if seed not in ("42", "123"):
         continue
     s = json.load(open(f))
+    if name == "ref_B":  # B trains with FP32 accumulation: its val-A curve and "final" are in none; use final@all
+        v = s["val"]["coco_val"]["final@all"]
+        rows[name][seed] = (v["valA"]["AP"], v["AP"])
+        continue
     rows[name][seed] = (s["selection_curve_valA"][-1]["valA_AP"], s["val"]["coco_val"]["final"]["AP"])
 ref = rows.get("ref_I", {})
 print(f"{'variant':16s} {'valA s42':>9s} {'valA s123':>9s} {'mean dA vs ref_I':>16s} {'full s42':>9s} {'full s123':>9s}")
