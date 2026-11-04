@@ -4,7 +4,10 @@ Jobs are lines ``name<TAB>command`` in queue/jobs.tsv (re-read after every job, 
 appended while the runner works). A job is skipped if queue/done/<name> exists. Logs go to
 logs/jobs/<name>.log. The runner exits when no pending jobs are left and queue/KEEPALIVE is absent,
 or immediately when queue/STOP exists.
+Every job holds an exclusive flock on GPU_LOCK (env, default: the machine-wide lock /root/workspace/data_raw/al_labeling/gpu.lock) while it runs, so GPU users that
+follow the same convention never overlap.
 """
+import fcntl
 import os
 import shutil
 import subprocess
@@ -17,6 +20,7 @@ DONE = Q / "done"
 FAILED = Q / "failed"
 LOGS = ROOT / "logs" / "jobs"
 MIN_FREE = 50 * 2**30
+GPU_LOCK = os.environ.get("GPU_LOCK", "/root/workspace/data_raw/al_labeling/gpu.lock")  # machine-wide GPU lock
 for d in (DONE, FAILED, LOGS):
     d.mkdir(parents=True, exist_ok=True)
 
@@ -44,10 +48,16 @@ def main():
         while (free := shutil.disk_usage("/").free) < MIN_FREE:  # shared disk: never go below the agreed floor
             print(f"[{time.strftime('%H:%M:%S')}] waiting for disk space ({free / 2**30:.1f} GiB free)", flush=True)
             time.sleep(300)
-        t0 = time.time()
-        print(f"[{time.strftime('%H:%M:%S')}] start {name}", flush=True)
-        with open(LOGS / f"{name}.log", "w") as log:
-            rc = subprocess.call(cmd, shell=True, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=env)
+        with open(GPU_LOCK, "a") as lock:
+            tw = time.time()
+            fcntl.flock(lock, fcntl.LOCK_EX)  # blocks while another GPU user holds the lock
+            if time.time() - tw > 5:
+                print(f"[{time.strftime('%H:%M:%S')}] waited {(time.time() - tw) / 60:.1f} min for {GPU_LOCK}", flush=True)
+            t0 = time.time()
+            print(f"[{time.strftime('%H:%M:%S')}] start {name}", flush=True)
+            with open(LOGS / f"{name}.log", "w") as log:
+                rc = subprocess.call(cmd, shell=True, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=env)
+            fcntl.flock(lock, fcntl.LOCK_UN)
         minutes = (time.time() - t0) / 60
         target = DONE if rc == 0 else FAILED
         (target / name).write_text(f"rc={rc} minutes={minutes:.1f}\n")
