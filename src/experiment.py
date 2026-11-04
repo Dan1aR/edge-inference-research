@@ -126,7 +126,7 @@ def train_loader(ds, processor, batch_size: int, seed: int) -> DataLoader:
     g = torch.Generator()
     g.manual_seed(seed)
     return DataLoader(ds, batch_size=batch_size, shuffle=True, drop_last=True, generator=g,
-                      num_workers=num_workers(), persistent_workers=True, prefetch_factor=4,
+                      num_workers=num_workers(), persistent_workers=True, prefetch_factor=2,
                       collate_fn=collate_fn_builder(processor, processor_kwargs=processor_kwargs()))
 
 
