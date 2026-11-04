@@ -53,17 +53,21 @@ def main():
     ap_.add_argument("--dir", default="results/x7")
     ap_.add_argument("--methods", default=",".join(METHODS))
     ap_.add_argument("--refs", default="ref_I,ref_B")
+    ap_.add_argument("--model", default="tiny", help="tiny: results/x7/<method>_...; small: results/x7/small_<method>_...")
     a = ap_.parse_args()
     d = Path(a.dir)
     d.mkdir(parents=True, exist_ok=True)
     methods = a.methods.split(",")
+    pf = "" if a.model == "tiny" else f"{a.model}_"
+    if a.model != "tiny" and a.methods == ",".join(METHODS):
+        methods = ["ref_I", "ref_B"]
     ref_i, ref_b = a.refs.split(",")
     out = {}
     for val in ("full", "valA", "valB"):
-        data = {m: {ar: {s: v for s in SEEDS if (v := ap(d / f"{m}_s{s}_{ar}.json", val)) is not None}
+        data = {m: {ar: {s: v for s in SEEDS if (v := ap(d / f"{pf}{m}_s{s}_{ar}.json", val)) is not None}
                     for ar in ARITHS} for m in methods}
-        pre = {ar: ap(d / f"pretrained_{ar}.json", val) for ar in ARITHS}
-        L = [f"# Блок D: метод × арифметика инференса, AP ({val}); auto: scripts/x7_summary.py", "",
+        pre = {ar: ap(d / f"{pf}pretrained_{ar}.json", val) for ar in ARITHS}
+        L = [f"# Блок D ({a.model}): метод × арифметика инференса, AP ({val}); auto: scripts/x7_summary.py", "",
              f"Ячейка: среднее ± sd по сидам [n]; Δ pp и парный p против {ref_i} и против {ref_b} в той же арифметике.", "",
              "| метод | " + " | ".join(ARITHS) + " |", "|---|" + "---|" * len(ARITHS)]
         res = {}
@@ -95,11 +99,11 @@ def main():
             L.append("| исходная | " + " | ".join(cells) + " |")
             res["pretrained"] = pre
         L.append("")
-        (d / f"summary_{val}.md").write_text("\n".join(L))
+        (d / f"summary_{pf}{val}.md").write_text("\n".join(L))
         out[val] = res
         if val == "full":
             print("\n".join(L))
-    (d / "summary.json").write_text(json.dumps(out, indent=1))
+    (d / f"summary_{pf or 'tiny_'}all.json").write_text(json.dumps(out, indent=1))
 
 
 if __name__ == "__main__":

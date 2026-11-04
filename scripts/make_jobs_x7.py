@@ -53,8 +53,30 @@ for s in SEEDS:
                         f"--dataset visdrone_val_native --size 800x800 --new_head_from visdrone_train_native "
                         f"--batch_size 16")
 
-if __name__ == "__main__":
+
+
+# YOLOS-small: ref_I / ref_B (recipe of E5: batch 32 x grad_accum 2, LR 1e-5, 300 steps), 5 seeds, same 5 arithmetics.
+# Seeds 42/123/456 exist in runs/e5; 789 and 1011 are added. Grid outputs: results/x7/small_<method>_s<seed>_<arith>.
+def small_block():
+    e5 = {l.split("\t")[0]: l.split("\t", 1)[1] for l in Path("queue/jobs.tsv").read_text().splitlines()
+          if l.startswith("e5_small_")}
+    lines = []
+    for s in (789, 1011):
+        for v in ("B", "I"):
+            if f"e5_small_{v}_s{s}" in e5 or f"x7s_{v}_s{s}" in queued:
+                continue
+            cmd = re.sub(r"--seed \d+", f"--seed {s}", e5[f"e5_small_{v}_s42"]).replace(f"{v}_s42", f"{v}_s{s}")
+            lines.append(f"x7s_{v}_s{s}\t{cmd}")
+    lines.append(f"x7sg_pretrained\t{G} --model small --batch_size 32 --prefix results/x7/small_pretrained")
+    for s in SEEDS:
+        for v in ("I", "B"):
+            lines.append(f"x7sg_ref_{v}_s{s}\t{G} --model small --batch_size 32 --ckpt runs/e5/{v}_s{s}/final.pt "
+                         f"--prefix results/x7/small_ref_{v}_s{s}")
+    return lines
+
+
+if __name__ == "__main__":  # d: before x6_; v: after x5_vd_I_s456; s: YOLOS-small refs, before x6_ (after block d)
     block = sys.argv[1]
-    print("\n".join(before_x6 if block == "d" else after_x5))
-    print(f"{block}: {len(before_x6 if block == 'd' else after_x5)} jobs "
-          f"(train {len(train)}, grid old {len(grid_old)}, grid new {len(grid_new)})", file=sys.stderr)
+    lines = {"d": before_x6, "v": after_x5, "s": small_block()}[block]
+    print("\n".join(lines))
+    print(f"{block}: {len(lines)} jobs", file=sys.stderr)

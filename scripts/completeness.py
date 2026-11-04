@@ -56,6 +56,16 @@ pre = ["✓" if Path(f"results/x7/pretrained_{a}.json").exists() else SYM[jstat(
 L.append("| исходная (без дообучения, детерм.) | — | " + " | ".join(pre) + " |")
 L += ["", f"Ячеек метод×сид×арифметика: {sum(tot.values())}; " + ", ".join(f"{k}: {v}" for k, v in tot.items()), ""]
 
+L += ["## D-small: YOLOS-small (COCO), ref_I и ref_B (рецепт E5), метод × арифметика", "",
+      "| метод | обучение | " + " | ".join(ARITHS) + " |", "|---|---|" + "---|" * len(ARITHS)]
+for v in ("I", "B"):
+    tr = "".join(SYM[jstat(f"e5_small_{v}_s{s}" if f"e5_small_{v}_s{s}" in jobs else f"x7s_{v}_s{s}")] for s in SEEDS)
+    cells = ["".join("✓" if Path(f"results/x7/small_ref_{v}_s{s}_{a}.json").exists() else SYM[jstat(f"x7sg_ref_{v}_s{s}")]
+                     for s in SEEDS) for a in ARITHS]
+    L.append(f"| ref_{v} | {tr} | " + " | ".join(cells) + " |")
+pre = ["✓" if Path(f"results/x7/small_pretrained_{a}.json").exists() else SYM[jstat("x7sg_pretrained")] for a in ARITHS]
+L += ["| исходная (детерм.) | — | " + " | ".join(pre) + " |", ""]
+
 L += ["## X5: перенос на VisDrone (YOLOS-tiny 800×800, новая голова), B и I", "",
       "| вариант | обучение | " + " | ".join(ARITHS) + " |", "|---|---|" + "---|" * len(ARITHS)]
 for v in ("B", "I"):
