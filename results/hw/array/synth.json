@@ -1,0 +1,666 @@
+{
+  "tool": "Yosys 0.70 (git sha1 28ba3cb92, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+  "delay_target_ps": 1000,
+  "notes": "logic synthesis only (no wires); 'area' = default ABC area script, 'delay' = abc -D target",
+  "blocks": {
+    "edge_west": {
+      "generic_cells": 93,
+      "nangate45_area": {
+        "area_um2": 83.524,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 83.524,
+        "cells": 79,
+        "flipflops": 0,
+        "nand2_eq": 104.66666666666666
+      },
+      "sky130hd_area": {
+        "area_um2": 414.1472,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 414.1472,
+        "cells": 72,
+        "flipflops": 0,
+        "nand2_eq": 110.33333333333333
+      }
+    },
+    "pe_ws_fp32": {
+      "generic_cells": 2516,
+      "nangate45_area": {
+        "area_um2": 2565.57,
+        "sequential_area_um2": 302.974,
+        "combinational_area_um2": 2262.596,
+        "cells": 2018,
+        "flipflops": 67,
+        "nand2_eq": 3215.0
+      },
+      "sky130hd_area": {
+        "area_um2": 12426.9184,
+        "sequential_area_um2": 1511.4496,
+        "combinational_area_um2": 10915.4688,
+        "cells": 1839,
+        "flipflops": 50,
+        "nand2_eq": 3310.666666666667
+      }
+    },
+    "pe_os_fp32": {
+      "generic_cells": 2542,
+      "nangate45_area": {
+        "area_um2": 2496.676,
+        "sequential_area_um2": 302.974,
+        "combinational_area_um2": 2193.7019999999998,
+        "cells": 1989,
+        "flipflops": 67,
+        "nand2_eq": 3128.6666666666665
+      },
+      "sky130hd_area": {
+        "area_um2": 12264.2624,
+        "sequential_area_um2": 1341.2864,
+        "combinational_area_um2": 10922.975999999999,
+        "cells": 1793,
+        "flipflops": 67,
+        "nand2_eq": 3267.333333333333
+      }
+    },
+    "edge_top_fp32": {
+      "generic_cells": 387,
+      "nangate45_area": {
+        "area_um2": 352.982,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 352.982,
+        "cells": 307,
+        "flipflops": 0,
+        "nand2_eq": 442.33333333333337
+      },
+      "sky130hd_area": {
+        "area_um2": 1782.96,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 1782.96,
+        "cells": 286,
+        "flipflops": 0,
+        "nand2_eq": 475.0
+      }
+    },
+    "edge_bot_fp32": {
+      "generic_cells": 279,
+      "nangate45_area": {
+        "area_um2": 251.636,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 251.636,
+        "cells": 205,
+        "flipflops": 0,
+        "nand2_eq": 315.3333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 1367.5616,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 1367.5616,
+        "cells": 186,
+        "flipflops": 0,
+        "nand2_eq": 364.3333333333333
+      }
+    },
+    "arr16_fp32": {
+      "generic_cells": 12061,
+      "nangate45_area": {
+        "area_um2": 667881.312,
+        "sequential_area_um2": 77561.344,
+        "combinational_area_um2": 590319.968,
+        "cells": 526331,
+        "flipflops": 17152,
+        "nand2_eq": 836944.0
+      }
+    },
+    "arr32_fp32": {
+      "generic_cells": 24146,
+      "nangate45_area": {
+        "area_um2": 2654759.8,
+        "sequential_area_um2": 310245.376,
+        "combinational_area_um2": 2344514.4239999996,
+        "cells": 2091050,
+        "flipflops": 68608,
+        "nand2_eq": 3326766.666666666
+      }
+    },
+    "pe_ws_bf16": {
+      "generic_cells": 1639,
+      "nangate45_area": {
+        "area_um2": 1915.732,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1685.11,
+        "cells": 1518,
+        "flipflops": 51,
+        "nand2_eq": 2400.6666666666665
+      },
+      "sky130hd_area": {
+        "area_um2": 8852.24,
+        "sequential_area_um2": 1191.1424,
+        "combinational_area_um2": 7661.0976,
+        "cells": 1263,
+        "flipflops": 34,
+        "nand2_eq": 2358.333333333333
+      }
+    },
+    "pe_os_bf16": {
+      "generic_cells": 1645,
+      "nangate45_area": {
+        "area_um2": 1842.05,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1611.4279999999999,
+        "cells": 1438,
+        "flipflops": 51,
+        "nand2_eq": 2308.333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 8857.2448,
+        "sequential_area_um2": 1020.9792,
+        "combinational_area_um2": 7836.265600000001,
+        "cells": 1251,
+        "flipflops": 51,
+        "nand2_eq": 2359.6666666666665
+      }
+    },
+    "edge_top_bf16": {
+      "generic_cells": 189,
+      "nangate45_area": {
+        "area_um2": 171.038,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 171.038,
+        "cells": 163,
+        "flipflops": 0,
+        "nand2_eq": 214.33333333333334
+      },
+      "sky130hd_area": {
+        "area_um2": 824.5408,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 824.5408,
+        "cells": 143,
+        "flipflops": 0,
+        "nand2_eq": 219.66666666666666
+      }
+    },
+    "edge_bot_bf16": {
+      "generic_cells": 100,
+      "nangate45_area": {
+        "area_um2": 86.45,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 86.45,
+        "cells": 76,
+        "flipflops": 0,
+        "nand2_eq": 108.33333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 367.8528,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 367.8528,
+        "cells": 56,
+        "flipflops": 0,
+        "nand2_eq": 98.0
+      }
+    },
+    "arr16_bf16": {
+      "generic_cells": 6037,
+      "nangate45_area": {
+        "area_um2": 491004.878,
+        "sequential_area_um2": 59039.232,
+        "combinational_area_um2": 431965.646,
+        "cells": 387778,
+        "flipflops": 13056,
+        "nand2_eq": 615294.3333333334
+      }
+    },
+    "arr32_bf16": {
+      "generic_cells": 12113,
+      "nangate45_area": {
+        "area_um2": 1918629.804,
+        "sequential_area_um2": 236156.928,
+        "combinational_area_um2": 1682472.876,
+        "cells": 1515924,
+        "flipflops": 52224,
+        "nand2_eq": 2404298.0
+      }
+    },
+    "pe_ws_fp16": {
+      "generic_cells": 1883,
+      "nangate45_area": {
+        "area_um2": 2015.216,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1784.5939999999998,
+        "cells": 1618,
+        "flipflops": 51,
+        "nand2_eq": 2525.333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 9958.3008,
+        "sequential_area_um2": 1191.1424,
+        "combinational_area_um2": 8767.1584,
+        "cells": 1484,
+        "flipflops": 34,
+        "nand2_eq": 2653.0
+      }
+    },
+    "pe_os_fp16": {
+      "generic_cells": 1908,
+      "nangate45_area": {
+        "area_um2": 2094.218,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1863.5959999999998,
+        "cells": 1694,
+        "flipflops": 51,
+        "nand2_eq": 2624.333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 10019.6096,
+        "sequential_area_um2": 1020.9792,
+        "combinational_area_um2": 8998.6304,
+        "cells": 1524,
+        "flipflops": 51,
+        "nand2_eq": 2669.333333333333
+      }
+    },
+    "edge_top_fp16": {
+      "generic_cells": 212,
+      "nangate45_area": {
+        "area_um2": 188.328,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 188.328,
+        "cells": 178,
+        "flipflops": 0,
+        "nand2_eq": 236.0
+      },
+      "sky130hd_area": {
+        "area_um2": 968.4288,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 968.4288,
+        "cells": 166,
+        "flipflops": 0,
+        "nand2_eq": 258.0
+      }
+    },
+    "edge_bot_fp16": {
+      "generic_cells": 126,
+      "nangate45_area": {
+        "area_um2": 95.494,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 95.494,
+        "cells": 82,
+        "flipflops": 0,
+        "nand2_eq": 119.66666666666666
+      },
+      "sky130hd_area": {
+        "area_um2": 520.4992,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 520.4992,
+        "cells": 75,
+        "flipflops": 0,
+        "nand2_eq": 138.66666666666666
+      }
+    },
+    "arr16_fp16": {
+      "generic_cells": 6708,
+      "nangate45_area": {
+        "area_um2": 521986.962,
+        "sequential_area_um2": 59039.232,
+        "combinational_area_um2": 462947.73,
+        "cells": 419943,
+        "flipflops": 13056,
+        "nand2_eq": 654119.0
+      }
+    },
+    "arr32_fp16": {
+      "generic_cells": 13620,
+      "nangate45_area": {
+        "area_um2": 2117744.636,
+        "sequential_area_um2": 236156.928,
+        "combinational_area_um2": 1881587.7079999999,
+        "cells": 1681668,
+        "flipflops": 52224,
+        "nand2_eq": 2653815.333333333
+      }
+    },
+    "pe_ws_e8m13": {
+      "generic_cells": 2176,
+      "nangate45_area": {
+        "area_um2": 2367.4,
+        "sequential_area_um2": 257.754,
+        "combinational_area_um2": 2109.646,
+        "cells": 1890,
+        "flipflops": 57,
+        "nand2_eq": 2966.6666666666665
+      },
+      "sky130hd_area": {
+        "area_um2": 11150.6944,
+        "sequential_area_um2": 1311.2576,
+        "combinational_area_um2": 9839.4368,
+        "cells": 1631,
+        "flipflops": 40,
+        "nand2_eq": 2970.6666666666665
+      }
+    },
+    "pe_os_e8m13": {
+      "generic_cells": 2192,
+      "nangate45_area": {
+        "area_um2": 2396.66,
+        "sequential_area_um2": 257.754,
+        "combinational_area_um2": 2138.906,
+        "cells": 1943,
+        "flipflops": 57,
+        "nand2_eq": 3003.333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 11604.88,
+        "sequential_area_um2": 1141.0944,
+        "combinational_area_um2": 10463.7856,
+        "cells": 1726,
+        "flipflops": 57,
+        "nand2_eq": 3091.6666666666665
+      }
+    },
+    "edge_top_e8m13": {
+      "generic_cells": 267,
+      "nangate45_area": {
+        "area_um2": 247.912,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 247.912,
+        "cells": 224,
+        "flipflops": 0,
+        "nand2_eq": 310.6666666666667
+      },
+      "sky130hd_area": {
+        "area_um2": 1261.2096,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 1261.2096,
+        "cells": 209,
+        "flipflops": 0,
+        "nand2_eq": 336.0
+      }
+    },
+    "edge_bot_e8m13": {
+      "generic_cells": 161,
+      "nangate45_area": {
+        "area_um2": 143.64,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 143.64,
+        "cells": 124,
+        "flipflops": 0,
+        "nand2_eq": 179.99999999999997
+      },
+      "sky130hd_area": {
+        "area_um2": 784.5024,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 784.5024,
+        "cells": 111,
+        "flipflops": 0,
+        "nand2_eq": 209.0
+      }
+    },
+    "arr16_e8m13": {
+      "generic_cells": 8359,
+      "nangate45_area": {
+        "area_um2": 613453.456,
+        "sequential_area_um2": 65985.024,
+        "combinational_area_um2": 547468.432,
+        "cells": 490663,
+        "flipflops": 14592,
+        "nand2_eq": 768738.6666666666
+      }
+    },
+    "arr32_e8m13": {
+      "generic_cells": 16703,
+      "nangate45_area": {
+        "area_um2": 2439002.146,
+        "sequential_area_um2": 263940.096,
+        "combinational_area_um2": 2175062.0500000003,
+        "cells": 1948947,
+        "flipflops": 58368,
+        "nand2_eq": 3056393.6666666665
+      }
+    },
+    "pe_ws_kahan": {
+      "generic_cells": 3561,
+      "nangate45_area": {
+        "area_um2": 3913.392,
+        "sequential_area_um2": 307.496,
+        "combinational_area_um2": 3605.8959999999997,
+        "cells": 3148,
+        "flipflops": 68,
+        "nand2_eq": 4903.999999999999
+      },
+      "sky130hd_area": {
+        "area_um2": 18356.3552,
+        "sequential_area_um2": 1531.4688,
+        "combinational_area_um2": 16824.886400000003,
+        "cells": 2713,
+        "flipflops": 51,
+        "nand2_eq": 4890.333333333334
+      }
+    },
+    "pe_os_kahan": {
+      "generic_cells": 3583,
+      "nangate45_area": {
+        "area_um2": 3841.04,
+        "sequential_area_um2": 307.496,
+        "combinational_area_um2": 3533.544,
+        "cells": 3137,
+        "flipflops": 68,
+        "nand2_eq": 4813.333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 18194.9504,
+        "sequential_area_um2": 1361.3056,
+        "combinational_area_um2": 16833.644800000002,
+        "cells": 2746,
+        "flipflops": 68,
+        "nand2_eq": 4847.333333333334
+      }
+    },
+    "edge_top_kahan": {
+      "generic_cells": 283,
+      "nangate45_area": {
+        "area_um2": 250.838,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 250.838,
+        "cells": 241,
+        "flipflops": 0,
+        "nand2_eq": 314.3333333333333
+      },
+      "sky130hd_area": {
+        "area_um2": 1247.4464,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 1247.4464,
+        "cells": 219,
+        "flipflops": 0,
+        "nand2_eq": 332.3333333333333
+      }
+    },
+    "edge_bot_kahan": {
+      "generic_cells": 192,
+      "nangate45_area": {
+        "area_um2": 162.26,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 162.26,
+        "cells": 150,
+        "flipflops": 0,
+        "nand2_eq": 203.33333333333331
+      },
+      "sky130hd_area": {
+        "area_um2": 817.0336,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 817.0336,
+        "cells": 124,
+        "flipflops": 0,
+        "nand2_eq": 217.66666666666666
+      }
+    },
+    "arr16_kahan": {
+      "generic_cells": 9067,
+      "nangate45_area": {
+        "area_um2": 1027182.94,
+        "sequential_area_um2": 78718.976,
+        "combinational_area_um2": 948463.9639999999,
+        "cells": 827287,
+        "flipflops": 17408,
+        "nand2_eq": 1287196.6666666665
+      }
+    },
+    "arr32_kahan": {
+      "generic_cells": 18132,
+      "nangate45_area": {
+        "area_um2": 4092316.102,
+        "sequential_area_um2": 314875.904,
+        "combinational_area_um2": 3777440.198,
+        "cells": 3293416,
+        "flipflops": 69632,
+        "nand2_eq": 5128215.666666666
+      }
+    },
+    "pe_ws_chunk": {
+      "generic_cells": 1639,
+      "nangate45_area": {
+        "area_um2": 1915.732,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1685.11,
+        "cells": 1518,
+        "flipflops": 51,
+        "nand2_eq": 2400.6666666666665
+      },
+      "sky130hd_area": {
+        "area_um2": 8852.24,
+        "sequential_area_um2": 1191.1424,
+        "combinational_area_um2": 7661.0976,
+        "cells": 1263,
+        "flipflops": 34,
+        "nand2_eq": 2358.333333333333
+      }
+    },
+    "edge_top_chunk": {
+      "generic_cells": 93,
+      "nangate45_area": {
+        "area_um2": 83.524,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 83.524,
+        "cells": 79,
+        "flipflops": 0,
+        "nand2_eq": 104.66666666666666
+      },
+      "sky130hd_area": {
+        "area_um2": 414.1472,
+        "sequential_area_um2": 0.0,
+        "combinational_area_um2": 414.1472,
+        "cells": 72,
+        "flipflops": 0,
+        "nand2_eq": 110.33333333333333
+      }
+    },
+    "edge_bot_chunk": {
+      "generic_cells": 1991,
+      "nangate45_area": {
+        "area_um2": 2040.22,
+        "sequential_area_um2": 144.704,
+        "combinational_area_um2": 1895.516,
+        "cells": 1635,
+        "flipflops": 32,
+        "nand2_eq": 2556.6666666666665
+      },
+      "sky130hd_area": {
+        "area_um2": 10148.4832,
+        "sequential_area_um2": 640.6144,
+        "combinational_area_um2": 9507.8688,
+        "cells": 1518,
+        "flipflops": 32,
+        "nand2_eq": 2703.666666666667
+      }
+    },
+    "arr16_chunk": {
+      "generic_cells": 3014,
+      "nangate45_area": {
+        "area_um2": 528354.736,
+        "sequential_area_um2": 61354.496,
+        "combinational_area_um2": 467000.24000000005,
+        "cells": 419361,
+        "flipflops": 13568,
+        "nand2_eq": 662098.6666666666
+      }
+    },
+    "arr32_chunk": {
+      "generic_cells": 6028,
+      "nangate45_area": {
+        "area_um2": 2040636.29,
+        "sequential_area_um2": 240787.456,
+        "combinational_area_um2": 1799848.834,
+        "cells": 1619791,
+        "flipflops": 53248,
+        "nand2_eq": 2557188.333333333
+      }
+    },
+    "pe_ws_bf16_sep": {
+      "generic_cells": 1997,
+      "nangate45_area": {
+        "area_um2": 2022.132,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1791.51,
+        "cells": 1632,
+        "flipflops": 51,
+        "nand2_eq": 2534.0
+      },
+      "sky130hd_area": {
+        "area_um2": 10244.8256,
+        "sequential_area_um2": 1191.1424,
+        "combinational_area_um2": 9053.6832,
+        "cells": 1465,
+        "flipflops": 34,
+        "nand2_eq": 2729.3333333333335
+      }
+    },
+    "pe_ws_fp16_sep": {
+      "generic_cells": 2068,
+      "nangate45_area": {
+        "area_um2": 2133.586,
+        "sequential_area_um2": 230.622,
+        "combinational_area_um2": 1902.9639999999997,
+        "cells": 1696,
+        "flipflops": 51,
+        "nand2_eq": 2673.666666666666
+      },
+      "sky130hd_area": {
+        "area_um2": 10521.3408,
+        "sequential_area_um2": 1191.1424,
+        "combinational_area_um2": 9330.1984,
+        "cells": 1492,
+        "flipflops": 34,
+        "nand2_eq": 2803.0
+      }
+    },
+    "pe_ws_e8m13_sep": {
+      "generic_cells": 2158,
+      "nangate45_area": {
+        "area_um2": 2272.704,
+        "sequential_area_um2": 257.754,
+        "combinational_area_um2": 2014.9500000000003,
+        "cells": 1802,
+        "flipflops": 57,
+        "nand2_eq": 2848.0
+      },
+      "sky130hd_area": {
+        "area_um2": 11280.8192,
+        "sequential_area_um2": 1311.2576,
+        "combinational_area_um2": 9969.5616,
+        "cells": 1592,
+        "flipflops": 40,
+        "nand2_eq": 3005.3333333333335
+      }
+    }
+  },
+  "composed_array_area_um2": {
+    "arr16_fp32": 667796.192,
+    "arr32_fp32": 2649164.2240000004,
+    "arr16_bf16": 495883.58400000003,
+    "arr32_bf16": 1972621.9519999998,
+    "arr16_fp16": 521772.832,
+    "arr32_fp16": 2075336.2559999998,
+    "arr16_e8m13": 613655.616,
+    "arr32_e8m13": 2439420.032,
+    "arr16_kahan": 1009774.3039999999,
+    "arr32_kahan": 4023205.312,
+    "arr16_chunk": 525743.68,
+    "arr32_chunk": 2032342.1439999999
+  }
+}

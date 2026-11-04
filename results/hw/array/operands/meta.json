@@ -1,0 +1,189 @@
+{
+  "model": "hustvl/yolos-tiny",
+  "layer": 5,
+  "head": 0,
+  "input": "512x512 YolosImageProcessor",
+  "autocast": "cpu bfloat16, eager attention",
+  "files": {
+    "qkv_L5_img0.npz": {
+      "image": "000000000139.jpg",
+      "A": [
+        1125,
+        192
+      ],
+      "B": [
+        192,
+        576
+      ],
+      "A_absmax": 9.0625,
+      "B_absmax": 0.53515625,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "qk_L5h0_img0.npz": {
+      "image": "000000000139.jpg",
+      "A": [
+        1125,
+        64
+      ],
+      "B": [
+        64,
+        1125
+      ],
+      "A_absmax": 4.78125,
+      "B_absmax": 3.0625,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "av_L5h0_img0.npz": {
+      "image": "000000000139.jpg",
+      "A": [
+        1125,
+        1125
+      ],
+      "B": [
+        1125,
+        64
+      ],
+      "A_absmax": 0.044189453125,
+      "B_absmax": 4.28125,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "fc1_L5_img0.npz": {
+      "image": "000000000139.jpg",
+      "A": [
+        1125,
+        192
+      ],
+      "B": [
+        192,
+        768
+      ],
+      "A_absmax": 10.5625,
+      "B_absmax": 0.373046875,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "fc2_L5_img0.npz": {
+      "image": "000000000139.jpg",
+      "A": [
+        1125,
+        768
+      ],
+      "B": [
+        768,
+        192
+      ],
+      "A_absmax": 5.0625,
+      "B_absmax": 0.5234375,
+      "A_zero_frac": 0.000605324050411582,
+      "B_zero_frac": 0.0
+    },
+    "patch_img0.npz": {
+      "image": "000000000139.jpg",
+      "A": [
+        1024,
+        768
+      ],
+      "B": [
+        768,
+        192
+      ],
+      "A_absmax": 1.984375,
+      "B_absmax": 0.345703125,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "qkv_L5_img1.npz": {
+      "image": "000000000285.jpg",
+      "A": [
+        1125,
+        192
+      ],
+      "B": [
+        192,
+        576
+      ],
+      "A_absmax": 8.75,
+      "B_absmax": 0.53515625,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "qk_L5h0_img1.npz": {
+      "image": "000000000285.jpg",
+      "A": [
+        1125,
+        64
+      ],
+      "B": [
+        64,
+        1125
+      ],
+      "A_absmax": 4.59375,
+      "B_absmax": 3.34375,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "av_L5h0_img1.npz": {
+      "image": "000000000285.jpg",
+      "A": [
+        1125,
+        1125
+      ],
+      "B": [
+        1125,
+        64
+      ],
+      "A_absmax": 0.0732421875,
+      "B_absmax": 5.25,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "fc1_L5_img1.npz": {
+      "image": "000000000285.jpg",
+      "A": [
+        1125,
+        192
+      ],
+      "B": [
+        192,
+        768
+      ],
+      "A_absmax": 11.25,
+      "B_absmax": 0.373046875,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    },
+    "fc2_L5_img1.npz": {
+      "image": "000000000285.jpg",
+      "A": [
+        1125,
+        768
+      ],
+      "B": [
+        768,
+        192
+      ],
+      "A_absmax": 5.40625,
+      "B_absmax": 0.5234375,
+      "A_zero_frac": 0.0015648148255422711,
+      "B_zero_frac": 0.0
+    },
+    "patch_img1.npz": {
+      "image": "000000000285.jpg",
+      "A": [
+        1024,
+        768
+      ],
+      "B": [
+        768,
+        192
+      ],
+      "A_absmax": 2.53125,
+      "B_absmax": 0.345703125,
+      "A_zero_frac": 0.0,
+      "B_zero_frac": 0.0
+    }
+  }
+}

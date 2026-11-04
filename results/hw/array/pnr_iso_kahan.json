@@ -1,0 +1,776 @@
+{
+  "pe_ws_kahan": {
+    "wns_ns": 0.1344,
+    "tns_ns": 0.0,
+    "cell_area_um2": 4971.0,
+    "utilization_pct": 77.0,
+    "power": {
+      "ws_kahan_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 4.765914e-05,
+          "switching_W": 3.982363e-06,
+          "leakage_W": 5.975124e-06,
+          "total_W": 5.761663e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002531416,
+          "switching_W": 0.0003052631,
+          "leakage_W": 0.0001227862,
+          "total_W": 0.000681191
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.0003110062,
+          "switching_W": 0.0003228878,
+          "leakage_W": 0.0001290363,
+          "total_W": 0.0007629303
+        }
+      },
+      "ws_kahan_av_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001159928,
+          "switching_W": 4.006242e-06,
+          "leakage_W": 5.975124e-06,
+          "total_W": 0.0001259742
+        },
+        "combinational": {
+          "internal_W": 0.006841929,
+          "switching_W": 0.008114771,
+          "leakage_W": 0.0001227862,
+          "total_W": 0.01507949
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.00696813,
+          "switching_W": 0.00813242,
+          "leakage_W": 0.0001290363,
+          "total_W": 0.01522959
+        }
+      },
+      "ws_kahan_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 4.991553e-05,
+          "switching_W": 4.68552e-06,
+          "leakage_W": 5.973925e-06,
+          "total_W": 6.057497e-05
+        },
+        "combinational": {
+          "internal_W": 0.000286457,
+          "switching_W": 0.000347627,
+          "leakage_W": 0.0001233043,
+          "total_W": 0.0007573884
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.0003465782,
+          "switching_W": 0.0003659548,
+          "leakage_W": 0.0001295533,
+          "total_W": 0.0008420863
+        }
+      },
+      "ws_kahan_fc1_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001440786,
+          "switching_W": 4.636786e-06,
+          "leakage_W": 5.973925e-06,
+          "total_W": 0.0001546893
+        },
+        "combinational": {
+          "internal_W": 0.008165489,
+          "switching_W": 0.009677205,
+          "leakage_W": 0.0001233043,
+          "total_W": 0.017966
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.008319772,
+          "switching_W": 0.009695485,
+          "leakage_W": 0.0001295533,
+          "total_W": 0.01814481
+        }
+      },
+      "ws_kahan_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 5.118264e-05,
+          "switching_W": 4.468031e-06,
+          "leakage_W": 5.978385e-06,
+          "total_W": 6.162905e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002817348,
+          "switching_W": 0.0003426676,
+          "leakage_W": 0.0001230166,
+          "total_W": 0.000747419
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.000343123,
+          "switching_W": 0.0003607778,
+          "leakage_W": 0.0001292701,
+          "total_W": 0.0008331709
+        }
+      },
+      "ws_kahan_fc2_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001370816,
+          "switching_W": 4.446017e-06,
+          "leakage_W": 5.978385e-06,
+          "total_W": 0.000147506
+        },
+        "combinational": {
+          "internal_W": 0.008100645,
+          "switching_W": 0.009624141,
+          "leakage_W": 0.0001230166,
+          "total_W": 0.0178478
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.008247929,
+          "switching_W": 0.009642231,
+          "leakage_W": 0.0001292701,
+          "total_W": 0.01801943
+        }
+      },
+      "ws_kahan_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 4.959683e-05,
+          "switching_W": 4.647775e-06,
+          "leakage_W": 5.973281e-06,
+          "total_W": 6.021788e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002696819,
+          "switching_W": 0.0003254895,
+          "leakage_W": 0.0001233362,
+          "total_W": 0.0007185076
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.0003294843,
+          "switching_W": 0.0003437796,
+          "leakage_W": 0.0001295846,
+          "total_W": 0.0008028485
+        }
+      },
+      "ws_kahan_patch_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001425889,
+          "switching_W": 4.608095e-06,
+          "leakage_W": 5.973281e-06,
+          "total_W": 0.0001531703
+        },
+        "combinational": {
+          "internal_W": 0.007886789,
+          "switching_W": 0.009339871,
+          "leakage_W": 0.0001233362,
+          "total_W": 0.01735
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.008039579,
+          "switching_W": 0.009358125,
+          "leakage_W": 0.0001295846,
+          "total_W": 0.01752729
+        }
+      },
+      "ws_kahan_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 4.800998e-05,
+          "switching_W": 4.520223e-06,
+          "leakage_W": 5.973445e-06,
+          "total_W": 5.850365e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002822333,
+          "switching_W": 0.000341726,
+          "leakage_W": 0.0001237913,
+          "total_W": 0.0007477506
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.0003404489,
+          "switching_W": 0.0003598886,
+          "leakage_W": 0.0001300397,
+          "total_W": 0.0008303772
+        }
+      },
+      "ws_kahan_qk_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001442877,
+          "switching_W": 4.424541e-06,
+          "leakage_W": 5.973445e-06,
+          "total_W": 0.0001546857
+        },
+        "combinational": {
+          "internal_W": 0.007908798,
+          "switching_W": 0.009356971,
+          "leakage_W": 0.0001237913,
+          "total_W": 0.01738956
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.008063287,
+          "switching_W": 0.00937504,
+          "leakage_W": 0.0001300397,
+          "total_W": 0.01756837
+        }
+      },
+      "ws_kahan_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 5.057309e-05,
+          "switching_W": 4.550473e-06,
+          "leakage_W": 5.972719e-06,
+          "total_W": 6.109629e-05
+        },
+        "combinational": {
+          "internal_W": 0.000286247,
+          "switching_W": 0.0003472489,
+          "leakage_W": 0.0001232487,
+          "total_W": 0.0007567447
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.0003470257,
+          "switching_W": 0.0003654416,
+          "leakage_W": 0.0001294965,
+          "total_W": 0.0008419639
+        }
+      },
+      "ws_kahan_qkv_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001444051,
+          "switching_W": 4.508195e-06,
+          "leakage_W": 5.972719e-06,
+          "total_W": 0.0001548861
+        },
+        "combinational": {
+          "internal_W": 0.00811397,
+          "switching_W": 0.009617233,
+          "leakage_W": 0.0001232487,
+          "total_W": 0.01785445
+        },
+        "clock": {
+          "internal_W": 1.020559e-05,
+          "switching_W": 1.364228e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 2.41229e-05
+        },
+        "total": {
+          "internal_W": 0.008268584,
+          "switching_W": 0.009635381,
+          "leakage_W": 0.0001294965,
+          "total_W": 0.01803346
+        }
+      }
+    },
+    "block": "pe_ws_kahan",
+    "period_target_ns": 9.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 439.7,
+    "activity": {
+      "ws_kahan_av_L5h0_img0:zero": {
+        "cycles": 20429824,
+        "toggles_per_cycle": 769.5819355076193
+      },
+      "ws_kahan_av_L5h0_img0:unit": {
+        "cycles": 5179392,
+        "toggles_per_cycle": 19003.56813869275
+      },
+      "ws_kahan_fc1_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 862.7102751635733
+      },
+      "ws_kahan_fc1_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 22582.136480111938
+      },
+      "ws_kahan_fc2_L5_img0:zero": {
+        "cycles": 13811712,
+        "toggles_per_cycle": 847.206705077548
+      },
+      "ws_kahan_fc2_L5_img0:unit": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 22434.720704862608
+      },
+      "ws_kahan_patch_img0:zero": {
+        "cycles": 12570624,
+        "toggles_per_cycle": 819.3882760314829
+      },
+      "ws_kahan_patch_img0:unit": {
+        "cycles": 3142656,
+        "toggles_per_cycle": 21823.641812530583
+      },
+      "ws_kahan_qk_L5h0_img0:zero": {
+        "cycles": 1150976,
+        "toggles_per_cycle": 846.5524024827598
+      },
+      "ws_kahan_qk_L5h0_img0:unit": {
+        "cycles": 287744,
+        "toggles_per_cycle": 21760.41446563613
+      },
+      "ws_kahan_qkv_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 860.5114366705592
+      },
+      "ws_kahan_qkv_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 22454.67837151539
+      }
+    },
+    "achieved_period_ns": 9.0,
+    "fmax_MHz": 111.11111111111111
+  },
+  "edge_top_kahan": {
+    "wns_ns": 8.3534,
+    "tns_ns": 0.0,
+    "cell_area_um2": 311.0,
+    "utilization_pct": 78.0,
+    "power": {
+      "ws_kahan_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.302294e-06,
+          "switching_W": 1.085047e-05,
+          "leakage_W": 7.673982e-06,
+          "total_W": 2.782675e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.302294e-06,
+          "switching_W": 1.085047e-05,
+          "leakage_W": 7.673982e-06,
+          "total_W": 2.782675e-05
+        }
+      },
+      "ws_kahan_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.236713e-06,
+          "switching_W": 1.099436e-05,
+          "leakage_W": 7.563773e-06,
+          "total_W": 2.779485e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.236713e-06,
+          "switching_W": 1.099436e-05,
+          "leakage_W": 7.563773e-06,
+          "total_W": 2.779485e-05
+        }
+      },
+      "ws_kahan_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.881611e-06,
+          "switching_W": 1.171838e-05,
+          "leakage_W": 7.579697e-06,
+          "total_W": 2.917969e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.881611e-06,
+          "switching_W": 1.171838e-05,
+          "leakage_W": 7.579697e-06,
+          "total_W": 2.917969e-05
+        }
+      },
+      "ws_kahan_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.810649e-06,
+          "switching_W": 1.16762e-05,
+          "leakage_W": 7.571316e-06,
+          "total_W": 2.905817e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.810649e-06,
+          "switching_W": 1.16762e-05,
+          "leakage_W": 7.571316e-06,
+          "total_W": 2.905817e-05
+        }
+      },
+      "ws_kahan_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 7.611135e-06,
+          "switching_W": 9.175335e-06,
+          "leakage_W": 7.582171e-06,
+          "total_W": 2.436864e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 7.611135e-06,
+          "switching_W": 9.175335e-06,
+          "leakage_W": 7.582171e-06,
+          "total_W": 2.436864e-05
+        }
+      },
+      "ws_kahan_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.067737e-06,
+          "switching_W": 1.081918e-05,
+          "leakage_W": 7.546802e-06,
+          "total_W": 2.743371e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.067737e-06,
+          "switching_W": 1.081918e-05,
+          "leakage_W": 7.546802e-06,
+          "total_W": 2.743371e-05
+        }
+      }
+    },
+    "block": "edge_top_kahan",
+    "period_target_ns": 9.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 20.6,
+    "activity": {
+      "ws_kahan_av_L5h0_img0:zero": {
+        "cycles": 1276864,
+        "toggles_per_cycle": 41.54687578316877
+      },
+      "ws_kahan_fc1_L5_img0:zero": {
+        "cycles": 215808,
+        "toggles_per_cycle": 40.37775708036776
+      },
+      "ws_kahan_fc2_L5_img0:zero": {
+        "cycles": 863232,
+        "toggles_per_cycle": 44.176528441948385
+      },
+      "ws_kahan_patch_img0:zero": {
+        "cycles": 785664,
+        "toggles_per_cycle": 42.938659528755316
+      },
+      "ws_kahan_qk_L5h0_img0:zero": {
+        "cycles": 71936,
+        "toggles_per_cycle": 33.821396797153014
+      },
+      "ws_kahan_qkv_L5_img0:zero": {
+        "cycles": 215808,
+        "toggles_per_cycle": 39.76501334519574
+      }
+    },
+    "achieved_period_ns": 9.0,
+    "fmax_MHz": 111.11111111111111
+  },
+  "edge_bot_kahan": {
+    "wns_ns": 8.5379,
+    "tns_ns": 0.0,
+    "cell_area_um2": 185.0,
+    "utilization_pct": 73.0,
+    "power": {
+      "ws_kahan_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 8.410926e-06,
+          "switching_W": 8.282672e-06,
+          "leakage_W": 4.614549e-06,
+          "total_W": 2.130815e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 8.410926e-06,
+          "switching_W": 8.282672e-06,
+          "leakage_W": 4.614549e-06,
+          "total_W": 2.130815e-05
+        }
+      },
+      "ws_kahan_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.314416e-06,
+          "switching_W": 9.753501e-06,
+          "leakage_W": 4.575887e-06,
+          "total_W": 2.36438e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.314416e-06,
+          "switching_W": 9.753501e-06,
+          "leakage_W": 4.575887e-06,
+          "total_W": 2.36438e-05
+        }
+      },
+      "ws_kahan_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.537604e-06,
+          "switching_W": 9.776125e-06,
+          "leakage_W": 4.604472e-06,
+          "total_W": 2.39182e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.537604e-06,
+          "switching_W": 9.776125e-06,
+          "leakage_W": 4.604472e-06,
+          "total_W": 2.39182e-05
+        }
+      },
+      "ws_kahan_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.175709e-06,
+          "switching_W": 9.666428e-06,
+          "leakage_W": 4.579215e-06,
+          "total_W": 2.342135e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.175709e-06,
+          "switching_W": 9.666428e-06,
+          "leakage_W": 4.579215e-06,
+          "total_W": 2.342135e-05
+        }
+      },
+      "ws_kahan_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 8.772195e-06,
+          "switching_W": 9.39532e-06,
+          "leakage_W": 4.522854e-06,
+          "total_W": 2.269037e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 8.772195e-06,
+          "switching_W": 9.39532e-06,
+          "leakage_W": 4.522854e-06,
+          "total_W": 2.269037e-05
+        }
+      },
+      "ws_kahan_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "combinational": {
+          "internal_W": 9.222233e-06,
+          "switching_W": 9.630485e-06,
+          "leakage_W": 4.59008e-06,
+          "total_W": 2.34428e-05
+        },
+        "clock": {
+          "internal_W": 0.0,
+          "switching_W": 0.0,
+          "leakage_W": 0.0,
+          "total_W": 0.0
+        },
+        "total": {
+          "internal_W": 9.222233e-06,
+          "switching_W": 9.630485e-06,
+          "leakage_W": 4.59008e-06,
+          "total_W": 2.34428e-05
+        }
+      }
+    },
+    "block": "edge_bot_kahan",
+    "period_target_ns": 9.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 12.2,
+    "activity": {
+      "ws_kahan_av_L5h0_img0:zero": {
+        "cycles": 1276864,
+        "toggles_per_cycle": 41.80948401709188
+      },
+      "ws_kahan_fc1_L5_img0:zero": {
+        "cycles": 215808,
+        "toggles_per_cycle": 46.357419558125734
+      },
+      "ws_kahan_fc2_L5_img0:zero": {
+        "cycles": 863232,
+        "toggles_per_cycle": 47.39413390606466
+      },
+      "ws_kahan_patch_img0:zero": {
+        "cycles": 785664,
+        "toggles_per_cycle": 45.9748773012382
+      },
+      "ws_kahan_qk_L5h0_img0:zero": {
+        "cycles": 71936,
+        "toggles_per_cycle": 44.1529832072954
+      },
+      "ws_kahan_qkv_L5_img0:zero": {
+        "cycles": 215808,
+        "toggles_per_cycle": 45.67708333333336
+      }
+    },
+    "achieved_period_ns": 9.0,
+    "fmax_MHz": 111.11111111111111
+  }
+}

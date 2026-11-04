@@ -1,0 +1,968 @@
+{
+  "pe_ws_chunk": {
+    "wns_ns": 1.3677,
+    "tns_ns": 0.0,
+    "cell_area_um2": 2349.0,
+    "utilization_pct": 77.0,
+    "power": {
+      "ws_chunk_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 6.061052e-05,
+          "switching_W": 5.012521e-06,
+          "leakage_W": 4.635658e-06,
+          "total_W": 7.025871e-05
+        },
+        "combinational": {
+          "internal_W": 0.0001915641,
+          "switching_W": 0.0002087123,
+          "leakage_W": 5.505452e-05,
+          "total_W": 0.000455331
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.0002625366,
+          "switching_W": 0.0002314906,
+          "leakage_W": 5.984299e-05,
+          "total_W": 0.0005538702
+        }
+      },
+      "ws_chunk_av_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 7.353239e-05,
+          "switching_W": 5.103373e-06,
+          "leakage_W": 4.635658e-06,
+          "total_W": 8.327142e-05
+        },
+        "combinational": {
+          "internal_W": 0.001181092,
+          "switching_W": 0.001269039,
+          "leakage_W": 5.505452e-05,
+          "total_W": 0.002505185
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.001264986,
+          "switching_W": 0.001291908,
+          "leakage_W": 5.984299e-05,
+          "total_W": 0.002616737
+        }
+      },
+      "ws_chunk_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.612702e-05,
+          "switching_W": 6.339087e-06,
+          "leakage_W": 4.644633e-06,
+          "total_W": 7.711074e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002422192,
+          "switching_W": 0.0002809467,
+          "leakage_W": 5.513009e-05,
+          "total_W": 0.000578296
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.0003187081,
+          "switching_W": 0.0003050515,
+          "leakage_W": 5.992751e-05,
+          "total_W": 0.0006836872
+        }
+      },
+      "ws_chunk_fc1_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.663282e-05,
+          "switching_W": 6.402807e-06,
+          "leakage_W": 4.644633e-06,
+          "total_W": 9.768025e-05
+        },
+        "combinational": {
+          "internal_W": 0.001801376,
+          "switching_W": 0.001971271,
+          "leakage_W": 5.513009e-05,
+          "total_W": 0.003827777
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.001898371,
+          "switching_W": 0.001995439,
+          "leakage_W": 5.992751e-05,
+          "total_W": 0.003953738
+        }
+      },
+      "ws_chunk_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.671155e-05,
+          "switching_W": 5.878353e-06,
+          "leakage_W": 4.643409e-06,
+          "total_W": 7.723331e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002360846,
+          "switching_W": 0.0002726648,
+          "leakage_W": 5.505391e-05,
+          "total_W": 0.0005638033
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.0003131581,
+          "switching_W": 0.0002963089,
+          "leakage_W": 5.985012e-05,
+          "total_W": 0.0006693171
+        }
+      },
+      "ws_chunk_fc2_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.525352e-05,
+          "switching_W": 5.873349e-06,
+          "leakage_W": 4.643409e-06,
+          "total_W": 9.577028e-05
+        },
+        "combinational": {
+          "internal_W": 0.001728711,
+          "switching_W": 0.001888751,
+          "leakage_W": 5.505391e-05,
+          "total_W": 0.003672516
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.001824326,
+          "switching_W": 0.00191239,
+          "leakage_W": 5.985012e-05,
+          "total_W": 0.003796566
+        }
+      },
+      "ws_chunk_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 6.340796e-05,
+          "switching_W": 5.707089e-06,
+          "leakage_W": 4.64506e-06,
+          "total_W": 7.37601e-05
+        },
+        "combinational": {
+          "internal_W": 0.0001994889,
+          "switching_W": 0.0002216488,
+          "leakage_W": 5.517605e-05,
+          "total_W": 0.0004763137
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.0002732587,
+          "switching_W": 0.0002451216,
+          "leakage_W": 5.99739e-05,
+          "total_W": 0.0005783543
+        }
+      },
+      "ws_chunk_patch_img0:unit": {
+        "sequential": {
+          "internal_W": 7.922058e-05,
+          "switching_W": 5.697536e-06,
+          "leakage_W": 4.64506e-06,
+          "total_W": 8.956317e-05
+        },
+        "combinational": {
+          "internal_W": 0.001426719,
+          "switching_W": 0.001556464,
+          "leakage_W": 5.517605e-05,
+          "total_W": 0.003038359
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.001516301,
+          "switching_W": 0.001579928,
+          "leakage_W": 5.99739e-05,
+          "total_W": 0.003156203
+        }
+      },
+      "ws_chunk_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 6.096804e-05,
+          "switching_W": 6.525017e-06,
+          "leakage_W": 4.646798e-06,
+          "total_W": 7.213986e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002414561,
+          "switching_W": 0.0002767977,
+          "leakage_W": 5.49584e-05,
+          "total_W": 0.0005732122
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.0003127861,
+          "switching_W": 0.0003010885,
+          "leakage_W": 5.975799e-05,
+          "total_W": 0.0006736326
+        }
+      },
+      "ws_chunk_qk_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 7.878933e-05,
+          "switching_W": 6.449557e-06,
+          "leakage_W": 4.646798e-06,
+          "total_W": 8.988568e-05
+        },
+        "combinational": {
+          "internal_W": 0.001668343,
+          "switching_W": 0.001819361,
+          "leakage_W": 5.49584e-05,
+          "total_W": 0.003542663
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.001757495,
+          "switching_W": 0.001843576,
+          "leakage_W": 5.975799e-05,
+          "total_W": 0.003660829
+        }
+      },
+      "ws_chunk_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.67018e-05,
+          "switching_W": 6.304394e-06,
+          "leakage_W": 4.643934e-06,
+          "total_W": 7.765012e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002447356,
+          "switching_W": 0.0002847813,
+          "leakage_W": 5.513247e-05,
+          "total_W": 0.0005846494
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.0003217994,
+          "switching_W": 0.0003088516,
+          "leakage_W": 5.992921e-05,
+          "total_W": 0.0006905802
+        }
+      },
+      "ws_chunk_qkv_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.672359e-05,
+          "switching_W": 6.319375e-06,
+          "leakage_W": 4.643934e-06,
+          "total_W": 9.76869e-05
+        },
+        "combinational": {
+          "internal_W": 0.00179921,
+          "switching_W": 0.001966309,
+          "leakage_W": 5.513247e-05,
+          "total_W": 0.003820651
+        },
+        "clock": {
+          "internal_W": 1.036192e-05,
+          "switching_W": 1.776575e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.828046e-05
+        },
+        "total": {
+          "internal_W": 0.001896296,
+          "switching_W": 0.001990395,
+          "leakage_W": 5.992921e-05,
+          "total_W": 0.00394662
+        }
+      }
+    },
+    "block": "pe_ws_chunk",
+    "period_target_ns": 5.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 130.1,
+    "activity": {
+      "ws_chunk_av_L5h0_img0:zero": {
+        "cycles": 20429824,
+        "toggles_per_cycle": 340.6196388182292
+      },
+      "ws_chunk_av_L5h0_img0:unit": {
+        "cycles": 5179392,
+        "toggles_per_cycle": 2003.6630654717774
+      },
+      "ws_chunk_fc1_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 429.9983063649163
+      },
+      "ws_chunk_fc1_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 3055.6523657603057
+      },
+      "ws_chunk_fc2_L5_img0:zero": {
+        "cycles": 13811712,
+        "toggles_per_cycle": 416.949124988995
+      },
+      "ws_chunk_fc2_L5_img0:unit": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 2929.083789178346
+      },
+      "ws_chunk_patch_img0:zero": {
+        "cycles": 12570624,
+        "toggles_per_cycle": 356.948761016159
+      },
+      "ws_chunk_patch_img0:unit": {
+        "cycles": 3142656,
+        "toggles_per_cycle": 2414.2750673315804
+      },
+      "ws_chunk_qk_L5h0_img0:zero": {
+        "cycles": 1150976,
+        "toggles_per_cycle": 429.6232736390678
+      },
+      "ws_chunk_qk_L5h0_img0:unit": {
+        "cycles": 287744,
+        "toggles_per_cycle": 2831.634306883892
+      },
+      "ws_chunk_qkv_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 433.9693373276242
+      },
+      "ws_chunk_qkv_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 3053.2977032825456
+      }
+    },
+    "achieved_period_ns": 5.0,
+    "fmax_MHz": 200.0
+  },
+  "edge_bot_chunk": {
+    "wns_ns": 1.3787,
+    "tns_ns": 0.0,
+    "cell_area_um2": 2571.0,
+    "utilization_pct": 77.0,
+    "power": {
+      "ws_chunk_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 4.628934e-05,
+          "switching_W": 4.50178e-06,
+          "leakage_W": 2.514986e-06,
+          "total_W": 5.330611e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002017381,
+          "switching_W": 0.0002444701,
+          "leakage_W": 6.332842e-05,
+          "total_W": 0.0005095366
+        },
+        "clock": {
+          "internal_W": 1.019237e-05,
+          "switching_W": 1.211558e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.246074e-05
+        },
+        "total": {
+          "internal_W": 0.0002582198,
+          "switching_W": 0.0002610875,
+          "leakage_W": 6.59962e-05,
+          "total_W": 0.0005853035
+        }
+      },
+      "ws_chunk_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 4.66729e-05,
+          "switching_W": 3.602153e-06,
+          "leakage_W": 2.497729e-06,
+          "total_W": 5.277278e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002086891,
+          "switching_W": 0.0002696849,
+          "leakage_W": 6.342888e-05,
+          "total_W": 0.0005418028
+        },
+        "clock": {
+          "internal_W": 1.019237e-05,
+          "switching_W": 1.211558e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.246074e-05
+        },
+        "total": {
+          "internal_W": 0.0002655544,
+          "switching_W": 0.0002854027,
+          "leakage_W": 6.607942e-05,
+          "total_W": 0.0006170365
+        }
+      },
+      "ws_chunk_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 4.79881e-05,
+          "switching_W": 4.43283e-06,
+          "leakage_W": 2.507634e-06,
+          "total_W": 5.492856e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002375668,
+          "switching_W": 0.0003023965,
+          "leakage_W": 6.343889e-05,
+          "total_W": 0.0006034021
+        },
+        "clock": {
+          "internal_W": 1.019237e-05,
+          "switching_W": 1.211558e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.246074e-05
+        },
+        "total": {
+          "internal_W": 0.0002957472,
+          "switching_W": 0.0003189449,
+          "leakage_W": 6.609932e-05,
+          "total_W": 0.0006807914
+        }
+      },
+      "ws_chunk_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 4.744576e-05,
+          "switching_W": 4.111758e-06,
+          "leakage_W": 2.503703e-06,
+          "total_W": 5.406122e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002236138,
+          "switching_W": 0.0002842107,
+          "leakage_W": 6.345884e-05,
+          "total_W": 0.0005712833
+        },
+        "clock": {
+          "internal_W": 1.019237e-05,
+          "switching_W": 1.211558e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.246074e-05
+        },
+        "total": {
+          "internal_W": 0.0002812519,
+          "switching_W": 0.000300438,
+          "leakage_W": 6.611532e-05,
+          "total_W": 0.0006478053
+        }
+      },
+      "ws_chunk_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 4.47011e-05,
+          "switching_W": 3.212272e-06,
+          "leakage_W": 2.49329e-06,
+          "total_W": 5.040666e-05
+        },
+        "combinational": {
+          "internal_W": 0.0001661709,
+          "switching_W": 0.0002148812,
+          "leakage_W": 6.283213e-05,
+          "total_W": 0.0004438843
+        },
+        "clock": {
+          "internal_W": 1.019237e-05,
+          "switching_W": 1.211558e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.246074e-05
+        },
+        "total": {
+          "internal_W": 0.0002210644,
+          "switching_W": 0.0002302091,
+          "leakage_W": 6.547822e-05,
+          "total_W": 0.0005167517
+        }
+      },
+      "ws_chunk_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 4.686804e-05,
+          "switching_W": 3.54219e-06,
+          "leakage_W": 2.497876e-06,
+          "total_W": 5.290811e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002068207,
+          "switching_W": 0.0002679262,
+          "leakage_W": 6.345614e-05,
+          "total_W": 0.0005382031
+        },
+        "clock": {
+          "internal_W": 1.019237e-05,
+          "switching_W": 1.211558e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.246074e-05
+        },
+        "total": {
+          "internal_W": 0.0002638811,
+          "switching_W": 0.000283584,
+          "leakage_W": 6.61068e-05,
+          "total_W": 0.0006135719
+        }
+      }
+    },
+    "block": "edge_bot_chunk",
+    "period_target_ns": 5.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 203.7,
+    "activity": {
+      "ws_chunk_av_L5h0_img0:zero": {
+        "cycles": 1276864,
+        "toggles_per_cycle": 361.01367804245433
+      },
+      "ws_chunk_fc1_L5_img0:zero": {
+        "cycles": 215808,
+        "toggles_per_cycle": 351.6872451438311
+      },
+      "ws_chunk_fc2_L5_img0:zero": {
+        "cycles": 863232,
+        "toggles_per_cycle": 405.179302898873
+      },
+      "ws_chunk_patch_img0:zero": {
+        "cycles": 785664,
+        "toggles_per_cycle": 381.93441343882415
+      },
+      "ws_chunk_qk_L5h0_img0:zero": {
+        "cycles": 71936,
+        "toggles_per_cycle": 285.3493104982215
+      },
+      "ws_chunk_qkv_L5_img0:zero": {
+        "cycles": 215808,
+        "toggles_per_cycle": 348.39428102758075
+      }
+    },
+    "achieved_period_ns": 5.0,
+    "fmax_MHz": 200.0
+  },
+  "pe_ws_bf16_sep": {
+    "wns_ns": 0.4992,
+    "tns_ns": 0.0,
+    "cell_area_um2": 2512.0,
+    "utilization_pct": 77.0,
+    "power": {
+      "ws_bf16_sep_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 6.089541e-05,
+          "switching_W": 4.497166e-06,
+          "leakage_W": 4.635415e-06,
+          "total_W": 7.002799e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002121229,
+          "switching_W": 0.0002342396,
+          "leakage_W": 5.91708e-05,
+          "total_W": 0.0005055334
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.0002833675,
+          "switching_W": 0.0002564197,
+          "leakage_W": 6.3959e-05,
+          "total_W": 0.0006037462
+        }
+      },
+      "ws_bf16_sep_av_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 6.723015e-05,
+          "switching_W": 4.536829e-06,
+          "leakage_W": 4.635415e-06,
+          "total_W": 7.640239e-05
+        },
+        "combinational": {
+          "internal_W": 0.001044726,
+          "switching_W": 0.001146729,
+          "leakage_W": 5.91708e-05,
+          "total_W": 0.002250626
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.001122306,
+          "switching_W": 0.001168949,
+          "leakage_W": 6.3959e-05,
+          "total_W": 0.002355214
+        }
+      },
+      "ws_bf16_sep_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.502182e-05,
+          "switching_W": 6.175996e-06,
+          "leakage_W": 4.644128e-06,
+          "total_W": 7.584194e-05
+        },
+        "combinational": {
+          "internal_W": 0.000257069,
+          "switching_W": 0.0002933122,
+          "leakage_W": 5.949933e-05,
+          "total_W": 0.0006098806
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.0003324399,
+          "switching_W": 0.0003171711,
+          "leakage_W": 6.429626e-05,
+          "total_W": 0.0007139073
+        }
+      },
+      "ws_bf16_sep_fc1_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.222141e-05,
+          "switching_W": 6.15393e-06,
+          "leakage_W": 4.644128e-06,
+          "total_W": 9.301947e-05
+        },
+        "combinational": {
+          "internal_W": 0.001640856,
+          "switching_W": 0.001832735,
+          "leakage_W": 5.949933e-05,
+          "total_W": 0.003533091
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.001733427,
+          "switching_W": 0.001856572,
+          "leakage_W": 6.429626e-05,
+          "total_W": 0.003654295
+        }
+      },
+      "ws_bf16_sep_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.685859e-05,
+          "switching_W": 5.421701e-06,
+          "leakage_W": 4.643345e-06,
+          "total_W": 7.692364e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002466937,
+          "switching_W": 0.0002817948,
+          "leakage_W": 5.935584e-05,
+          "total_W": 0.0005878444
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.0003239016,
+          "switching_W": 0.0003048995,
+          "leakage_W": 6.415197e-05,
+          "total_W": 0.000692953
+        }
+      },
+      "ws_bf16_sep_fc2_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 7.983235e-05,
+          "switching_W": 5.410845e-06,
+          "leakage_W": 4.643345e-06,
+          "total_W": 8.988654e-05
+        },
+        "combinational": {
+          "internal_W": 0.001363315,
+          "switching_W": 0.001502468,
+          "leakage_W": 5.935584e-05,
+          "total_W": 0.002925139
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.001453497,
+          "switching_W": 0.001525562,
+          "leakage_W": 6.415197e-05,
+          "total_W": 0.00304321
+        }
+      },
+      "ws_bf16_sep_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 6.44442e-05,
+          "switching_W": 6.097669e-06,
+          "leakage_W": 4.644325e-06,
+          "total_W": 7.518619e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002413091,
+          "switching_W": 0.0002718354,
+          "leakage_W": 5.9461e-05,
+          "total_W": 0.0005726054
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.0003161024,
+          "switching_W": 0.0002956159,
+          "leakage_W": 6.425808e-05,
+          "total_W": 0.0006759763
+        }
+      },
+      "ws_bf16_sep_patch_img0:unit": {
+        "sequential": {
+          "internal_W": 7.981824e-05,
+          "switching_W": 6.06027e-06,
+          "leakage_W": 4.644325e-06,
+          "total_W": 9.052284e-05
+        },
+        "combinational": {
+          "internal_W": 0.00147851,
+          "switching_W": 0.001650403,
+          "leakage_W": 5.9461e-05,
+          "total_W": 0.003188374
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.001568677,
+          "switching_W": 0.001674147,
+          "leakage_W": 6.425808e-05,
+          "total_W": 0.003307082
+        }
+      },
+      "ws_bf16_sep_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 6.217246e-05,
+          "switching_W": 5.94257e-06,
+          "leakage_W": 4.643044e-06,
+          "total_W": 7.275808e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002549458,
+          "switching_W": 0.0002884745,
+          "leakage_W": 5.974775e-05,
+          "total_W": 0.000603168
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.0003274673,
+          "switching_W": 0.0003121,
+          "leakage_W": 6.454355e-05,
+          "total_W": 0.0007041108
+        }
+      },
+      "ws_bf16_sep_qk_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 8.031288e-05,
+          "switching_W": 5.944637e-06,
+          "leakage_W": 4.643044e-06,
+          "total_W": 9.090056e-05
+        },
+        "combinational": {
+          "internal_W": 0.001567418,
+          "switching_W": 0.001736524,
+          "leakage_W": 5.974775e-05,
+          "total_W": 0.00336369
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.00165808,
+          "switching_W": 0.001760152,
+          "leakage_W": 6.454355e-05,
+          "total_W": 0.003482775
+        }
+      },
+      "ws_bf16_sep_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.616626e-05,
+          "switching_W": 5.939035e-06,
+          "leakage_W": 4.642898e-06,
+          "total_W": 7.67482e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002553363,
+          "switching_W": 0.0002918407,
+          "leakage_W": 5.945505e-05,
+          "total_W": 0.000606632
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.0003318517,
+          "switching_W": 0.0003154627,
+          "leakage_W": 6.425074e-05,
+          "total_W": 0.0007115651
+        }
+      },
+      "ws_bf16_sep_qkv_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.317392e-05,
+          "switching_W": 5.913899e-06,
+          "leakage_W": 4.642898e-06,
+          "total_W": 9.373071e-05
+        },
+        "combinational": {
+          "internal_W": 0.001586633,
+          "switching_W": 0.001765614,
+          "leakage_W": 5.945505e-05,
+          "total_W": 0.003411702
+        },
+        "clock": {
+          "internal_W": 1.034916e-05,
+          "switching_W": 1.768293e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818488e-05
+        },
+        "total": {
+          "internal_W": 0.001680156,
+          "switching_W": 0.001789211,
+          "leakage_W": 6.425074e-05,
+          "total_W": 0.003533617
+        }
+      }
+    },
+    "block": "pe_ws_bf16_sep",
+    "period_target_ns": 5.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 118.2,
+    "activity": {
+      "ws_bf16_sep_av_L5h0_img0:zero": {
+        "cycles": 20429824,
+        "toggles_per_cycle": 366.8950290026976
+      },
+      "ws_bf16_sep_av_L5h0_img0:unit": {
+        "cycles": 5179392,
+        "toggles_per_cycle": 1741.4905490837525
+      },
+      "ws_bf16_sep_fc1_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 442.56466135407385
+      },
+      "ws_bf16_sep_fc1_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 2710.9008632673504
+      },
+      "ws_bf16_sep_fc2_L5_img0:zero": {
+        "cycles": 13811712,
+        "toggles_per_cycle": 421.47328636739576
+      },
+      "ws_bf16_sep_fc2_L5_img0:unit": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 2260.986183609966
+      },
+      "ws_bf16_sep_patch_img0:zero": {
+        "cycles": 12570624,
+        "toggles_per_cycle": 418.6040967417373
+      },
+      "ws_bf16_sep_patch_img0:unit": {
+        "cycles": 3142656,
+        "toggles_per_cycle": 2443.9363067418108
+      },
+      "ws_bf16_sep_qk_L5h0_img0:zero": {
+        "cycles": 1150976,
+        "toggles_per_cycle": 439.9953674099198
+      },
+      "ws_bf16_sep_qk_L5h0_img0:unit": {
+        "cycles": 287744,
+        "toggles_per_cycle": 2596.4799161754895
+      },
+      "ws_bf16_sep_qkv_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 437.8237435011677
+      },
+      "ws_bf16_sep_qkv_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 2622.1919379726405
+      }
+    },
+    "achieved_period_ns": 5.0,
+    "fmax_MHz": 200.0
+  },
+  "edge_top_chunk": {
+    "wns_ns": null,
+    "tns_ns": null,
+    "power": {},
+    "block": "edge_top_chunk",
+    "period_target_ns": 5.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 1,
+    "seconds": 0.3,
+    "activity": {}
+  }
+}

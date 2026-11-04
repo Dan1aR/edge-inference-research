@@ -1,0 +1,1426 @@
+{
+  "assumptions": {
+    "sram_pJ_per_bit": {
+      "8KB": 0.15625,
+      "32KB": 0.3125,
+      "1MB": 1.5625
+    },
+    "dram_pJ_per_bit": 30.0,
+    "R": 16,
+    "chunk": 16,
+    "activity_mode": "zero",
+    "acc_bits": {
+      "fp32": 32,
+      "bf16": 16,
+      "fp16": 16,
+      "e8m13": 22,
+      "kahan": 32,
+      "chunk": 32,
+      "bf16_sep": 16,
+      "fp16_sep": 16,
+      "e8m13_sep": 22
+    },
+    "matmul_proxy": {
+      "patch": [
+        "patch"
+      ],
+      "qkv": [
+        "qkv"
+      ],
+      "attn_out": [
+        "qkv"
+      ],
+      "mlp": [
+        "fc1",
+        "fc2"
+      ],
+      "head": [
+        "fc1"
+      ],
+      "qk": [
+        "qk"
+      ],
+      "av": [
+        "av"
+      ]
+    },
+    "dram_weights_once_pJ": 3120000000.0,
+    "note": "DRAM weight fetch is identical for all variants"
+  },
+  "total_macs": 11971551744,
+  "dataflows": {
+    "ws": {
+      "fp32": {
+        "total_pJ": {
+          "pe": 54517622994.21197,
+          "edge": 656427502.9148471,
+          "psum_sram": 14282424600.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 55174050497.126816,
+          "onchip_total": 76950876017.12682
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 678080091.783168,
+            "edge": 8721959.1708672,
+            "psum_sram": 186777600.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 7068590779.392,
+            "edge": 83743568.2368,
+            "psum_sram": 1788480000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 2356196926.464,
+            "edge": 27914522.7456,
+            "psum_sram": 596160000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 18709326729.216,
+            "edge": 227657914.6752,
+            "psum_sram": 4847040000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 13447392066.0,
+            "edge": 154145109.0375,
+            "psum_sram": 3189375000.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 12179502144.000002,
+            "edge": 153300207.15,
+            "psum_sram": 3654720000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 78534257.3568,
+            "edge": 944221.8988800001,
+            "psum_sram": 19872000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.608763481708158
+      },
+      "bf16": {
+        "total_pJ": {
+          "pe": 39082040292.04992,
+          "edge": 224377142.3307936,
+          "psum_sram": 7141212300.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 39306417434.380714,
+          "onchip_total": 53942030654.380714
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 500820785.23392,
+            "edge": 3008176.9537536,
+            "psum_sram": 93388800.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5176951999.488,
+            "edge": 28763041.4208,
+            "psum_sram": 894240000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1725650666.496,
+            "edge": 9587680.4736,
+            "psum_sram": 298080000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 13621506600.96,
+            "edge": 77728622.2848,
+            "psum_sram": 2423520000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 9824263524.0,
+            "edge": 56636784.5625,
+            "psum_sram": 1594687500.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 8175073067.999999,
+            "edge": 48321026.8875,
+            "psum_sram": 1827360000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 57773647.87200001,
+            "edge": 331809.74783999997,
+            "psum_sram": 9936000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 3.2833185099902047
+      },
+      "fp16": {
+        "total_pJ": {
+          "pe": 42012345180.93581,
+          "edge": 296721352.330848,
+          "psum_sram": 7141212300.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 42309066533.266655,
+          "onchip_total": 56944679753.266655
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 532413004.38220805,
+            "edge": 3932788.3591680005,
+            "psum_sram": 93388800.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5541312218.112,
+            "edge": 38147354.6112,
+            "psum_sram": 894240000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1847104072.704,
+            "edge": 12715784.8704,
+            "psum_sram": 298080000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 14592888004.608,
+            "edge": 102901643.13599999,
+            "psum_sram": 2423520000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 10468288368.0,
+            "edge": 72064884.9375,
+            "psum_sram": 1594687500.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 8968620186.0,
+            "edge": 66525523.7625,
+            "psum_sram": 1827360000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 61719327.129599996,
+            "edge": 433372.65408,
+            "psum_sram": 9936000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 3.5341338732024825
+      },
+      "e8m13": {
+        "total_pJ": {
+          "pe": 49698194157.120384,
+          "edge": 412336112.4385128,
+          "psum_sram": 9819166912.5,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 50110530269.5589,
+          "onchip_total": 67424098102.0589
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 634403143.286784,
+            "edge": 5535313.7430528,
+            "psum_sram": 128409600.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 6541867680.768001,
+            "edge": 52806039.955199994,
+            "psum_sram": 1229580000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 2180622560.256,
+            "edge": 17602013.3184,
+            "psum_sram": 409860000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 17233818660.864,
+            "edge": 143168844.2112,
+            "psum_sram": 3332340000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 12450733884.0,
+            "edge": 99441723.60000001,
+            "psum_sram": 2192695312.5,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 10583693442.0,
+            "edge": 93181190.06250001,
+            "psum_sram": 2512620000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 73054785.9456,
+            "edge": 600987.5481599999,
+            "psum_sram": 13662000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.185800750071828
+      },
+      "kahan": {
+        "total_pJ": {
+          "pe": 88129810993.97722,
+          "edge": 417424314.4392499,
+          "psum_sram": 14282424600.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 88547235308.41647,
+          "onchip_total": 110324060828.41647
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 1091034578.681856,
+            "edge": 5456890.083409919,
+            "psum_sram": 186777600.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 11313408302.8992,
+            "edge": 53410957.39008,
+            "psum_sram": 1788480000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 3771136100.9664,
+            "edge": 17803652.46336,
+            "psum_sram": 596160000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 30013747170.508804,
+            "edge": 144842900.06015998,
+            "psum_sram": 4847040000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 21792419236.8,
+            "edge": 97432424.64,
+            "psum_sram": 3189375000.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 20022342793.199997,
+            "edge": 97875540.0,
+            "psum_sram": 3654720000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 125722810.92096001,
+            "edge": 601949.8022399999,
+            "psum_sram": 19872000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 7.396471000745187
+      },
+      "chunk": {
+        "total_pJ": {
+          "pe": 38730710182.980095,
+          "edge": 2307739503.8548007,
+          "psum_sram": 14282424600.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 41038449686.83489,
+          "onchip_total": 62815275206.83489
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 436642875.70329607,
+            "edge": 31566849.1665408,
+            "psum_sram": 186777600.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5155153569.791999,
+            "edge": 296952562.944,
+            "psum_sram": 1788480000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1718384523.2639997,
+            "edge": 98984187.64800002,
+            "psum_sram": 596160000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 13466830639.104,
+            "edge": 835141516.6464,
+            "psum_sram": 4847040000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 9821563307.999998,
+            "edge": 491133870.1125,
+            "psum_sram": 3189375000.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 8075427516.0,
+            "edge": 550639834.65,
+            "psum_sram": 3654720000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 56707751.116799995,
+            "edge": 3320682.6873600003,
+            "psum_sram": 19872000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 3.4279975198205093
+      },
+      "bf16_sep": {
+        "total_pJ": {
+          "pe": 40723395570.222336,
+          "edge": 224377142.3307936,
+          "psum_sram": 7141212300.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 40947772712.55313,
+          "onchip_total": 55583385932.55313
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 510345017.819136,
+            "edge": 3008176.9537536,
+            "psum_sram": 93388800.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5311805008.896,
+            "edge": 28763041.4208,
+            "psum_sram": 894240000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1770601669.632,
+            "edge": 9587680.4736,
+            "psum_sram": 298080000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 14002874486.784,
+            "edge": 77728622.2848,
+            "psum_sram": 2423520000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 10265935464.0,
+            "edge": 56636784.5625,
+            "psum_sram": 1594687500.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 8802619596.0,
+            "edge": 48321026.8875,
+            "psum_sram": 1827360000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 59214327.09119999,
+            "edge": 331809.74783999997,
+            "psum_sram": 9936000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 3.4204231488266066
+      },
+      "fp16_sep": {
+        "total_pJ": {
+          "pe": 45145118139.06816,
+          "edge": 296721352.330848,
+          "psum_sram": 7141212300.0,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 45441839491.39901,
+          "onchip_total": 60077452711.39901
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 565814293.9545599,
+            "edge": 3932788.3591680005,
+            "psum_sram": 93388800.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5873717928.96,
+            "edge": 38147354.6112,
+            "psum_sram": 894240000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1957905976.32,
+            "edge": 12715784.8704,
+            "psum_sram": 298080000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 15493681741.824,
+            "edge": 102901643.13599999,
+            "psum_sram": 2423520000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 11348487342.0,
+            "edge": 72064884.9375,
+            "psum_sram": 1594687500.0,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 9839958894.0,
+            "edge": 66525523.7625,
+            "psum_sram": 1827360000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 65551962.0096,
+            "edge": 433372.65408,
+            "psum_sram": 9936000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 3.795818659362511
+      },
+      "e8m13_sep": {
+        "total_pJ": {
+          "pe": 49322508667.34515,
+          "edge": 412336112.4385128,
+          "psum_sram": 9819166912.5,
+          "operand_sram": 4020259920.0,
+          "global_buf": 3474141000.0,
+          "array": 49734844779.78367,
+          "onchip_total": 67048412612.28367
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 619548562.6859521,
+            "edge": 5535313.7430528,
+            "psum_sram": 128409600.0,
+            "operand_sram": 50872320.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 6387891683.328001,
+            "edge": 52806039.955199994,
+            "psum_sram": 1229580000.0,
+            "operand_sram": 499737600.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 2129297227.7760003,
+            "edge": 17602013.3184,
+            "psum_sram": 409860000.0,
+            "operand_sram": 166579200.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 16866152460.288,
+            "edge": 143168844.2112,
+            "psum_sram": 3332340000.0,
+            "operand_sram": 1332633600.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 12419286282.0,
+            "edge": 99441723.60000001,
+            "psum_sram": 2192695312.5,
+            "operand_sram": 984960000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 10829004858.0,
+            "edge": 93181190.06250001,
+            "psum_sram": 2512620000.0,
+            "operand_sram": 976050000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 71327593.26720001,
+            "edge": 600987.5481599999,
+            "psum_sram": 13662000.0,
+            "operand_sram": 9427200.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.154419230131147
+      },
+      "_regimes": {
+        "fp32:all": {
+          "onchip_rel": 1.0,
+          "array_rel": 1.0,
+          "onchip_saving_pct": 0.0,
+          "array_saving_pct": 0.0,
+          "onchip_mJ": 76.95087601712682
+        },
+        "fp32:M1_fp32_qk_av": {
+          "onchip_rel": 1.0,
+          "array_rel": 1.0,
+          "onchip_saving_pct": 0.0,
+          "array_saving_pct": 0.0,
+          "onchip_mJ": 76.95087601712682
+        },
+        "fp32:M2_fp32_av": {
+          "onchip_rel": 1.0,
+          "array_rel": 1.0,
+          "onchip_saving_pct": 0.0,
+          "array_saving_pct": 0.0,
+          "onchip_mJ": 76.95087601712682
+        },
+        "bf16:all": {
+          "onchip_rel": 0.7009930678680634,
+          "array_rel": 0.712407682238729,
+          "onchip_saving_pct": 29.900693213193662,
+          "array_saving_pct": 28.759231776127102,
+          "onchip_mJ": 53.94203065438071
+        },
+        "bf16:M1_fp32_qk_av": {
+          "onchip_rel": 0.8472174282019619,
+          "array_rel": 0.8543230401322962,
+          "onchip_saving_pct": 15.278257179803811,
+          "array_saving_pct": 14.56769598677038,
+          "onchip_mJ": 65.19412327711821
+        },
+        "bf16:M2_fp32_av": {
+          "onchip_rel": 0.7781431740597221,
+          "array_rel": 0.7868884973907089,
+          "onchip_saving_pct": 22.18568259402779,
+          "array_saving_pct": 21.31115026092911,
+          "onchip_mJ": 59.87879891064321
+        },
+        "fp16:all": {
+          "onchip_rel": 0.7400134046634189,
+          "array_rel": 0.7668290827310186,
+          "onchip_saving_pct": 25.99865953365811,
+          "array_saving_pct": 23.31709172689814,
+          "onchip_mJ": 56.94467975326665
+        },
+        "fp16:M1_fp32_qk_av": {
+          "onchip_rel": 0.8671190150181418,
+          "array_rel": 0.8820796490061671,
+          "onchip_saving_pct": 13.288098498185818,
+          "array_saving_pct": 11.792035099383291,
+          "onchip_mJ": 66.72556781675416
+        },
+        "fp16:M2_fp32_av": {
+          "onchip_rel": 0.8066145521311467,
+          "array_rel": 0.8265973363153595,
+          "onchip_saving_pct": 19.338544786885326,
+          "array_saving_pct": 17.340266368464054,
+          "onchip_mJ": 62.06969639465416
+        },
+        "e8m13:all": {
+          "onchip_rel": 0.8761966281846153,
+          "array_rel": 0.9082264183625308,
+          "onchip_saving_pct": 12.38033718153847,
+          "array_saving_pct": 9.177358163746918,
+          "onchip_mJ": 67.42409810205889
+        },
+        "e8m13:M1_fp32_qk_av": {
+          "onchip_rel": 0.9391727660124214,
+          "array_rel": 0.9572945810609714,
+          "onchip_saving_pct": 6.082723398757861,
+          "array_saving_pct": 4.270541893902857,
+          "onchip_mJ": 72.2701670760839
+        },
+        "e8m13:M2_fp32_av": {
+          "onchip_rel": 0.9125578480161445,
+          "array_rel": 0.9382392179334764,
+          "onchip_saving_pct": 8.744215198385552,
+          "array_saving_pct": 6.176078206652358,
+          "onchip_mJ": 70.22212582114639
+        },
+        "kahan:all": {
+          "onchip_rel": 1.4336946704006572,
+          "array_rel": 1.6048710310479661,
+          "onchip_saving_pct": -43.36946704006572,
+          "array_saving_pct": -60.48710310479662,
+          "onchip_mJ": 110.32406082841648
+        },
+        "kahan:M1_fp32_qk_av": {
+          "onchip_rel": 1.22478567156256,
+          "array_rel": 1.3135070596953526,
+          "onchip_saving_pct": -22.478567156256002,
+          "array_saving_pct": -31.350705969535262,
+          "onchip_mJ": 94.24833035996396
+        },
+        "kahan:M2_fp32_av": {
+          "onchip_rel": 1.3324948350626327,
+          "array_rel": 1.463728303409082,
+          "onchip_saving_pct": -33.24948350626327,
+          "array_saving_pct": -46.3728303409082,
+          "onchip_mJ": 102.53664484636649
+        },
+        "chunk:all": {
+          "onchip_rel": 0.8163035751906738,
+          "array_rel": 0.7437998355580576,
+          "onchip_saving_pct": 18.369642480932626,
+          "array_saving_pct": 25.62001644419424,
+          "onchip_mJ": 62.8152752068349
+        },
+        "chunk:M1_fp32_qk_av": {
+          "onchip_rel": 0.9072131964907354,
+          "array_rel": 0.8705908710972972,
+          "onchip_saving_pct": 9.27868035092646,
+          "array_saving_pct": 12.940912890270283,
+          "onchip_mJ": 69.81085020425989
+        },
+        "chunk:M2_fp32_av": {
+          "onchip_rel": 0.8644737220734071,
+          "array_rel": 0.8109824144534212,
+          "onchip_saving_pct": 13.552627792659289,
+          "array_saving_pct": 18.901758554657878,
+          "onchip_mJ": 66.5220102073349
+        },
+        "bf16_sep:all": {
+          "onchip_rel": 0.7223229781059547,
+          "array_rel": 0.742156364153208,
+          "onchip_saving_pct": 27.76770218940453,
+          "array_saving_pct": 25.784363584679205,
+          "onchip_mJ": 55.583385932553135
+        },
+        "bf16_sep:M1_fp32_qk_av": {
+          "onchip_rel": 0.8546525197796728,
+          "array_rel": 0.8646927121976491,
+          "onchip_saving_pct": 14.534748022032717,
+          "array_saving_pct": 13.53072878023509,
+          "onchip_mJ": 65.76626008729063
+        },
+        "bf16_sep:M2_fp32_av": {
+          "onchip_rel": 0.7913179266115551,
+          "array_rel": 0.8052632358961809,
+          "onchip_saving_pct": 20.868207338844492,
+          "array_saving_pct": 19.473676410381913,
+          "onchip_mJ": 60.89260766081564
+        },
+        "fp16_sep:all": {
+          "onchip_rel": 0.780724740521832,
+          "array_rel": 0.8236089082088578,
+          "onchip_saving_pct": 21.927525947816797,
+          "array_saving_pct": 17.63910917911422,
+          "onchip_mJ": 60.077452711399005
+        },
+        "fp16_sep:M1_fp32_qk_av": {
+          "onchip_rel": 0.885068586844003,
+          "array_rel": 0.9071137957415836,
+          "onchip_saving_pct": 11.493141315599697,
+          "array_saving_pct": 9.288620425841643,
+          "onchip_mJ": 68.10680309288652
+        },
+        "fp16_sep:M2_fp32_av": {
+          "onchip_rel": 0.8360025768968302,
+          "array_rel": 0.8675846162006764,
+          "onchip_saving_pct": 16.399742310316977,
+          "array_saving_pct": 13.241538379932361,
+          "onchip_mJ": 64.33113064478651
+        },
+        "e8m13_sep:all": {
+          "onchip_rel": 0.8713144811679703,
+          "array_rel": 0.9014173208540056,
+          "onchip_saving_pct": 12.868551883202972,
+          "array_saving_pct": 9.85826791459944,
+          "onchip_mJ": 67.04841261228367
+        },
+        "e8m13_sep:M1_fp32_qk_av": {
+          "onchip_rel": 0.9315113937930327,
+          "array_rel": 0.9466093169111891,
+          "onchip_saving_pct": 6.848860620696728,
+          "array_saving_pct": 5.33906830888109,
+          "onchip_mJ": 71.68061777230866
+        },
+        "e8m13_sep:M2_fp32_av": {
+          "onchip_rel": 0.9044878046596917,
+          "array_rel": 0.9269839829057787,
+          "onchip_saving_pct": 9.55121953403083,
+          "array_saving_pct": 7.301601709422134,
+          "onchip_mJ": 69.60112891537116
+        }
+      }
+    },
+    "os": {
+      "fp32": {
+        "total_pJ": {
+          "pe": 59293669337.70624,
+          "edge": 0.0,
+          "psum_sram": 0.0,
+          "operand_sram": 7527915600.0,
+          "global_buf": 3474141000.0,
+          "array": 59293669337.70624,
+          "onchip_total": 70295725937.70624
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 710661101.32224,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 94371840.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 7487556433.920001,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 937681920.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 2495852144.6400003,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 312560640.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 19927050817.535995,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 2500485120.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 14998810500.000004,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1840320000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 13590443736.0,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1831410000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 83294604.28799997,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 11086080.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.9528808466641365
+      },
+      "bf16": {
+        "total_pJ": {
+          "pe": 42939683615.71353,
+          "edge": 0.0,
+          "psum_sram": 0.0,
+          "operand_sram": 7527915600.0,
+          "global_buf": 3474141000.0,
+          "array": 42939683615.71353,
+          "onchip_total": 53941740215.71353
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 508097080.590336,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 94371840.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5497642202.1119995,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 937681920.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1832547400.704,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 312560640.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 14583966879.744,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 2500485120.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 11209538484.0,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1840320000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 9246531023.999998,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1831410000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 61360544.563200004,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 11086080.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 3.5868101758182176
+      },
+      "fp16": {
+        "total_pJ": {
+          "pe": 48784478971.64198,
+          "edge": 0.0,
+          "psum_sram": 0.0,
+          "operand_sram": 7527915600.0,
+          "global_buf": 3474141000.0,
+          "array": 48784478971.64198,
+          "onchip_total": 59786535571.64198
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 577177946.947584,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 94371840.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 6244965319.68,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 937681920.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 2081655106.56,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 312560640.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 16562122555.392,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 2500485120.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 12600763541.999998,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1840320000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 10648016028.000002,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1831410000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 69778473.0624,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 11086080.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.075033881559438
+      },
+      "e8m13": {
+        "total_pJ": {
+          "pe": 56495180009.104126,
+          "edge": 0.0,
+          "psum_sram": 0.0,
+          "operand_sram": 7527915600.0,
+          "global_buf": 3474141000.0,
+          "array": 56495180009.104126,
+          "onchip_total": 67497236609.104126
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 667322079.510528,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 94371840.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 7218905960.448001,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 937681920.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 2406301986.816,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 312560640.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 19112410681.343998,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 2500485120.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 14734023120.000002,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1840320000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 12275563932.0,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1831410000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 80652248.9856,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 11086080.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.719119226746762
+      },
+      "kahan": {
+        "total_pJ": {
+          "pe": 96714688120.82773,
+          "edge": 0.0,
+          "psum_sram": 0.0,
+          "operand_sram": 7527915600.0,
+          "global_buf": 3474141000.0,
+          "array": 96714688120.82773,
+          "onchip_total": 107716744720.82773
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 1164248659.840205,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 94371840.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 12252981462.2208,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 937681920.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 4084327154.0736003,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 312560640.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 32586444111.052795,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 2500485120.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 25116059124.0,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1840320000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 21374328697.2,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 1831410000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 136298912.44032,
+            "edge": 0.0,
+            "psum_sram": 0.0,
+            "operand_sram": 11086080.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 8.078709442934162
+      },
+      "chunk": {
+        "total_pJ": {
+          "pe": 42939683615.71353,
+          "edge": 10161936496.198042,
+          "psum_sram": 0.0,
+          "operand_sram": 7527915600.0,
+          "global_buf": 3474141000.0,
+          "array": 53101620111.911575,
+          "onchip_total": 64103676711.911575
+        },
+        "per_component": {
+          "patch": {
+            "macs": 150994944,
+            "pe": 508097080.590336,
+            "edge": 130345023.9369216,
+            "psum_sram": 0.0,
+            "operand_sram": 94371840.0,
+            "global_buf": 24576000.0
+          },
+          "qkv": {
+            "macs": 1492992000,
+            "pe": 5497642202.1119995,
+            "edge": 1272839947.0848,
+            "psum_sram": 0.0,
+            "operand_sram": 937681920.0,
+            "global_buf": 259200000.0
+          },
+          "attn_out": {
+            "macs": 497664000,
+            "pe": 1832547400.704,
+            "edge": 424279982.36160004,
+            "psum_sram": 0.0,
+            "operand_sram": 312560640.0,
+            "global_buf": 129600000.0
+          },
+          "mlp": {
+            "macs": 3981312000,
+            "pe": 14583966879.744,
+            "edge": 3438211023.8208,
+            "psum_sram": 0.0,
+            "operand_sram": 2500485120.0,
+            "global_buf": 648000000.0
+          },
+          "qk": {
+            "macs": 2916000000,
+            "pe": 11209538484.0,
+            "edge": 2397788114.4,
+            "psum_sram": 0.0,
+            "operand_sram": 1840320000.0,
+            "global_buf": 1203862500.0
+          },
+          "av": {
+            "macs": 2916000000,
+            "pe": 9246531023.999998,
+            "edge": 2484311778.0288,
+            "psum_sram": 0.0,
+            "operand_sram": 1831410000.0,
+            "global_buf": 1203862500.0
+          },
+          "head": {
+            "macs": 16588800,
+            "pe": 61360544.563200004,
+            "edge": 14160626.56512,
+            "psum_sram": 0.0,
+            "operand_sram": 11086080.0,
+            "global_buf": 5040000.0
+          }
+        },
+        "array_pJ_per_mac": 4.435650552863832
+      },
+      "_regimes": {
+        "fp32:all": {
+          "onchip_rel": 1.0000000000000002,
+          "array_rel": 1.0,
+          "onchip_saving_pct": -2.220446049250313e-14,
+          "array_saving_pct": 0.0,
+          "onchip_mJ": 70.29572593770625
+        },
+        "fp32:M1_fp32_qk_av": {
+          "onchip_rel": 1.0000000000000002,
+          "array_rel": 1.0,
+          "onchip_saving_pct": -2.220446049250313e-14,
+          "array_saving_pct": 0.0,
+          "onchip_mJ": 70.29572593770625
+        },
+        "fp32:M2_fp32_av": {
+          "onchip_rel": 1.0000000000000002,
+          "array_rel": 1.0,
+          "onchip_saving_pct": -2.220446049250313e-14,
+          "array_saving_pct": 0.0,
+          "onchip_mJ": 70.29572593770625
+        },
+        "bf16:all": {
+          "onchip_rel": 0.7673544798941964,
+          "array_rel": 0.7241866475011217,
+          "onchip_saving_pct": 23.264552010580363,
+          "array_saving_pct": 27.58133524988783,
+          "onchip_mJ": 53.941740215713544
+        },
+        "bf16:M1_fp32_qk_av": {
+          "onchip_rel": 0.8830540422716782,
+          "array_rel": 0.8613544905245915,
+          "onchip_saving_pct": 11.694595772832184,
+          "array_saving_pct": 13.864550947540854,
+          "onchip_mJ": 62.07492494371355
+        },
+        "bf16:M2_fp32_av": {
+          "onchip_rel": 0.8291493138482469,
+          "array_rel": 0.7974476340536542,
+          "onchip_saving_pct": 17.085068615175313,
+          "array_saving_pct": 20.255236594634585,
+          "onchip_mJ": 58.28565292771354
+        },
+        "fp16:all": {
+          "onchip_rel": 0.8505002939243113,
+          "array_rel": 0.8227603303447234,
+          "onchip_saving_pct": 14.949970607568874,
+          "array_saving_pct": 17.72396696552766,
+          "onchip_mJ": 59.786535571641984
+        },
+        "fp16:M1_fp32_qk_av": {
+          "onchip_rel": 0.9264718355046991,
+          "array_rel": 0.9128285404192831,
+          "onchip_saving_pct": 7.352816449530087,
+          "array_saving_pct": 8.717145958071693,
+          "onchip_mJ": 65.12701023764198
+        },
+        "fp16:M2_fp32_av": {
+          "onchip_rel": 0.8923581404540915,
+          "array_rel": 0.8723849823668718,
+          "onchip_saving_pct": 10.764185954590854,
+          "array_saving_pct": 12.761501763312822,
+          "onchip_mJ": 62.72896327964199
+        },
+        "e8m13:all": {
+          "onchip_rel": 0.9601897655757614,
+          "array_rel": 0.952802898524236,
+          "onchip_saving_pct": 3.981023442423859,
+          "array_saving_pct": 4.719710147576395,
+          "onchip_mJ": 67.49723660910414
+        },
+        "e8m13:M1_fp32_qk_av": {
+          "onchip_rel": 0.9826615042615509,
+          "array_rel": 0.9794443123824851,
+          "onchip_saving_pct": 1.7338495738449144,
+          "array_saving_pct": 2.0555687617514917,
+          "onchip_mJ": 69.07690379310414
+        },
+        "e8m13:M2_fp32_av": {
+          "onchip_rel": 0.978894740685702,
+          "array_rel": 0.9749786184398163,
+          "onchip_saving_pct": 2.1105259314297964,
+          "array_saving_pct": 2.502138156018374,
+          "onchip_mJ": 68.81211641310414
+        },
+        "kahan:all": {
+          "onchip_rel": 1.5323370416045317,
+          "array_rel": 1.6311132234031698,
+          "onchip_saving_pct": -53.233704160453165,
+          "array_saving_pct": -63.111322340316974,
+          "onchip_mJ": 107.71674472082772
+        },
+        "kahan:M1_fp32_qk_av": {
+          "onchip_rel": 1.277682390181437,
+          "array_rel": 1.329206902118779,
+          "onchip_saving_pct": -27.768239018143692,
+          "array_saving_pct": -32.92069021187789,
+          "onchip_mJ": 89.81561113562773
+        },
+        "kahan:M2_fp32_av": {
+          "onchip_rel": 1.4216064835603937,
+          "array_rel": 1.4998363932095957,
+          "onchip_saving_pct": -42.16064835603937,
+          "array_saving_pct": -49.98363932095957,
+          "onchip_mJ": 99.93285975962772
+        },
+        "chunk:all": {
+          "onchip_rel": 0.9119142857805914,
+          "array_rel": 0.8955698088015445,
+          "onchip_saving_pct": 8.808571421940858,
+          "array_saving_pct": 10.443019119845554,
+          "onchip_mJ": 64.10367671191158
+        },
+        "chunk:M1_fp32_qk_av": {
+          "onchip_rel": 0.9581629700669191,
+          "array_rel": 0.9504000271348829,
+          "onchip_saving_pct": 4.183702993308092,
+          "array_saving_pct": 4.959997286511708,
+          "onchip_mJ": 67.35476154748278
+        },
+        "chunk:M2_fp32_av": {
+          "onchip_rel": 0.9383682544844514,
+          "array_rel": 0.9269323632654936,
+          "onchip_saving_pct": 6.163174551554862,
+          "array_saving_pct": 7.306763673450645,
+          "onchip_mJ": 65.96327764588278
+        }
+      }
+    }
+  }
+}

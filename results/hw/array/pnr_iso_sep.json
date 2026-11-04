@@ -1,0 +1,758 @@
+{
+  "pe_ws_fp16_sep": {
+    "wns_ns": 0.5441,
+    "tns_ns": 0.0,
+    "cell_area_um2": 2698.0,
+    "utilization_pct": 77.0,
+    "power": {
+      "ws_fp16_sep_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 6.168241e-05,
+          "switching_W": 5.24881e-06,
+          "leakage_W": 4.635267e-06,
+          "total_W": 7.156649e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002445765,
+          "switching_W": 0.0002659487,
+          "leakage_W": 6.461904e-05,
+          "total_W": 0.0005751443
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.000316611,
+          "switching_W": 0.0002888762,
+          "leakage_W": 6.940712e-05,
+          "total_W": 0.0006748943
+        }
+      },
+      "ws_fp16_sep_av_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 7.019404e-05,
+          "switching_W": 5.286076e-06,
+          "leakage_W": 4.635267e-06,
+          "total_W": 8.011539e-05
+        },
+        "combinational": {
+          "internal_W": 0.001229147,
+          "switching_W": 0.001291251,
+          "leakage_W": 6.461904e-05,
+          "total_W": 0.002585018
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.001309694,
+          "switching_W": 0.001314216,
+          "leakage_W": 6.940712e-05,
+          "total_W": 0.002693317
+        }
+      },
+      "ws_fp16_sep_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.634575e-05,
+          "switching_W": 6.676266e-06,
+          "leakage_W": 4.645613e-06,
+          "total_W": 7.766763e-05
+        },
+        "combinational": {
+          "internal_W": 0.000289678,
+          "switching_W": 0.0003300384,
+          "leakage_W": 6.474835e-05,
+          "total_W": 0.0006844648
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.0003663759,
+          "switching_W": 0.0003543932,
+          "leakage_W": 6.954676e-05,
+          "total_W": 0.0007903159
+        }
+      },
+      "ws_fp16_sep_fc1_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.602368e-05,
+          "switching_W": 6.691292e-06,
+          "leakage_W": 4.645613e-06,
+          "total_W": 9.736058e-05
+        },
+        "combinational": {
+          "internal_W": 0.001861909,
+          "switching_W": 0.002018064,
+          "leakage_W": 6.474835e-05,
+          "total_W": 0.003944721
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.001958285,
+          "switching_W": 0.002042434,
+          "leakage_W": 6.954676e-05,
+          "total_W": 0.004070266
+        }
+      },
+      "ws_fp16_sep_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.764748e-05,
+          "switching_W": 6.057143e-06,
+          "leakage_W": 4.643524e-06,
+          "total_W": 7.834814e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002788831,
+          "switching_W": 0.0003161609,
+          "leakage_W": 6.474918e-05,
+          "total_W": 0.0006597931
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.0003568826,
+          "switching_W": 0.0003398967,
+          "leakage_W": 6.954553e-05,
+          "total_W": 0.0007663249
+        }
+      },
+      "ws_fp16_sep_fc2_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.312609e-05,
+          "switching_W": 6.048403e-06,
+          "leakage_W": 4.643524e-06,
+          "total_W": 9.381802e-05
+        },
+        "combinational": {
+          "internal_W": 0.001586603,
+          "switching_W": 0.001685275,
+          "leakage_W": 6.474918e-05,
+          "total_W": 0.003336628
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.001680081,
+          "switching_W": 0.001709003,
+          "leakage_W": 6.954553e-05,
+          "total_W": 0.00345863
+        }
+      },
+      "ws_fp16_sep_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 6.527294e-05,
+          "switching_W": 6.523125e-06,
+          "leakage_W": 4.645752e-06,
+          "total_W": 7.644181e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002726818,
+          "switching_W": 0.000307427,
+          "leakage_W": 6.471373e-05,
+          "total_W": 0.0006448225
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.0003483069,
+          "switching_W": 0.0003316288,
+          "leakage_W": 6.951231e-05,
+          "total_W": 0.000749448
+        }
+      },
+      "ws_fp16_sep_patch_img0:unit": {
+        "sequential": {
+          "internal_W": 8.250291e-05,
+          "switching_W": 6.498369e-06,
+          "leakage_W": 4.645752e-06,
+          "total_W": 9.364702e-05
+        },
+        "combinational": {
+          "internal_W": 0.001670976,
+          "switching_W": 0.001806654,
+          "leakage_W": 6.471373e-05,
+          "total_W": 0.003542344
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.001763831,
+          "switching_W": 0.001830831,
+          "leakage_W": 6.951231e-05,
+          "total_W": 0.003664175
+        }
+      },
+      "ws_fp16_sep_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 6.326078e-05,
+          "switching_W": 6.37922e-06,
+          "leakage_W": 4.644465e-06,
+          "total_W": 7.428446e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002863372,
+          "switching_W": 0.0003246318,
+          "leakage_W": 6.492274e-05,
+          "total_W": 0.0006758918
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.0003599502,
+          "switching_W": 0.0003486898,
+          "leakage_W": 6.971998e-05,
+          "total_W": 0.0007783599
+        }
+      },
+      "ws_fp16_sep_qk_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 8.291975e-05,
+          "switching_W": 6.381744e-06,
+          "leakage_W": 4.644465e-06,
+          "total_W": 9.394595e-05
+        },
+        "combinational": {
+          "internal_W": 0.001789428,
+          "switching_W": 0.001936102,
+          "leakage_W": 6.492274e-05,
+          "total_W": 0.003790452
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.0018827,
+          "switching_W": 0.001960162,
+          "leakage_W": 6.971998e-05,
+          "total_W": 0.003912582
+        }
+      },
+      "ws_fp16_sep_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 6.717029e-05,
+          "switching_W": 6.510177e-06,
+          "leakage_W": 4.643949e-06,
+          "total_W": 7.832442e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002878841,
+          "switching_W": 0.0003277099,
+          "leakage_W": 6.473674e-05,
+          "total_W": 0.0006803307
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.0003654064,
+          "switching_W": 0.0003518987,
+          "leakage_W": 6.953349e-05,
+          "total_W": 0.0007868385
+        }
+      },
+      "ws_fp16_sep_qkv_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 8.644361e-05,
+          "switching_W": 6.508896e-06,
+          "leakage_W": 4.643949e-06,
+          "total_W": 9.759645e-05
+        },
+        "combinational": {
+          "internal_W": 0.001809228,
+          "switching_W": 0.001949615,
+          "leakage_W": 6.473674e-05,
+          "total_W": 0.00382358
+        },
+        "clock": {
+          "internal_W": 1.035209e-05,
+          "switching_W": 1.767869e-05,
+          "leakage_W": 1.527911e-07,
+          "total_W": 2.818357e-05
+        },
+        "total": {
+          "internal_W": 0.001906024,
+          "switching_W": 0.001973803,
+          "leakage_W": 6.953349e-05,
+          "total_W": 0.00394936
+        }
+      }
+    },
+    "block": "pe_ws_fp16_sep",
+    "period_target_ns": 5.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 185.5,
+    "activity": {
+      "ws_fp16_sep_av_L5h0_img0:zero": {
+        "cycles": 20429824,
+        "toggles_per_cycle": 404.0287266791926
+      },
+      "ws_fp16_sep_av_L5h0_img0:unit": {
+        "cycles": 5179392,
+        "toggles_per_cycle": 1926.5420742434644
+      },
+      "ws_fp16_sep_fc1_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 479.0001639188531
+      },
+      "ws_fp16_sep_fc1_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 2958.184084927342
+      },
+      "ws_fp16_sep_fc2_L5_img0:zero": {
+        "cycles": 13811712,
+        "toggles_per_cycle": 458.70413291270404
+      },
+      "ws_fp16_sep_fc2_L5_img0:unit": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 2511.2861693032705
+      },
+      "ws_fp16_sep_patch_img0:zero": {
+        "cycles": 12570624,
+        "toggles_per_cycle": 453.3466505720002
+      },
+      "ws_fp16_sep_patch_img0:unit": {
+        "cycles": 3142656,
+        "toggles_per_cycle": 2652.5366247530737
+      },
+      "ws_fp16_sep_qk_L5h0_img0:zero": {
+        "cycles": 1150976,
+        "toggles_per_cycle": 472.58011809108075
+      },
+      "ws_fp16_sep_qk_L5h0_img0:unit": {
+        "cycles": 287744,
+        "toggles_per_cycle": 2848.7106142960442
+      },
+      "ws_fp16_sep_qkv_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 474.8655176128782
+      },
+      "ws_fp16_sep_qkv_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 2873.572645592379
+      }
+    },
+    "achieved_period_ns": 5.0,
+    "fmax_MHz": 200.0
+  },
+  "pe_ws_e8m13_sep": {
+    "wns_ns": 0.3424,
+    "tns_ns": 0.0,
+    "cell_area_um2": 2862.0,
+    "utilization_pct": 77.0,
+    "power": {
+      "ws_e8m13_sep_av_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 7.072322e-05,
+          "switching_W": 5.934602e-06,
+          "leakage_W": 5.07432e-06,
+          "total_W": 8.173213e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002621472,
+          "switching_W": 0.000290924,
+          "leakage_W": 6.811987e-05,
+          "total_W": 0.0006211911
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.0003511033,
+          "switching_W": 0.0003181575,
+          "leakage_W": 7.346924e-05,
+          "total_W": 0.0007427301
+        }
+      },
+      "ws_e8m13_sep_av_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 8.37989e-05,
+          "switching_W": 5.967828e-06,
+          "leakage_W": 5.07432e-06,
+          "total_W": 9.484105e-05
+        },
+        "combinational": {
+          "internal_W": 0.001473507,
+          "switching_W": 0.001578216,
+          "leakage_W": 6.811987e-05,
+          "total_W": 0.003119843
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.001575539,
+          "switching_W": 0.001605482,
+          "leakage_W": 7.346924e-05,
+          "total_W": 0.003254491
+        }
+      },
+      "ws_e8m13_sep_fc1_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 7.484788e-05,
+          "switching_W": 7.499983e-06,
+          "leakage_W": 5.08295e-06,
+          "total_W": 8.743081e-05
+        },
+        "combinational": {
+          "internal_W": 0.0003086528,
+          "switching_W": 0.0003557116,
+          "leakage_W": 6.834707e-05,
+          "total_W": 0.0007327114
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.0004017333,
+          "switching_W": 0.0003845104,
+          "leakage_W": 7.370508e-05,
+          "total_W": 0.0008599488
+        }
+      },
+      "ws_e8m13_sep_fc1_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001015984,
+          "switching_W": 7.461385e-06,
+          "leakage_W": 5.08295e-06,
+          "total_W": 0.0001141427
+        },
+        "combinational": {
+          "internal_W": 0.002234146,
+          "switching_W": 0.00243269,
+          "leakage_W": 6.834707e-05,
+          "total_W": 0.004735183
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.002353977,
+          "switching_W": 0.00246145,
+          "leakage_W": 7.370508e-05,
+          "total_W": 0.004889132
+        }
+      },
+      "ws_e8m13_sep_fc2_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 7.667857e-05,
+          "switching_W": 6.746093e-06,
+          "leakage_W": 5.082094e-06,
+          "total_W": 8.850676e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002968008,
+          "switching_W": 0.0003411369,
+          "leakage_W": 6.833198e-05,
+          "total_W": 0.0007062696
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.0003917123,
+          "switching_W": 0.0003691819,
+          "leakage_W": 7.368914e-05,
+          "total_W": 0.0008345833
+        }
+      },
+      "ws_e8m13_sep_fc2_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 9.808543e-05,
+          "switching_W": 6.734675e-06,
+          "leakage_W": 5.082094e-06,
+          "total_W": 0.0001099022
+        },
+        "combinational": {
+          "internal_W": 0.001889758,
+          "switching_W": 0.002029215,
+          "leakage_W": 6.833198e-05,
+          "total_W": 0.003987305
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.002006075,
+          "switching_W": 0.002057249,
+          "leakage_W": 7.368914e-05,
+          "total_W": 0.004137013
+        }
+      },
+      "ws_e8m13_sep_patch_img0:zero": {
+        "sequential": {
+          "internal_W": 7.424952e-05,
+          "switching_W": 7.454146e-06,
+          "leakage_W": 5.083077e-06,
+          "total_W": 8.678674e-05
+        },
+        "combinational": {
+          "internal_W": 0.0002920107,
+          "switching_W": 0.0003336843,
+          "leakage_W": 6.833301e-05,
+          "total_W": 0.000694028
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.0003844931,
+          "switching_W": 0.0003624374,
+          "leakage_W": 7.369115e-05,
+          "total_W": 0.0008206216
+        }
+      },
+      "ws_e8m13_sep_patch_img0:unit": {
+        "sequential": {
+          "internal_W": 9.844594e-05,
+          "switching_W": 7.413968e-06,
+          "leakage_W": 5.083077e-06,
+          "total_W": 0.000110943
+        },
+        "combinational": {
+          "internal_W": 0.002022828,
+          "switching_W": 0.002200191,
+          "leakage_W": 6.833301e-05,
+          "total_W": 0.004291351
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.002139505,
+          "switching_W": 0.002228903,
+          "leakage_W": 7.369115e-05,
+          "total_W": 0.004442099
+        }
+      },
+      "ws_e8m13_sep_qk_L5h0_img0:zero": {
+        "sequential": {
+          "internal_W": 7.198653e-05,
+          "switching_W": 7.308e-06,
+          "leakage_W": 5.081827e-06,
+          "total_W": 8.437636e-05
+        },
+        "combinational": {
+          "internal_W": 0.0003069442,
+          "switching_W": 0.0003524208,
+          "leakage_W": 6.825476e-05,
+          "total_W": 0.0007276197
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.0003971635,
+          "switching_W": 0.0003810277,
+          "leakage_W": 7.36116e-05,
+          "total_W": 0.0008518029
+        }
+      },
+      "ws_e8m13_sep_qk_L5h0_img0:unit": {
+        "sequential": {
+          "internal_W": 9.882799e-05,
+          "switching_W": 7.30287e-06,
+          "leakage_W": 5.081827e-06,
+          "total_W": 0.0001112127
+        },
+        "combinational": {
+          "internal_W": 0.002123841,
+          "switching_W": 0.002304069,
+          "leakage_W": 6.825476e-05,
+          "total_W": 0.004496165
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.002240901,
+          "switching_W": 0.00233267,
+          "leakage_W": 7.36116e-05,
+          "total_W": 0.004647183
+        }
+      },
+      "ws_e8m13_sep_qkv_L5_img0:zero": {
+        "sequential": {
+          "internal_W": 7.598462e-05,
+          "switching_W": 7.256955e-06,
+          "leakage_W": 5.081683e-06,
+          "total_W": 8.832326e-05
+        },
+        "combinational": {
+          "internal_W": 0.0003063107,
+          "switching_W": 0.0003528974,
+          "leakage_W": 6.837858e-05,
+          "total_W": 0.0007275867
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.0004005281,
+          "switching_W": 0.0003814534,
+          "leakage_W": 7.373531e-05,
+          "total_W": 0.0008557168
+        }
+      },
+      "ws_e8m13_sep_qkv_L5_img0:unit": {
+        "sequential": {
+          "internal_W": 0.0001023109,
+          "switching_W": 7.22504e-06,
+          "leakage_W": 5.081683e-06,
+          "total_W": 0.0001146176
+        },
+        "combinational": {
+          "internal_W": 0.002173961,
+          "switching_W": 0.002357757,
+          "leakage_W": 6.837858e-05,
+          "total_W": 0.004600097
+        },
+        "clock": {
+          "internal_W": 1.823282e-05,
+          "switching_W": 2.129889e-05,
+          "leakage_W": 2.75024e-07,
+          "total_W": 3.980674e-05
+        },
+        "total": {
+          "internal_W": 0.002294505,
+          "switching_W": 0.002386281,
+          "leakage_W": 7.373531e-05,
+          "total_W": 0.00475452
+        }
+      }
+    },
+    "block": "pe_ws_e8m13_sep",
+    "period_target_ns": 5.0,
+    "utilization_target": 0.6,
+    "detailed_route": true,
+    "returncode": 0,
+    "seconds": 130.2,
+    "activity": {
+      "ws_e8m13_sep_av_L5h0_img0:zero": {
+        "cycles": 20429824,
+        "toggles_per_cycle": 445.57401679035587
+      },
+      "ws_e8m13_sep_av_L5h0_img0:unit": {
+        "cycles": 5179392,
+        "toggles_per_cycle": 2309.596124603041
+      },
+      "ws_e8m13_sep_fc1_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 521.3941727137086
+      },
+      "ws_e8m13_sep_fc1_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 3536.7295338912418
+      },
+      "ws_e8m13_sep_fc2_L5_img0:zero": {
+        "cycles": 13811712,
+        "toggles_per_cycle": 499.6694062256715
+      },
+      "ws_e8m13_sep_fc2_L5_img0:unit": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 2982.68384831656
+      },
+      "ws_e8m13_sep_patch_img0:zero": {
+        "cycles": 12570624,
+        "toggles_per_cycle": 497.48654720720305
+      },
+      "ws_e8m13_sep_patch_img0:unit": {
+        "cycles": 3142656,
+        "toggles_per_cycle": 3198.8371921712096
+      },
+      "ws_e8m13_sep_qk_L5h0_img0:zero": {
+        "cycles": 1150976,
+        "toggles_per_cycle": 517.2436193282908
+      },
+      "ws_e8m13_sep_qk_L5h0_img0:unit": {
+        "cycles": 287744,
+        "toggles_per_cycle": 3355.249652468855
+      },
+      "ws_e8m13_sep_qkv_L5_img0:zero": {
+        "cycles": 3452928,
+        "toggles_per_cycle": 516.1167855223161
+      },
+      "ws_e8m13_sep_qkv_L5_img0:unit": {
+        "cycles": 863232,
+        "toggles_per_cycle": 3441.8782737433276
+      }
+    },
+    "achieved_period_ns": 5.0,
+    "fmax_MHz": 200.0
+  }
+}
