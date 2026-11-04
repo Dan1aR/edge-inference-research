@@ -1,0 +1,317 @@
+{
+  "input": {
+    "H": 512,
+    "W": 512,
+    "batch": 1
+  },
+  "models": {
+    "hustvl/yolos-tiny": {
+      "config": {
+        "hidden_size": 192,
+        "num_hidden_layers": 12,
+        "num_attention_heads": 3,
+        "intermediate_size": 768,
+        "num_detection_tokens": 100,
+        "patch_size": 16,
+        "num_labels": 91
+      },
+      "geometry": {
+        "H": 512,
+        "W": 512,
+        "batch": 1,
+        "hidden": 192,
+        "layers": 12,
+        "heads": 3,
+        "head_dim": 64,
+        "intermediate": 768,
+        "patch": 16,
+        "n_patch": 1024,
+        "n_det": 100,
+        "seq_len": 1125,
+        "n_class_logits": 92,
+        "use_mid_position_embeddings": false
+      },
+      "analytic": {
+        "patch": {
+          "macs": 150994944,
+          "outputs": 196608,
+          "K": [
+            768
+          ],
+          "gemms": 1
+        },
+        "qkv": {
+          "macs": 1492992000,
+          "outputs": 7776000,
+          "K": [
+            192
+          ],
+          "gemms": 36
+        },
+        "attn_out": {
+          "macs": 497664000,
+          "outputs": 2592000,
+          "K": [
+            192
+          ],
+          "gemms": 12
+        },
+        "mlp": {
+          "macs": 3981312000,
+          "outputs": 12960000,
+          "K": [
+            192,
+            768
+          ],
+          "gemms": 24
+        },
+        "qk": {
+          "macs": 2916000000,
+          "outputs": 45562500,
+          "K": [
+            64
+          ],
+          "gemms": 12
+        },
+        "av": {
+          "macs": 2916000000,
+          "outputs": 2592000,
+          "K": [
+            1125
+          ],
+          "gemms": 12
+        },
+        "head": {
+          "macs": 16588800,
+          "outputs": 86400,
+          "K": [
+            192
+          ],
+          "gemms": 6
+        }
+      },
+      "instrumented": {
+        "patch": {
+          "macs": 150994944,
+          "outputs": 196608,
+          "K": [
+            768
+          ],
+          "gemm_calls": 1
+        },
+        "qkv": {
+          "macs": 1492992000,
+          "outputs": 7776000,
+          "K": [
+            192
+          ],
+          "gemm_calls": 36
+        },
+        "qk": {
+          "macs": 2916000000,
+          "outputs": 45562500,
+          "K": [
+            64
+          ],
+          "gemm_calls": 12
+        },
+        "av": {
+          "macs": 2916000000,
+          "outputs": 2592000,
+          "K": [
+            1125
+          ],
+          "gemm_calls": 12
+        },
+        "attn_out": {
+          "macs": 497664000,
+          "outputs": 2592000,
+          "K": [
+            192
+          ],
+          "gemm_calls": 12
+        },
+        "mlp": {
+          "macs": 3981312000,
+          "outputs": 12960000,
+          "K": [
+            192,
+            768
+          ],
+          "gemm_calls": 24
+        },
+        "head": {
+          "macs": 16588800,
+          "outputs": 86400,
+          "K": [
+            192
+          ],
+          "gemm_calls": 6
+        }
+      },
+      "totals": {
+        "macs": 11971551744,
+        "outputs": 71765508,
+        "instrumented_macs": 11971551744,
+        "flopcounter_eager_flops": 23943103488,
+        "flopcounter_sdpa_flops": 23943103488
+      },
+      "agree": true,
+      "not_counted": "bias adds, LayerNorm, GELU/ReLU, softmax, 1/sqrt(dh) scaling, residual adds, bicubic interpolation of (mid-)position embeddings (input-size dependent constant; precomputable for fixed 512x512)"
+    },
+    "hustvl/yolos-small": {
+      "config": {
+        "hidden_size": 384,
+        "num_hidden_layers": 12,
+        "num_attention_heads": 6,
+        "intermediate_size": 1536,
+        "num_detection_tokens": 100,
+        "patch_size": 16,
+        "num_labels": 91
+      },
+      "geometry": {
+        "H": 512,
+        "W": 512,
+        "batch": 1,
+        "hidden": 384,
+        "layers": 12,
+        "heads": 6,
+        "head_dim": 64,
+        "intermediate": 1536,
+        "patch": 16,
+        "n_patch": 1024,
+        "n_det": 100,
+        "seq_len": 1125,
+        "n_class_logits": 92,
+        "use_mid_position_embeddings": true
+      },
+      "analytic": {
+        "patch": {
+          "macs": 301989888,
+          "outputs": 393216,
+          "K": [
+            768
+          ],
+          "gemms": 1
+        },
+        "qkv": {
+          "macs": 5971968000,
+          "outputs": 15552000,
+          "K": [
+            384
+          ],
+          "gemms": 36
+        },
+        "attn_out": {
+          "macs": 1990656000,
+          "outputs": 5184000,
+          "K": [
+            384
+          ],
+          "gemms": 12
+        },
+        "mlp": {
+          "macs": 15925248000,
+          "outputs": 25920000,
+          "K": [
+            384,
+            1536
+          ],
+          "gemms": 24
+        },
+        "qk": {
+          "macs": 5832000000,
+          "outputs": 91125000,
+          "K": [
+            64
+          ],
+          "gemms": 12
+        },
+        "av": {
+          "macs": 5832000000,
+          "outputs": 5184000,
+          "K": [
+            1125
+          ],
+          "gemms": 12
+        },
+        "head": {
+          "macs": 62668800,
+          "outputs": 163200,
+          "K": [
+            384
+          ],
+          "gemms": 6
+        }
+      },
+      "instrumented": {
+        "patch": {
+          "macs": 301989888,
+          "outputs": 393216,
+          "K": [
+            768
+          ],
+          "gemm_calls": 1
+        },
+        "qkv": {
+          "macs": 5971968000,
+          "outputs": 15552000,
+          "K": [
+            384
+          ],
+          "gemm_calls": 36
+        },
+        "qk": {
+          "macs": 5832000000,
+          "outputs": 91125000,
+          "K": [
+            64
+          ],
+          "gemm_calls": 12
+        },
+        "av": {
+          "macs": 5832000000,
+          "outputs": 5184000,
+          "K": [
+            1125
+          ],
+          "gemm_calls": 12
+        },
+        "attn_out": {
+          "macs": 1990656000,
+          "outputs": 5184000,
+          "K": [
+            384
+          ],
+          "gemm_calls": 12
+        },
+        "mlp": {
+          "macs": 15925248000,
+          "outputs": 25920000,
+          "K": [
+            384,
+            1536
+          ],
+          "gemm_calls": 24
+        },
+        "head": {
+          "macs": 62668800,
+          "outputs": 163200,
+          "K": [
+            384
+          ],
+          "gemm_calls": 6
+        }
+      },
+      "totals": {
+        "macs": 35916530688,
+        "outputs": 143521416,
+        "instrumented_macs": 35916530688,
+        "flopcounter_eager_flops": 71833061376,
+        "flopcounter_sdpa_flops": 71833061376
+      },
+      "agree": true,
+      "not_counted": "bias adds, LayerNorm, GELU/ReLU, softmax, 1/sqrt(dh) scaling, residual adds, bicubic interpolation of (mid-)position embeddings (input-size dependent constant; precomputable for fixed 512x512)"
+    }
+  }
+}

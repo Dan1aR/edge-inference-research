@@ -1,0 +1,1670 @@
+{
+  "disclaimer": "analytic estimate; not a measurement on hardware",
+  "horowitz": {
+    "add16": 0.4,
+    "add32": 0.9,
+    "mul16": 1.1,
+    "mul32": 3.7,
+    "sram8k_64b": 10.0,
+    "sram32k_64b": 20.0,
+    "sram1m_64b": 100.0,
+    "source": "M. Horowitz, ISSCC 2014, 45nm 0.9V"
+  },
+  "e_mul_bf16_scaled_pJ": 0.5818181818181819,
+  "area_proxy_ratio_bf16acc_over_fp32acc": 0.594809646223528,
+  "area_proxy_source": "pe_bf16acc_sep / pe_fp32acc_sep combinational area (Nangate45, results/hw/synthesis.json)",
+  "aliases": {
+    "lin0_patch0_attn0": "= B",
+    "lin1_patch1_attn1": "= I",
+    "lin1_patch1_attn0": "= M1",
+    "lin1_patch0_attn0": "lin-only-BF16",
+    "lin0_patch1_attn0": "patch-only-BF16",
+    "lin0_patch0_attn1": "attn-only-BF16",
+    "lin1_patch0_attn1": "lin+attn BF16 (patch FP32)",
+    "lin0_patch1_attn1": "patch+attn BF16 (lin FP32)"
+  },
+  "coco_AP_yolos_tiny_existing_results": {
+    "lin0_patch0_attn0": 0.2647329169654128,
+    "lin0_patch0_attn1": 0.25302042576179484,
+    "lin0_patch1_attn0": 0.2564475986511973,
+    "lin0_patch1_attn1": 0.24600873822505906,
+    "lin1_patch0_attn0": 0.25545813806396106,
+    "lin1_patch0_attn1": 0.24695290224485672,
+    "lin1_patch1_attn0": 0.2491486683239827,
+    "lin1_patch1_attn1": 0.2403807167856915
+  },
+  "models": {
+    "hustvl/yolos-tiny": {
+      "totals": {
+        "total_macs": 11971551744,
+        "total_outputs": 71765508,
+        "e_mac_fp32acc_pJ": 2.0,
+        "e_mac_bf16acc_pJ": 1.5,
+        "e_mac_fp32acc_pJ_bf16mult": 1.481818181818182,
+        "e_mac_bf16acc_pJ_bf16mult": 0.9818181818181819
+      },
+      "regimes": {
+        "B (all FP32-acc)": {
+          "fp32_acc_components": [
+            "patch",
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 1.0,
+          "fp32_output_share": 1.0,
+          "energy_rel_horowitz": 1.0,
+          "energy_rel_horowitz_bf16mult": 1.0,
+          "energy_pJ_per_inference_horowitz": 23943103488.0,
+          "psum_result_bytes_rel": 1.0,
+          "energy_rel_area_proxy": 1.0,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 931067904,
+              "rel": 1.0,
+              "sram_energy_uJ": 2327.6697599999998
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 444011520,
+              "rel": 1.0,
+              "sram_energy_uJ": 1110.0288
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 127561728,
+              "rel": 1.0,
+              "sram_energy_uJ": 318.90432
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2723321904,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 3404.15238
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 731073552,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 913.8419399999999
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "I (all BF16-acc)": {
+          "fp32_acc_components": [],
+          "fp32_mac_share": 0.0,
+          "fp32_output_share": 0.0,
+          "energy_rel_horowitz": 0.75,
+          "energy_rel_horowitz_bf16mult": 0.6625766871165645,
+          "energy_pJ_per_inference_horowitz": 17957327616.0,
+          "psum_result_bytes_rel": 0.5,
+          "energy_rel_area_proxy": 0.594809646223528,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 465533952,
+              "rel": 0.5,
+              "sram_energy_uJ": 1163.8348799999999
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 222005760,
+              "rel": 0.5,
+              "sram_energy_uJ": 555.0144
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 63780864,
+              "rel": 0.5,
+              "sram_energy_uJ": 159.45216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 1361660952,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 1702.07619
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 365536776,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 456.92096999999995
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 2048.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 32768.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "M1 (FP32-acc only qk,av)": {
+          "fp32_acc_components": [
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.4871548922572155,
+          "fp32_output_share": 0.670997828093128,
+          "energy_rel_horowitz": 0.8717887230643038,
+          "energy_rel_horowitz_bf16mult": 0.8269541047493673,
+          "energy_pJ_per_inference_horowitz": 20873327616.0,
+          "psum_result_bytes_rel": 0.835498914046564,
+          "energy_rel_area_proxy": 0.7922001093611682,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 641789952,
+              "rel": 0.6893052045321069,
+              "sram_energy_uJ": 1604.47488
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 304949760,
+              "rel": 0.6868059639533677,
+              "sram_energy_uJ": 762.3743999999999
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 105252864,
+              "rel": 0.8251131875541855,
+              "sram_energy_uJ": 263.13216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2003099952,
+              "rel": 0.7355355050234267,
+              "acc_sram_energy_uJ": 2503.8749399999997
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 544789776,
+              "rel": 0.7451914715142095,
+              "acc_sram_energy_uJ": 680.98722
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "M2 (FP32-acc only av)": {
+          "fp32_acc_components": [
+            "av"
+          ],
+          "fp32_mac_share": 0.24357744612860774,
+          "fp32_output_share": 0.036117629098368534,
+          "energy_rel_horowitz": 0.810894361532152,
+          "energy_rel_horowitz_bf16mult": 0.7447653959329659,
+          "energy_pJ_per_inference_horowitz": 19415327616.0,
+          "psum_result_bytes_rel": 0.5180588145491842,
+          "energy_rel_area_proxy": 0.6935048777923482,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 641789952,
+              "rel": 0.6893052045321069,
+              "sram_energy_uJ": 1604.47488
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 304949760,
+              "rel": 0.6868059639533677,
+              "sram_energy_uJ": 762.3743999999999
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 105252864,
+              "rel": 0.8251131875541855,
+              "sram_energy_uJ": 263.13216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 1729724952,
+              "rel": 0.6351525867946017,
+              "acc_sram_energy_uJ": 2162.1561899999997
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 453664776,
+              "rel": 0.6205460103965025,
+              "acc_sram_energy_uJ": 567.08097
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "M3 (FP32-acc only qk)": {
+          "fp32_acc_components": [
+            "qk"
+          ],
+          "fp32_mac_share": 0.24357744612860774,
+          "fp32_output_share": 0.6348801989947594,
+          "energy_rel_horowitz": 0.810894361532152,
+          "energy_rel_horowitz_bf16mult": 0.7447653959329659,
+          "energy_pJ_per_inference_horowitz": 19415327616.0,
+          "psum_result_bytes_rel": 0.8174400994973797,
+          "energy_rel_area_proxy": 0.6935048777923482,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 465533952,
+              "rel": 0.5,
+              "sram_energy_uJ": 1163.8348799999999
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 222005760,
+              "rel": 0.5,
+              "sram_energy_uJ": 555.0144
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 63780864,
+              "rel": 0.5,
+              "sram_energy_uJ": 159.45216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 1635035952,
+              "rel": 0.600382918228825,
+              "acc_sram_energy_uJ": 2043.79494
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 456661776,
+              "rel": 0.624645461117707,
+              "acc_sram_energy_uJ": 570.82722
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch0_attn0": {
+          "fp32_acc_components": [
+            "patch",
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 1.0,
+          "fp32_output_share": 1.0,
+          "energy_rel_horowitz": 1.0,
+          "energy_rel_horowitz_bf16mult": 1.0,
+          "energy_pJ_per_inference_horowitz": 23943103488.0,
+          "psum_result_bytes_rel": 1.0,
+          "energy_rel_area_proxy": 1.0,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 931067904,
+              "rel": 1.0,
+              "sram_energy_uJ": 2327.6697599999998
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 444011520,
+              "rel": 1.0,
+              "sram_energy_uJ": 1110.0288
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 127561728,
+              "rel": 1.0,
+              "sram_energy_uJ": 318.90432
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2723321904,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 3404.15238
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 731073552,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 913.8419399999999
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch0_attn1": {
+          "fp32_acc_components": [
+            "patch",
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head"
+          ],
+          "fp32_mac_share": 0.5128451077427846,
+          "fp32_output_share": 0.32900217190687203,
+          "energy_rel_horowitz": 0.8782112769356961,
+          "energy_rel_horowitz_bf16mult": 0.8356225823671972,
+          "energy_pJ_per_inference_horowitz": 21027103488.0,
+          "psum_result_bytes_rel": 0.664501085953436,
+          "energy_rel_area_proxy": 0.8026095368623598,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 754811904,
+              "rel": 0.8106947954678931,
+              "sram_energy_uJ": 1887.02976
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 361067520,
+              "rel": 0.8131940360466323,
+              "sram_energy_uJ": 902.6687999999999
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 86089728,
+              "rel": 0.6748868124458145,
+              "sram_energy_uJ": 215.22431999999998
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2081882904,
+              "rel": 0.7644644949765733,
+              "acc_sram_energy_uJ": 2602.35363
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 551820552,
+              "rel": 0.7548085284857905,
+              "acc_sram_energy_uJ": 689.7756899999999
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch1_attn0": {
+          "fp32_acc_components": [
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.9873871869554691,
+          "fp32_output_share": 0.9972604109483905,
+          "energy_rel_horowitz": 0.9968467967388672,
+          "energy_rel_horowitz_bf16mult": 0.995744142837735,
+          "energy_pJ_per_inference_horowitz": 23867606016.0,
+          "psum_result_bytes_rel": 0.9986302054741952,
+          "energy_rel_area_proxy": 0.99488940982037,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 922417152,
+              "rel": 0.9907087850812651,
+              "sram_energy_uJ": 2306.04288
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 440079360,
+              "rel": 0.9911440135607292,
+              "sram_energy_uJ": 1100.1984
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 125988864,
+              "rel": 0.9876697813312783,
+              "sram_energy_uJ": 314.97216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2704840752,
+              "rel": 0.9932137467947307,
+              "acc_sram_energy_uJ": 3381.0509399999996
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 726748176,
+              "rel": 0.994083528274047,
+              "acc_sram_energy_uJ": 908.43522
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch1_attn1": {
+          "fp32_acc_components": [
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head"
+          ],
+          "fp32_mac_share": 0.5002322946982536,
+          "fp32_output_share": 0.32626258285526244,
+          "energy_rel_horowitz": 0.8750580736745635,
+          "energy_rel_horowitz_bf16mult": 0.8313667252049323,
+          "energy_pJ_per_inference_horowitz": 20951606016.0,
+          "psum_result_bytes_rel": 0.6631312914276313,
+          "energy_rel_area_proxy": 0.7974989466827298,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 746161152,
+              "rel": 0.8014035805491583,
+              "sram_energy_uJ": 1865.4028799999999
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 357135360,
+              "rel": 0.8043380496073615,
+              "sram_energy_uJ": 892.8384
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 84516864,
+              "rel": 0.6625565937770928,
+              "sram_energy_uJ": 211.29216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2063401752,
+              "rel": 0.757678241771304,
+              "acc_sram_energy_uJ": 2579.2521899999997
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 547495176,
+              "rel": 0.7488920567598375,
+              "acc_sram_energy_uJ": 684.36897
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch0_attn0": {
+          "fp32_acc_components": [
+            "patch",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.4997677053017464,
+          "fp32_output_share": 0.6737374171447376,
+          "energy_rel_horowitz": 0.8749419263254365,
+          "energy_rel_horowitz_bf16mult": 0.8312099619116322,
+          "energy_pJ_per_inference_horowitz": 20948825088.0,
+          "psum_result_bytes_rel": 0.8368687085723687,
+          "energy_rel_area_proxy": 0.7973106995407983,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 650440704,
+              "rel": 0.6985964194508417,
+              "sram_energy_uJ": 1626.10176
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 308881920,
+              "rel": 0.6956619503926385,
+              "sram_energy_uJ": 772.2048
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 106825728,
+              "rel": 0.8374434062229072,
+              "sram_energy_uJ": 267.06432
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2021581104,
+              "rel": 0.742321758228696,
+              "acc_sram_energy_uJ": 2526.97638
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 549115152,
+              "rel": 0.7511079432401625,
+              "acc_sram_energy_uJ": 686.3939399999999
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch0_attn1": {
+          "fp32_acc_components": [
+            "patch"
+          ],
+          "fp32_mac_share": 0.012612813044530912,
+          "fp32_output_share": 0.002739589051609584,
+          "energy_rel_horowitz": 0.7531532032611328,
+          "energy_rel_horowitz_bf16mult": 0.6668325442788294,
+          "energy_pJ_per_inference_horowitz": 18032825088.0,
+          "psum_result_bytes_rel": 0.5013697945258048,
+          "energy_rel_area_proxy": 0.5999202364031581,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 474184704,
+              "rel": 0.5092912149187349,
+              "sram_energy_uJ": 1185.46176
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 225937920,
+              "rel": 0.5088559864392708,
+              "sram_energy_uJ": 564.8448
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 65353728,
+              "rel": 0.5123302186687217,
+              "sram_energy_uJ": 163.38432
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 1380142104,
+              "rel": 0.5067862532052693,
+              "acc_sram_energy_uJ": 1725.17763
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 369862152,
+              "rel": 0.505916471725953,
+              "acc_sram_energy_uJ": 462.32768999999996
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch1_attn0": {
+          "fp32_acc_components": [
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.4871548922572155,
+          "fp32_output_share": 0.670997828093128,
+          "energy_rel_horowitz": 0.8717887230643038,
+          "energy_rel_horowitz_bf16mult": 0.8269541047493673,
+          "energy_pJ_per_inference_horowitz": 20873327616.0,
+          "psum_result_bytes_rel": 0.835498914046564,
+          "energy_rel_area_proxy": 0.7922001093611682,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 641789952,
+              "rel": 0.6893052045321069,
+              "sram_energy_uJ": 1604.47488
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 304949760,
+              "rel": 0.6868059639533677,
+              "sram_energy_uJ": 762.3743999999999
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 105252864,
+              "rel": 0.8251131875541855,
+              "sram_energy_uJ": 263.13216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 2003099952,
+              "rel": 0.7355355050234267,
+              "acc_sram_energy_uJ": 2503.8749399999997
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 544789776,
+              "rel": 0.7451914715142095,
+              "acc_sram_energy_uJ": 680.98722
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch1_attn1": {
+          "fp32_acc_components": [],
+          "fp32_mac_share": 0.0,
+          "fp32_output_share": 0.0,
+          "energy_rel_horowitz": 0.75,
+          "energy_rel_horowitz_bf16mult": 0.6625766871165645,
+          "energy_pJ_per_inference_horowitz": 17957327616.0,
+          "psum_result_bytes_rel": 0.5,
+          "energy_rel_area_proxy": 0.594809646223528,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 931067904,
+              "bytes": 465533952,
+              "rel": 0.5,
+              "sram_energy_uJ": 1163.8348799999999
+            },
+            "T=128": {
+              "bytes_B": 444011520,
+              "bytes": 222005760,
+              "rel": 0.5,
+              "sram_energy_uJ": 555.0144
+            },
+            "T=256": {
+              "bytes_B": 127561728,
+              "bytes": 63780864,
+              "rel": 0.5,
+              "sram_energy_uJ": 159.45216
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 2723321904,
+              "acc_sram_bytes": 1361660952,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 1702.07619
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 731073552,
+              "acc_sram_bytes": 365536776,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 456.92096999999995
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 2048.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 32768.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        }
+      }
+    },
+    "hustvl/yolos-small": {
+      "totals": {
+        "total_macs": 35916530688,
+        "total_outputs": 143521416,
+        "e_mac_fp32acc_pJ": 2.0,
+        "e_mac_bf16acc_pJ": 1.5,
+        "e_mac_fp32acc_pJ_bf16mult": 1.481818181818182,
+        "e_mac_bf16acc_pJ_bf16mult": 0.9818181818181819
+      },
+      "regimes": {
+        "B (all FP32-acc)": {
+          "fp32_acc_components": [
+            "patch",
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 1.0,
+          "fp32_output_share": 1.0,
+          "energy_rel_horowitz": 1.0,
+          "energy_rel_horowitz_bf16mult": 1.0,
+          "energy_pJ_per_inference_horowitz": 71833061376.0,
+          "psum_result_bytes_rel": 1.0,
+          "energy_rel_area_proxy": 1.0,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 3358891008,
+              "rel": 1.0,
+              "sram_energy_uJ": 8397.22752
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 1469859840,
+              "rel": 1.0,
+              "sram_energy_uJ": 3674.6495999999997
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 712621056,
+              "rel": 1.0,
+              "sram_energy_uJ": 1781.5526399999999
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 8440039008,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 10550.04876
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 2043945504,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 2554.93188
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "I (all BF16-acc)": {
+          "fp32_acc_components": [],
+          "fp32_mac_share": 0.0,
+          "fp32_output_share": 0.0,
+          "energy_rel_horowitz": 0.75,
+          "energy_rel_horowitz_bf16mult": 0.6625766871165645,
+          "energy_pJ_per_inference_horowitz": 53874796032.0,
+          "psum_result_bytes_rel": 0.5,
+          "energy_rel_area_proxy": 0.594809646223528,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 1679445504,
+              "rel": 0.5,
+              "sram_energy_uJ": 4198.61376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 734929920,
+              "rel": 0.5,
+              "sram_energy_uJ": 1837.3247999999999
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 356310528,
+              "rel": 0.5,
+              "sram_energy_uJ": 890.7763199999999
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 4220019504,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 5275.02438
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1021972752,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 1277.46594
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 2048.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 32768.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "M1 (FP32-acc only qk,av)": {
+          "fp32_acc_components": [
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.3247529696373775,
+          "fp32_output_share": 0.6710427104481745,
+          "energy_rel_horowitz": 0.8311882424093444,
+          "energy_rel_horowitz_bf16mult": 0.7721559100003421,
+          "energy_pJ_per_inference_horowitz": 59706796032.0,
+          "psum_result_bytes_rel": 0.8355213552240872,
+          "energy_rel_area_proxy": 0.726396416880857,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 2031957504,
+              "rel": 0.6049489248565698,
+              "sram_energy_uJ": 5079.89376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 900817920,
+              "rel": 0.612859740422597,
+              "sram_energy_uJ": 2252.0448
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 439254528,
+              "rel": 0.6163928560651455,
+              "sram_energy_uJ": 1098.1363199999998
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 5502897504,
+              "rel": 0.6519990605237733,
+              "acc_sram_energy_uJ": 6878.62188
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1380478752,
+              "rel": 0.6753990012446046,
+              "acc_sram_energy_uJ": 1725.59844
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "M2 (FP32-acc only av)": {
+          "fp32_acc_components": [
+            "av"
+          ],
+          "fp32_mac_share": 0.16237648481868874,
+          "fp32_output_share": 0.036120044969455985,
+          "energy_rel_horowitz": 0.7905941212046722,
+          "energy_rel_horowitz_bf16mult": 0.7173662985584534,
+          "energy_pJ_per_inference_horowitz": 56790796032.0,
+          "psum_result_bytes_rel": 0.518060022484728,
+          "energy_rel_area_proxy": 0.6606030315521925,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 2031957504,
+              "rel": 0.6049489248565698,
+              "sram_energy_uJ": 5079.89376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 900817920,
+              "rel": 0.612859740422597,
+              "sram_energy_uJ": 2252.0448
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 439254528,
+              "rel": 0.6163928560651455,
+              "sram_energy_uJ": 1098.1363199999998
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 4956147504,
+              "rel": 0.5872185542391749,
+              "acc_sram_energy_uJ": 6195.18438
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1198228752,
+              "rel": 0.5862332188676592,
+              "acc_sram_energy_uJ": 1497.78594
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "M3 (FP32-acc only qk)": {
+          "fp32_acc_components": [
+            "qk"
+          ],
+          "fp32_mac_share": 0.16237648481868874,
+          "fp32_output_share": 0.6349226654787186,
+          "energy_rel_horowitz": 0.7905941212046722,
+          "energy_rel_horowitz_bf16mult": 0.7173662985584534,
+          "energy_pJ_per_inference_horowitz": 56790796032.0,
+          "psum_result_bytes_rel": 0.8174613327393593,
+          "energy_rel_area_proxy": 0.6606030315521925,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 1679445504,
+              "rel": 0.5,
+              "sram_energy_uJ": 4198.61376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 734929920,
+              "rel": 0.5,
+              "sram_energy_uJ": 1837.3247999999999
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 356310528,
+              "rel": 0.5,
+              "sram_energy_uJ": 890.7763199999999
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 4766769504,
+              "rel": 0.5647805062845984,
+              "acc_sram_energy_uJ": 5958.46188
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1204222752,
+              "rel": 0.5891657823769454,
+              "acc_sram_energy_uJ": 1505.2784399999998
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch0_attn0": {
+          "fp32_acc_components": [
+            "patch",
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 1.0,
+          "fp32_output_share": 1.0,
+          "energy_rel_horowitz": 1.0,
+          "energy_rel_horowitz_bf16mult": 1.0,
+          "energy_pJ_per_inference_horowitz": 71833061376.0,
+          "psum_result_bytes_rel": 1.0,
+          "energy_rel_area_proxy": 1.0,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 3358891008,
+              "rel": 1.0,
+              "sram_energy_uJ": 8397.22752
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 1469859840,
+              "rel": 1.0,
+              "sram_energy_uJ": 3674.6495999999997
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 712621056,
+              "rel": 1.0,
+              "sram_energy_uJ": 1781.5526399999999
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 8440039008,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 10550.04876
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 2043945504,
+              "rel": 1.0,
+              "acc_sram_energy_uJ": 2554.93188
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch0_attn1": {
+          "fp32_acc_components": [
+            "patch",
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head"
+          ],
+          "fp32_mac_share": 0.6752470303626226,
+          "fp32_output_share": 0.3289572895518255,
+          "energy_rel_horowitz": 0.9188117575906556,
+          "energy_rel_horowitz_bf16mult": 0.8904207771162223,
+          "energy_pJ_per_inference_horowitz": 66001061376.0,
+          "psum_result_bytes_rel": 0.6644786447759128,
+          "energy_rel_area_proxy": 0.8684132293426712,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 3006379008,
+              "rel": 0.8950510751434302,
+              "sram_energy_uJ": 7515.94752
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 1303971840,
+              "rel": 0.887140259577403,
+              "sram_energy_uJ": 3259.9296
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 629677056,
+              "rel": 0.8836071439348545,
+              "sram_energy_uJ": 1574.19264
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 7157161008,
+              "rel": 0.8480009394762267,
+              "acc_sram_energy_uJ": 8946.45126
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1685439504,
+              "rel": 0.8246009987553954,
+              "acc_sram_energy_uJ": 2106.79938
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch1_attn0": {
+          "fp32_acc_components": [
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.9915918970397412,
+          "fp32_output_share": 0.9972602277000946,
+          "energy_rel_horowitz": 0.9978979742599353,
+          "energy_rel_horowitz_bf16mult": 0.9971629100440845,
+          "energy_pJ_per_inference_horowitz": 71682066432.0,
+          "psum_result_bytes_rel": 0.9986301138500473,
+          "energy_rel_area_proxy": 0.9965931177869437,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 3341589504,
+              "rel": 0.9948490427469089,
+              "sram_energy_uJ": 8353.973759999999
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 1461995520,
+              "rel": 0.9946496123058917,
+              "sram_energy_uJ": 3654.9887999999996
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 709475328,
+              "rel": 0.9955856931625663,
+              "sram_energy_uJ": 1773.68832
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 8403076704,
+              "rel": 0.9956206003355003,
+              "acc_sram_energy_uJ": 10503.845879999999
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 2035294752,
+              "rel": 0.9957676210138331,
+              "acc_sram_energy_uJ": 2544.1184399999997
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin0_patch1_attn1": {
+          "fp32_acc_components": [
+            "qkv",
+            "attn_out",
+            "mlp",
+            "head"
+          ],
+          "fp32_mac_share": 0.6668389274023637,
+          "fp32_output_share": 0.3262175172519201,
+          "energy_rel_horowitz": 0.9167097318505909,
+          "energy_rel_horowitz_bf16mult": 0.8875836871603068,
+          "energy_pJ_per_inference_horowitz": 65850066432.0,
+          "psum_result_bytes_rel": 0.6631087586259601,
+          "energy_rel_area_proxy": 0.8650063471296149,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 2989077504,
+              "rel": 0.8899001178903391,
+              "sram_energy_uJ": 7472.69376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 1296107520,
+              "rel": 0.8817898718832947,
+              "sram_energy_uJ": 3240.2688
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 626531328,
+              "rel": 0.8791928370974208,
+              "sram_energy_uJ": 1566.3283199999998
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 7120198704,
+              "rel": 0.8436215398117269,
+              "acc_sram_energy_uJ": 8900.248379999999
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1676788752,
+              "rel": 0.8203686197692285,
+              "acc_sram_energy_uJ": 2095.98594
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch0_attn0": {
+          "fp32_acc_components": [
+            "patch",
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.3331610725976363,
+          "fp32_output_share": 0.67378248274808,
+          "energy_rel_horowitz": 0.8332902681494091,
+          "energy_rel_horowitz_bf16mult": 0.7749929999562576,
+          "energy_pJ_per_inference_horowitz": 59857790976.0,
+          "psum_result_bytes_rel": 0.8368912413740399,
+          "energy_rel_area_proxy": 0.7298032990939132,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 2049259008,
+              "rel": 0.6100998821096609,
+              "sram_energy_uJ": 5123.1475199999995
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 908682240,
+              "rel": 0.6182101281167053,
+              "sram_energy_uJ": 2271.7056
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 442400256,
+              "rel": 0.6208071629025792,
+              "sram_energy_uJ": 1106.00064
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 5539859808,
+              "rel": 0.6563784601882731,
+              "acc_sram_energy_uJ": 6924.8247599999995
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1389129504,
+              "rel": 0.6796313802307715,
+              "acc_sram_energy_uJ": 1736.4118799999999
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch0_attn1": {
+          "fp32_acc_components": [
+            "patch"
+          ],
+          "fp32_mac_share": 0.008408102960258833,
+          "fp32_output_share": 0.0027397722999054023,
+          "energy_rel_horowitz": 0.7521020257400647,
+          "energy_rel_horowitz_bf16mult": 0.6654137770724801,
+          "energy_pJ_per_inference_horowitz": 54025790976.0,
+          "psum_result_bytes_rel": 0.5013698861499527,
+          "energy_rel_area_proxy": 0.5982165284365843,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 1696747008,
+              "rel": 0.5051509572530911,
+              "sram_energy_uJ": 4241.86752
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 742794240,
+              "rel": 0.5053503876941083,
+              "sram_energy_uJ": 1856.9856
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 359456256,
+              "rel": 0.5044143068374337,
+              "sram_energy_uJ": 898.64064
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 4256981808,
+              "rel": 0.5043793996644997,
+              "acc_sram_energy_uJ": 5321.22726
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1030623504,
+              "rel": 0.5042323789861669,
+              "acc_sram_energy_uJ": 1288.27938
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch1_attn0": {
+          "fp32_acc_components": [
+            "qk",
+            "av"
+          ],
+          "fp32_mac_share": 0.3247529696373775,
+          "fp32_output_share": 0.6710427104481745,
+          "energy_rel_horowitz": 0.8311882424093444,
+          "energy_rel_horowitz_bf16mult": 0.7721559100003421,
+          "energy_pJ_per_inference_horowitz": 59706796032.0,
+          "psum_result_bytes_rel": 0.8355213552240872,
+          "energy_rel_area_proxy": 0.726396416880857,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 2031957504,
+              "rel": 0.6049489248565698,
+              "sram_energy_uJ": 5079.89376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 900817920,
+              "rel": 0.612859740422597,
+              "sram_energy_uJ": 2252.0448
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 439254528,
+              "rel": 0.6163928560651455,
+              "sram_energy_uJ": 1098.1363199999998
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 5502897504,
+              "rel": 0.6519990605237733,
+              "acc_sram_energy_uJ": 6878.62188
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1380478752,
+              "rel": 0.6753990012446046,
+              "acc_sram_energy_uJ": 1725.59844
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 4096.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 65536.0,
+              "rel_homogeneous": 1.0,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        },
+        "lin1_patch1_attn1": {
+          "fp32_acc_components": [],
+          "fp32_mac_share": 0.0,
+          "fp32_output_share": 0.0,
+          "energy_rel_horowitz": 0.75,
+          "energy_rel_horowitz_bf16mult": 0.6625766871165645,
+          "energy_pJ_per_inference_horowitz": 53874796032.0,
+          "psum_result_bytes_rel": 0.5,
+          "energy_rel_area_proxy": 0.594809646223528,
+          "splitK_spill": {
+            "T=64": {
+              "bytes_B": 3358891008,
+              "bytes": 1679445504,
+              "rel": 0.5,
+              "sram_energy_uJ": 4198.61376
+            },
+            "T=128": {
+              "bytes_B": 1469859840,
+              "bytes": 734929920,
+              "rel": 0.5,
+              "sram_energy_uJ": 1837.3247999999999
+            },
+            "T=256": {
+              "bytes_B": 712621056,
+              "bytes": 356310528,
+              "rel": 0.5,
+              "sram_energy_uJ": 890.7763199999999
+            }
+          },
+          "ws_accumulator_sram_traffic": {
+            "32x32": {
+              "acc_sram_bytes_B": 8440039008,
+              "acc_sram_bytes": 4220019504,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 5275.02438
+            },
+            "128x128": {
+              "acc_sram_bytes_B": 2043945504,
+              "acc_sram_bytes": 1021972752,
+              "rel": 0.5,
+              "acc_sram_energy_uJ": 1277.46594
+            }
+          },
+          "os_accumulator_registers": {
+            "32x32": {
+              "acc_register_bytes_B": 4096,
+              "acc_register_bytes_homogeneous": 2048.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            },
+            "128x128": {
+              "acc_register_bytes_B": 65536,
+              "acc_register_bytes_homogeneous": 32768.0,
+              "rel_homogeneous": 0.5,
+              "note": "homogeneous array: 32-b accumulators are required as soon as any GEMM uses FP32-acc"
+            }
+          }
+        }
+      }
+    }
+  }
+}

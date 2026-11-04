@@ -4,15 +4,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
-import datasets
 import torch
 import numpy as np
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset, Subset
 from torchvision.datasets import CocoDetection
 from transformers import YolosImageProcessor
-
-import albumentations as A
 
 from .config import FIXED_IMAGE_SIZE
 
@@ -47,6 +44,8 @@ def build_transform(pipeline: str | None = None) -> Callable[[Sequence[ImageLike
         return _noop
 
     if pipeline.lower() == "basic":
+        import albumentations as A
+
         aug = A.Compose(
             [
                 A.HorizontalFlip(p=0.5),

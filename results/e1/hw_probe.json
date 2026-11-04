@@ -1,0 +1,106 @@
+{
+  "gpu": "NVIDIA L40S",
+  "capability": [
+    8,
+    9
+  ],
+  "torch": "2.9.1+cu128",
+  "precision": {
+    "fp16_in/fp16_acc": {
+      "same_block": {
+        "max_gap_kept": 10,
+        "value_at_gap+1_with_1.5x_small": 2.0
+      },
+      "next_block": {
+        "max_gap_kept": 10,
+        "value_at_gap+1_with_1.5x_small": 2.0
+      }
+    },
+    "fp16_in/fp32_acc": {
+      "same_block": {
+        "max_gap_kept": 23,
+        "value_at_gap+1_with_1.5x_small": 0.0
+      },
+      "next_block": {
+        "max_gap_kept": 23,
+        "value_at_gap+1_with_1.5x_small": 0.0
+      }
+    },
+    "bf16_in/fp32_acc": {
+      "same_block": {
+        "max_gap_kept": 23,
+        "value_at_gap+1_with_1.5x_small": 0.0
+      },
+      "next_block": {
+        "max_gap_kept": 23,
+        "value_at_gap+1_with_1.5x_small": 0.0
+      }
+    },
+    "fp8_in/fp32_acc": {
+      "same_block": {
+        "max_gap_kept": 13,
+        "value_at_gap+1_with_1.5x_small": 0.0
+      },
+      "next_block": {
+        "max_gap_kept": 13,
+        "value_at_gap+1_with_1.5x_small": 0.0
+      }
+    }
+  },
+  "speed": {
+    "tiny_qkv": {
+      "triton_fp16in_fp32acc_ms": 0.08649746887385845,
+      "triton_fp16in_fp16acc_ms": 0.09401543065905571,
+      "cublas_fp16_ms": 0.02084956504404545,
+      "cublas_bf16_ms": 0.037336163222789764,
+      "speedup_fp16acc_vs_fp32acc": 0.9200348098977398,
+      "rel_err_fp32acc": 0.0002931407404652729,
+      "rel_err_fp16acc": 0.0007890848726159643
+    },
+    "tiny_mlp_up": {
+      "triton_fp16in_fp32acc_ms": 0.08826851844787598,
+      "triton_fp16in_fp16acc_ms": 0.08930591866374016,
+      "cublas_fp16_ms": 0.019315164536237717,
+      "cublas_bf16_ms": 0.031530437991023064,
+      "speedup_fp16acc_vs_fp32acc": 0.988383746213168,
+      "rel_err_fp32acc": 0.00029324488928578044,
+      "rel_err_fp16acc": 0.0007889774544693862
+    },
+    "small_mlp_up": {
+      "triton_fp16in_fp32acc_ms": 0.08651502430438995,
+      "triton_fp16in_fp16acc_ms": 0.08354578167200089,
+      "cublas_fp16_ms": 0.05418499931693077,
+      "cublas_bf16_ms": 0.06218142807483673,
+      "speedup_fp16acc_vs_fp32acc": 1.0355403058414876,
+      "rel_err_fp32acc": 0.0002928326906636133,
+      "rel_err_fp16acc": 0.001066132314939587
+    },
+    "small_mlp_down": {
+      "triton_fp16in_fp32acc_ms": 0.0841205008327961,
+      "triton_fp16in_fp16acc_ms": 0.09483257308602333,
+      "cublas_fp16_ms": 0.057116756215691566,
+      "cublas_bf16_ms": 0.07706964388489723,
+      "speedup_fp16acc_vs_fp32acc": 0.8870422692895802,
+      "rel_err_fp32acc": 0.00029333266266984856,
+      "rel_err_fp16acc": 0.0020584143213344974
+    },
+    "conv3x3_256": {
+      "triton_fp16in_fp32acc_ms": 0.3649123478680849,
+      "triton_fp16in_fp16acc_ms": 0.35263937897980213,
+      "cublas_fp16_ms": 0.0797860324382782,
+      "cublas_bf16_ms": 0.3397466614842415,
+      "speedup_fp16acc_vs_fp32acc": 1.0348031717949053,
+      "rel_err_fp32acc": 0.00029338155728160194,
+      "rel_err_fp16acc": 0.0025118534792606248
+    },
+    "big_4k": {
+      "triton_fp16in_fp32acc_ms": 0.9747954551130533,
+      "triton_fp16in_fp16acc_ms": 0.9443812537938356,
+      "cublas_fp16_ms": 0.5516753997653723,
+      "cublas_bf16_ms": 0.8483396377414465,
+      "speedup_fp16acc_vs_fp32acc": 1.0322054267776235,
+      "rel_err_fp32acc": 0.0002932374686139937,
+      "rel_err_fp16acc": 0.0033321364024007276
+    }
+  }
+}

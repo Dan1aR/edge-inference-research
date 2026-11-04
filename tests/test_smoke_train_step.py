@@ -16,7 +16,7 @@ def _make_batch(processor: YolosImageProcessor, device):
     images = [Image.fromarray(np.zeros((64, 64, 3), dtype=np.uint8)) for _ in range(2)]
     annotations = []
     for idx in range(2):
-        annotations.append({"image_id": idx, "annotations": [{"bbox": [5, 5, 20, 20], "category_id": 0}]})
+        annotations.append({"image_id": idx, "annotations": [{"bbox": [5, 5, 20, 20], "category_id": 0, "area": 400.0, "iscrowd": 0}]})
     processed = processor(images=images, annotations=annotations, return_tensors="pt")
     processed["pixel_values"] = processed["pixel_values"].to(device)
     processed["labels"] = [{"class_labels": l["class_labels"].to(device), "boxes": l["boxes"].to(device)} for l in processed["labels"]]

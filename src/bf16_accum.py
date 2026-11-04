@@ -345,3 +345,63 @@ def patch_yolos_self_attention_bf16(module: nn.Module) -> None:
         if isinstance(submodule, YolosSelfAttention):
             submodule.forward = types.MethodType(yolos_self_attention_forward_bf16, submodule)
 
+
+
+def round_to_format(x: torch.Tensor, fmt: str = "bf16") -> torch.Tensor:
+    """Round an fp32 tensor to an accumulator format (RNE), result kept in fp32."""
+    if fmt == "fp32":
+        return x
+    if fmt == "fp16":
+        return x.to(torch.float16).float()
+    man = {"bf16": 7, "e8m10": 10, "e8m13": 13, "e8m16": 16}[fmt]
+    shift = 23 - man
+    low = (1 << shift) - 1
+    bits = x.contiguous().view(torch.int32).to(torch.int64) & 0xFFFFFFFF
+    bits = (bits + (low >> 1) + ((bits >> shift) & 1)) & (0xFFFFFFFF & ~low)
+    bits = torch.where(bits >= 2**31, bits - 2**32, bits)
+    return bits.to(torch.int32).view(torch.float32)
+
+
+def bf16_accum_matmul_ref(
+    a: torch.Tensor,
+    b: torch.Tensor,
+    *,
+    round_product: bool = False,
+    chunk: int = 0,
+    chunk_merge: str = "bf16",
+    fmt: str = "bf16",
+    kahan: bool = False,
+) -> torch.Tensor:
+    """Sequential reference for :func:`src.triton_kernels.bf16acc_core.bf16acc_matmul`.
+
+    (..., M, K) @ (..., K, N) with a running sum in accumulator format ``fmt`` (RNE), same
+    semantics as the Triton kernel (see its module docstring); returns bf16. Loops over K,
+    vectorised over everything else. Stochastic rounding has no bitwise reference.
+    """
+    assert a.dtype == torch.bfloat16 and b.dtype == torch.bfloat16
+    rnd = lambda x: round_to_format(x, fmt)  # noqa: E731
+    K = a.shape[-1]
+    out_shape = torch.broadcast_shapes(a.shape[:-2], b.shape[:-2]) + (a.shape[-2], b.shape[-1])
+    total = torch.zeros(out_shape, dtype=torch.float32, device=a.device)
+    step = chunk if chunk else K
+    for k0 in range(0, K, step):
+        part = torch.zeros_like(total)
+        comp = torch.zeros_like(total)
+        for k in range(k0, min(k0 + step, K)):
+            prod = a[..., :, k : k + 1].float() * b[..., k : k + 1, :].float()
+            if round_product:
+                prod = prod.to(torch.bfloat16).float()
+            if kahan:
+                y = rnd(prod - comp)
+                t = rnd(part + y)
+                comp = rnd(rnd(t - part) - y)
+                part = t
+            else:
+                part = rnd(part + prod)
+        if chunk == 0:
+            total = part
+        elif chunk_merge == "fp32":
+            total = total + part
+        else:
+            total = rnd(total + part)
+    return total.to(torch.bfloat16)

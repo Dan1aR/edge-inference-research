@@ -1,5 +1,6 @@
 # data
 coco/
+voc/
 
 # logs
 wandb/
@@ -216,3 +217,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# extension: heavy / machine-local artefacts (datasets, weights, checkpoints, detections, queue state)
+datasets/*/
+!datasets/README.md
+hf_models/
+hwtools/
+runs/
+queue/
+logs/
+*.npz
+*.pt
+*.vcd
