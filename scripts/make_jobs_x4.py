@@ -25,7 +25,7 @@ add("rtdetr_r18", "coco_val", KEY + CNN_EXTRA)
 add("detr_r50", "coco_val", KEY + CNN_EXTRA, "--batch_size 16")
 add("rtdetr_r50", "coco_val", KEY + [c for c in CNN_EXTRA if c[0] in ("conv", "all-conv")])
 # datasets: YOLOS-tiny/small and RT-DETR-r18
-for ds in ("voc07_test", "visdrone_val", "bdd_val", "coco_o"):
+for ds in ("voc07_test", "visdrone_val", "bdd_val", "coco_o", "crowdhuman_val"):  # crowdhuman added later
     for m in ("tiny", "small"):
         add(m, ds, KEY[:5] + [VIT_EXTRA[0], VIT_EXTRA[3]])
     add("rtdetr_r18", ds, KEY[:5] + [CNN_EXTRA[0]])

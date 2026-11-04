@@ -46,6 +46,7 @@ DATASETS = {
     "visdrone_train_native": (DS / "visdrone/VisDrone2019-DET-train/images", DS / "visdrone/annotations/instances_train_native.json"),
     "bdd_val": (DS / "bdd100k/images/val", DS / "bdd100k/annotations/instances_val_cocoids.json"),
     "coco_o": (DS / "coco_o", DS / "coco_o/annotations/instances_all.json"),
+    "crowdhuman_val": (DS / "crowdhuman/images/val", DS / "crowdhuman/annotations/instances_val_cocoids.json"),
 }
 PROCESSOR_KWARGS = {"size": FIXED_IMAGE_SIZE, "do_convert_annotations": True, "do_pad": False}
 CURRENT = {"model": "tiny"}  # set by load_model; selects the processor kwargs of eval/train loaders
