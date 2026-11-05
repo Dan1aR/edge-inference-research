@@ -91,7 +91,11 @@ def main():
         op_err = [((s["sq"] / s["sig"]) ** 0.5) for s in stats.values()] if stats else []
         res[name] = {"kl": kl / n, "box_l1": l1 / n, "hidden_rel": hs / n,
                      "op_rel_err_mean": sum(op_err) / max(len(op_err), 1),
-                     "op_rel_err_max": max(op_err) if op_err else 0.0}
+                     "op_rel_err_max": max(op_err) if op_err else 0.0,
+                     # ops whose channel width varied between calls (e.g. DETR attention over a per-batch key
+                     # length): per-channel systematic error undefined there (src/generic_arith._diag_update)
+                     "n_ops": len(stats or {}),
+                     "ops_no_channel_axis": sorted(k for k, s in (stats or {}).items() if s["sum"] is None)}
         print(name, {k: round(v, 5) for k, v in res[name].items()}, flush=True)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"model": a.model, "n": a.n, "size": a.size, "configs": res}, indent=1))
