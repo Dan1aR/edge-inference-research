@@ -285,16 +285,23 @@ def bf16acc_matmul(a: torch.Tensor, b: torch.Tensor, cfg: AccumConfig | None = N
         c3.stride(0), c3.stride(1), c3.stride(2),
     )
     flags = dict(ROUND_PRODUCT=cfg.round_product, FMT_KIND=fmt_kind, MAN=FORMATS[cfg.fmt], SR=sr, KAHAN=cfg.kahan)
-    if cfg.chunk == 0 and block_k is None:
-        grid = lambda meta: (triton.cdiv(M, meta["BLOCK_M"]) * triton.cdiv(N, meta["BLOCK_N"]), nb)
-        _accmatmul_tuned[grid](*args, CHUNK=0, MERGE_FP32=False, **flags)
-    else:
-        bk = min(cfg.chunk, 16) if cfg.chunk else block_k
-        grid = (triton.cdiv(M, 64) * triton.cdiv(N, 64), nb)
-        _accmatmul_kernel[grid](
-            *args, BLOCK_M=64, BLOCK_N=64, BLOCK_K=bk, GROUP_M=8, CHUNK=cfg.chunk,
-            MERGE_FP32=cfg.chunk_merge == "fp32", num_warps=4, num_stages=2, **flags,
-        )
+    # CUDA limits grid dim 1 to 65535: launch large batches (e.g. RT-DETR's many tiny matmuls) in slices.
+    # A single slice (nb <= 65535, every earlier result) is exactly the previous launch.
+    for s in range(0, nb, 65535):
+        e = min(nb, s + 65535)
+        if s:
+            args = (a3[s:e], b3[s:e], c3[s:e], M, N, K, (seed + s) % (2**31 - 2**20) if sr else 0) + args[7:]
+        nbs = e - s
+        if cfg.chunk == 0 and block_k is None:
+            grid = lambda meta, nbs=nbs: (triton.cdiv(M, meta["BLOCK_M"]) * triton.cdiv(N, meta["BLOCK_N"]), nbs)
+            _accmatmul_tuned[grid](*args, CHUNK=0, MERGE_FP32=False, **flags)
+        else:
+            bk = min(cfg.chunk, 16) if cfg.chunk else block_k
+            grid = (triton.cdiv(M, 64) * triton.cdiv(N, 64), nbs)
+            _accmatmul_kernel[grid](
+                *args, BLOCK_M=64, BLOCK_N=64, BLOCK_K=bk, GROUP_M=8, CHUNK=cfg.chunk,
+                MERGE_FP32=cfg.chunk_merge == "fp32", num_warps=4, num_stages=2, **flags,
+            )
     return c3.reshape(*batch_shape, M, N)
 
 
