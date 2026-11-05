@@ -96,7 +96,7 @@ def main():
                      # length): per-channel systematic error undefined there (src/generic_arith._diag_update)
                      "n_ops": len(stats or {}),
                      "ops_no_channel_axis": sorted(k for k, s in (stats or {}).items() if s["sum"] is None)}
-        print(name, {k: round(v, 5) for k, v in res[name].items()}, flush=True)
+        print(name, {k: round(v, 5) if isinstance(v, float) else v for k, v in res[name].items()}, flush=True)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"model": a.model, "n": a.n, "size": a.size, "configs": res}, indent=1))
 
