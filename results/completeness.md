@@ -30,9 +30,9 @@ val-B) из одного прогона `scripts/eval_grid.py`. Символы �
 
 | метод | обучение | none | all | cbest | chunk128 | e8m13 |
 |---|---|---|---|---|---|---|
-| ref_I | ✓✓✓qq | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq |
-| ref_B | ✓✓✓qq | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq |
-| исходная (детерм.) | — | q | q | q | q | q |
+| ref_I | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ |
+| ref_B | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ |
+| исходная (детерм.) | — | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 ## X5: перенос на VisDrone (YOLOS-tiny 800×800, новая голова), B и I
 
@@ -47,20 +47,20 @@ val-B) из одного прогона `scripts/eval_grid.py`. Символы �
 |---|---:|---:|---:|---:|
 | A5 чувствительность + бюджеты (small) | 6 | 6 | 0 | 0 |
 | A5 чувствительность + бюджеты (tiny) | 6 | 6 | 0 | 0 |
-| A6 модель ошибки (base) | 1 | 0 | 1 | 0 |
+| A6 модель ошибки (base) | 1 | 1 | 0 | 0 |
 | A6 модель ошибки (detr_r50) | 1 | 0 | 1 | 0 |
-| A6 модель ошибки (rtdetr_r18) | 1 | 0 | 1 | 0 |
-| A6 модель ошибки (small) | 1 | 0 | 1 | 0 |
-| A6 модель ошибки (tiny) | 1 | 0 | 1 | 0 |
+| A6 модель ошибки (rtdetr_r18) | 1 | 1 | 0 | 0 |
+| A6 модель ошибки (small) | 1 | 1 | 0 | 0 |
+| A6 модель ошибки (tiny) | 1 | 1 | 0 | 0 |
 | D1 декомпозиция ошибки (tiny) | 1 | 1 | 0 | 0 |
 | X1 base / coco (пространство аккумуляторов) | 19 | 0 | 19 | 0 |
 | X1 small / coco (пространство аккумуляторов) | 39 | 39 | 0 | 0 |
 | X1 tiny / coco (пространство аккумуляторов) | 39 | 39 | 0 | 0 |
 | X1c компоненты в FP32 (контроль A5) (small) | 5 | 5 | 0 | 0 |
 | X1c компоненты в FP32 (контроль A5) (tiny) | 5 | 5 | 0 | 0 |
-| X4 deit-base / inv2 | 9 | 0 | 9 | 0 |
-| X4 deit-small / inv2 | 9 | 0 | 9 | 0 |
-| X4 deit-tiny / inv2 | 9 | 0 | 9 | 0 |
+| X4 deit-base / inv2 | 9 | 9 | 0 | 0 |
+| X4 deit-small / inv2 | 9 | 9 | 0 | 0 |
+| X4 deit-tiny / inv2 | 9 | 9 | 0 | 0 |
 | X4 detr_r50 / coco_val | 17 | 0 | 17 | 0 |
 | X4 rtdetr_r18 / bdd_val | 6 | 0 | 6 | 0 |
 | X4 rtdetr_r18 / coco_o | 6 | 0 | 6 | 0 |
@@ -77,11 +77,11 @@ val-B) из одного прогона `scripts/eval_grid.py`. Символы �
 | X4 small / crowdhuman_val | 7 | 0 | 7 | 0 |
 | X4 small / visdrone_val | 7 | 0 | 7 | 0 |
 | X4 small / voc07_test | 7 | 0 | 7 | 0 |
-| X4 tiny / bdd_val | 7 | 0 | 7 | 0 |
-| X4 tiny / coco_o | 7 | 0 | 7 | 0 |
+| X4 tiny / bdd_val | 7 | 7 | 0 | 0 |
+| X4 tiny / coco_o | 7 | 7 | 0 | 0 |
 | X4 tiny / coco_r1024 | 7 | 0 | 7 | 0 |
 | X4 tiny / coco_r640 | 7 | 0 | 7 | 0 |
 | X4 tiny / coco_r800 | 7 | 0 | 7 | 0 |
-| X4 tiny / crowdhuman_val | 7 | 0 | 7 | 0 |
-| X4 tiny / visdrone_val | 7 | 0 | 7 | 0 |
-| X4 tiny / voc07_test | 7 | 0 | 7 | 0 |
+| X4 tiny / crowdhuman_val | 7 | 7 | 0 | 0 |
+| X4 tiny / visdrone_val | 7 | 7 | 0 | 0 |
+| X4 tiny / voc07_test | 7 | 7 | 0 | 0 |

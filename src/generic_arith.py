@@ -166,7 +166,10 @@ def _diag_update(ctrl: "Arith", op_id: str, y: torch.Tensor, y_ref: torch.Tensor
     st = ctrl.diag.setdefault(op_id, {"n": 0, "sum": torch.zeros(d2.shape[1], dtype=torch.float64, device=d.device),
                                       "sq": 0.0, "sig": 0.0})
     st["n"] += d2.shape[0]
-    st["sum"] += d2.sum(0, dtype=torch.float64)
+    if st["sum"] is not None and st["sum"].shape[0] == d2.shape[1]:
+        st["sum"] += d2.sum(0, dtype=torch.float64)
+    else:  # channel width varies between calls (e.g. DETR attention scores over a per-batch key length):
+        st["sum"] = None  # no fixed channel axis -> per-channel (systematic) error undefined; sq/sig stay valid
     st["sq"] += float(d2.double().pow(2).sum())
     st["sig"] += float(r2.double().pow(2).sum())
 

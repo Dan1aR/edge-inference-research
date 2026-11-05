@@ -1,0 +1,12 @@
+{
+  "model": "facebook/deit-base-patch16-224",
+  "arith": "fp32",
+  "fmt": "bf16",
+  "chunk": 0,
+  "chunk_merge": "acc",
+  "center": "",
+  "top1": 0.6773,
+  "top5": 0.8559,
+  "n": 10000,
+  "seconds": 34.5
+}

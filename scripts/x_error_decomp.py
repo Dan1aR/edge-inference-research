@@ -25,13 +25,14 @@ def run(model_name, ckpt, n, spec):
             with arith_context(spec, ctrl):
                 model(pixel_values=batch["pixel_values"].cuda())
     out = {}
+    fixed = {op: st for op, st in ctrl.diag.items() if st["sum"] is not None}  # ops with a fixed channel axis
     for op, st in ctrl.diag.items():
-        mean = st["sum"] / st["n"]
-        sys_energy = float(mean.pow(2).sum()) * st["n"]
+        sys_energy = float((st["sum"] / st["n"]).pow(2).sum()) * st["n"] if op in fixed else None
         out[op] = {"component": op.split("#")[1], "rel_err": (st["sq"] / st["sig"]) ** 0.5,
-                   "systematic_fraction": sys_energy / st["sq"] if st["sq"] > 0 else 0.0}
-    tot_sq = sum(st["sq"] for st in ctrl.diag.values())
-    tot_sys = sum(float((st["sum"] / st["n"]).pow(2).sum()) * st["n"] for st in ctrl.diag.values())
+                   "systematic_fraction": None if sys_energy is None else
+                   (sys_energy / st["sq"] if st["sq"] > 0 else 0.0)}
+    tot_sq = sum(st["sq"] for st in fixed.values())
+    tot_sys = sum(float((st["sum"] / st["n"]).pow(2).sum()) * st["n"] for st in fixed.values())
     return {"ops": out, "systematic_fraction_all_ops": tot_sys / tot_sq}
 
 

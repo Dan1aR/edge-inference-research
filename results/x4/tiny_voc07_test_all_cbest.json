@@ -1,0 +1,27 @@
+{
+  "model": "tiny",
+  "ckpt": null,
+  "dataset": "voc07_test",
+  "arith": "all",
+  "accum": "fma,sequential",
+  "center": "av:b,patch:a,qk:a",
+  "exclude": "",
+  "size": null,
+  "metrics": {
+    "AP": 0.46846273578878783,
+    "AP50": 0.6946148259932657,
+    "AP75": 0.5015414377000623,
+    "AP_small": 0.11225245568902288,
+    "AP_medium": 0.28176873560921484,
+    "AP_large": 0.573488205979892,
+    "AR_1": 0.4421930087562963,
+    "AR_10": 0.6580796393563233,
+    "AR_100": 0.6995421090563292,
+    "AR_small": 0.3289396783824475,
+    "AR_medium": 0.5055036738394969,
+    "AR_large": 0.7803910381414089,
+    "num_images": 4952
+  },
+  "seconds": 102.7,
+  "gpu": "NVIDIA L40S"
+}

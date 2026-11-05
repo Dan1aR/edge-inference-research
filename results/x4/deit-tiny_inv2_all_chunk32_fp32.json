@@ -1,0 +1,12 @@
+{
+  "model": "facebook/deit-tiny-patch16-224",
+  "arith": "all",
+  "fmt": "bf16",
+  "chunk": 32,
+  "chunk_merge": "fp32",
+  "center": "",
+  "top1": 0.534,
+  "top5": 0.7766,
+  "n": 10000,
+  "seconds": 17.9
+}

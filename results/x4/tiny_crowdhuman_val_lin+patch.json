@@ -1,0 +1,27 @@
+{
+  "model": "tiny",
+  "ckpt": null,
+  "dataset": "crowdhuman_val",
+  "arith": "lin,patch",
+  "accum": "fma,sequential",
+  "center": "",
+  "exclude": "",
+  "size": null,
+  "metrics": {
+    "AP": 0.1645688986968226,
+    "AP50": 0.38085921114767307,
+    "AP75": 0.1232232526012862,
+    "AP_small": 0.01800626418871526,
+    "AP_medium": 0.0720502614312663,
+    "AP_large": 0.258920076658275,
+    "AR_1": 0.027270534071832813,
+    "AR_10": 0.15973100391029443,
+    "AR_100": 0.23624209648073502,
+    "AR_small": 0.05328743211792086,
+    "AR_medium": 0.14238863005810606,
+    "AR_large": 0.344853359489946,
+    "num_images": 4370
+  },
+  "seconds": 81.9,
+  "gpu": "NVIDIA L40S"
+}

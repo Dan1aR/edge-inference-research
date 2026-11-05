@@ -1,0 +1,12 @@
+{
+  "model": "facebook/deit-base-patch16-224",
+  "arith": "all",
+  "fmt": "e8m13",
+  "chunk": 0,
+  "chunk_merge": "acc",
+  "center": "",
+  "top1": 0.6773,
+  "top5": 0.8555,
+  "n": 10000,
+  "seconds": 155.0
+}
