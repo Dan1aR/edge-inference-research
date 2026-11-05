@@ -1,0 +1,8 @@
+bbox_predictor.layers.2#head
+bbox_predictor.layers.0#head
+bbox_predictor.layers.1#head
+vit.encoder.layer.10.attention.output.dense#attn_out
+class_labels_classifier.layers.0#head
+vit.embeddings.patch_embeddings.projection#patch
+class_labels_classifier.layers.1#head
+vit.encoder.layer.8.attention.attention#av

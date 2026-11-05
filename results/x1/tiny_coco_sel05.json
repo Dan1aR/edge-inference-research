@@ -1,0 +1,27 @@
+{
+  "model": "tiny",
+  "ckpt": null,
+  "dataset": "coco_val",
+  "arith": "all",
+  "accum": "fma,sequential",
+  "center": "",
+  "exclude": "results/x1/sens_tiny/exclude_out05.txt",
+  "size": null,
+  "metrics": {
+    "AP": 0.25421920942111675,
+    "AP50": 0.4281363463639981,
+    "AP75": 0.25218406506145796,
+    "AP_small": 0.06594985724898579,
+    "AP_medium": 0.25613218125125364,
+    "AP_large": 0.43345956474860275,
+    "AR_1": 0.24340146676823665,
+    "AR_10": 0.3882246861396663,
+    "AR_100": 0.4222834335101785,
+    "AR_small": 0.13769478447749717,
+    "AR_medium": 0.4483984149521173,
+    "AR_large": 0.6950689631282486,
+    "num_images": 5000
+  },
+  "seconds": 60.9,
+  "gpu": "NVIDIA L40S"
+}

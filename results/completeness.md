@@ -1,0 +1,87 @@
+# Матрица полноты (auto: scripts/completeness.py)
+
+✓ готово · q в очереди · F упало · «·» нет и не запланировано. Каждая ячейка арифметики = 3 val (full, val-A,
+val-B) из одного прогона `scripts/eval_grid.py`. Символы в ячейке — сиды 42, 123, 456, 789, 1011.
+
+## D: дообучение YOLOS-tiny (COCO), метод × арифметика инференса
+
+| метод | обучение | none | all | cbest | chunk128 | e8m13 |
+|---|---|---|---|---|---|---|
+| ref_I | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ |
+| ref_B | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ | ✓✓✓✓✓ |
+| I_lr5e-6 | ✓✓✓✓✓ | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq | ✓✓qqq |
+| I_lr2e-5 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| I_ema99 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| bitfit_lr1e-4 | ✓✓✓✓✓ | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq |
+| bitfit_lr1e-3 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| kd1 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| kd5 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| kdonly | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| kd1_feat | ✓✓✓✓✓ | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq | ✓✓✓qq |
+| sr | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| cbest | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| chunk128 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| e8m13 | ✓✓✓✓✓ | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq | ✓✓qqq |
+| исходная (без дообучения, детерм.) | — | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+Ячеек метод×сид×арифметика: 375; done: 194, queued: 181
+
+## D-small: YOLOS-small (COCO), ref_I и ref_B (рецепт E5), метод × арифметика
+
+| метод | обучение | none | all | cbest | chunk128 | e8m13 |
+|---|---|---|---|---|---|---|
+| ref_I | ✓✓✓qq | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq |
+| ref_B | ✓✓✓qq | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq |
+| исходная (детерм.) | — | q | q | q | q | q |
+
+## X5: перенос на VisDrone (YOLOS-tiny 800×800, новая голова), B и I
+
+| вариант | обучение | none | all | cbest | chunk128 | e8m13 |
+|---|---|---|---|---|---|---|
+| B | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq |
+| I | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq | qqqqq |
+
+## Инференс (детерминированный; сидов нет — неопределённость через парный бутстреп по изображениям)
+
+| группа | заданий | ✓ | q | F |
+|---|---:|---:|---:|---:|
+| A5 чувствительность + бюджеты (small) | 6 | 6 | 0 | 0 |
+| A5 чувствительность + бюджеты (tiny) | 6 | 6 | 0 | 0 |
+| A6 модель ошибки (base) | 1 | 0 | 1 | 0 |
+| A6 модель ошибки (detr_r50) | 1 | 0 | 1 | 0 |
+| A6 модель ошибки (rtdetr_r18) | 1 | 0 | 1 | 0 |
+| A6 модель ошибки (small) | 1 | 0 | 1 | 0 |
+| A6 модель ошибки (tiny) | 1 | 0 | 1 | 0 |
+| D1 декомпозиция ошибки (tiny) | 1 | 1 | 0 | 0 |
+| X1 base / coco (пространство аккумуляторов) | 19 | 0 | 19 | 0 |
+| X1 small / coco (пространство аккумуляторов) | 39 | 39 | 0 | 0 |
+| X1 tiny / coco (пространство аккумуляторов) | 39 | 39 | 0 | 0 |
+| X1c компоненты в FP32 (контроль A5) (small) | 5 | 5 | 0 | 0 |
+| X1c компоненты в FP32 (контроль A5) (tiny) | 5 | 5 | 0 | 0 |
+| X4 deit-base / inv2 | 9 | 0 | 9 | 0 |
+| X4 deit-small / inv2 | 9 | 0 | 9 | 0 |
+| X4 deit-tiny / inv2 | 9 | 0 | 9 | 0 |
+| X4 detr_r50 / coco_val | 17 | 0 | 17 | 0 |
+| X4 rtdetr_r18 / bdd_val | 6 | 0 | 6 | 0 |
+| X4 rtdetr_r18 / coco_o | 6 | 0 | 6 | 0 |
+| X4 rtdetr_r18 / coco_val | 17 | 0 | 17 | 0 |
+| X4 rtdetr_r18 / crowdhuman_val | 6 | 0 | 6 | 0 |
+| X4 rtdetr_r18 / visdrone_val | 6 | 0 | 6 | 0 |
+| X4 rtdetr_r18 / voc07_test | 6 | 0 | 6 | 0 |
+| X4 rtdetr_r50 / coco_val | 10 | 0 | 10 | 0 |
+| X4 small / bdd_val | 7 | 0 | 7 | 0 |
+| X4 small / coco_o | 7 | 0 | 7 | 0 |
+| X4 small / coco_r1024 | 7 | 0 | 7 | 0 |
+| X4 small / coco_r640 | 7 | 0 | 7 | 0 |
+| X4 small / coco_r800 | 7 | 0 | 7 | 0 |
+| X4 small / crowdhuman_val | 7 | 0 | 7 | 0 |
+| X4 small / visdrone_val | 7 | 0 | 7 | 0 |
+| X4 small / voc07_test | 7 | 0 | 7 | 0 |
+| X4 tiny / bdd_val | 7 | 0 | 7 | 0 |
+| X4 tiny / coco_o | 7 | 0 | 7 | 0 |
+| X4 tiny / coco_r1024 | 7 | 0 | 7 | 0 |
+| X4 tiny / coco_r640 | 7 | 0 | 7 | 0 |
+| X4 tiny / coco_r800 | 7 | 0 | 7 | 0 |
+| X4 tiny / crowdhuman_val | 7 | 0 | 7 | 0 |
+| X4 tiny / visdrone_val | 7 | 0 | 7 | 0 |
+| X4 tiny / voc07_test | 7 | 0 | 7 | 0 |

@@ -1,0 +1,27 @@
+{
+  "model": "tiny",
+  "ckpt": "runs/e8/lr1e-5_B_s789/final.pt",
+  "dataset": "coco_val",
+  "arith": "all",
+  "accum": "fma,sequential",
+  "center": "av:b,patch:a,qk:a",
+  "exclude": "",
+  "size": null,
+  "metrics": {
+    "AP": 0.24592369330515515,
+    "AP50": 0.42150060943762424,
+    "AP75": 0.24299469302900925,
+    "AP_small": 0.06126209387733724,
+    "AP_medium": 0.24857969102390345,
+    "AP_large": 0.42582970177159934,
+    "AR_1": 0.2392234801505314,
+    "AR_10": 0.3823747734416177,
+    "AR_100": 0.41578587544920564,
+    "AR_small": 0.1298712001659284,
+    "AR_medium": 0.44025134084866624,
+    "AR_large": 0.6865468887828452,
+    "num_images": 5000
+  },
+  "seconds": 82.1,
+  "gpu": "NVIDIA L40S"
+}

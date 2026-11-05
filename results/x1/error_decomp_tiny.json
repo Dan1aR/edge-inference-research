@@ -1,0 +1,2082 @@
+{
+ "pretrained": {
+  "ops": {
+   "vit.embeddings.patch_embeddings.projection#patch": {
+    "component": "patch",
+    "rel_err": 0.07999925227333017,
+    "systematic_fraction": 0.02247831745345264
+   },
+   "vit.encoder.layer.0.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013641631522772464,
+    "systematic_fraction": 0.0013490328634815994
+   },
+   "vit.encoder.layer.0.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01561609263685842,
+    "systematic_fraction": 0.0009553266094548983
+   },
+   "vit.encoder.layer.0.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.011785001412489669,
+    "systematic_fraction": 0.0015167161022292053
+   },
+   "vit.encoder.layer.0.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008330545421259689,
+    "systematic_fraction": 0.0002030493375845744
+   },
+   "vit.encoder.layer.0.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05934022005589652,
+    "systematic_fraction": 0.06456325780219702
+   },
+   "vit.encoder.layer.0.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.011587470834036244,
+    "systematic_fraction": 0.0017059124054253564
+   },
+   "vit.encoder.layer.0.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011152414244397644,
+    "systematic_fraction": 0.0008932322915616863
+   },
+   "vit.encoder.layer.0.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.023921166783265082,
+    "systematic_fraction": 0.0767330474067401
+   },
+   "vit.encoder.layer.1.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014661180798033174,
+    "systematic_fraction": 0.002527060279727351
+   },
+   "vit.encoder.layer.1.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01565500339966251,
+    "systematic_fraction": 0.0011974560346310445
+   },
+   "vit.encoder.layer.1.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013593261558917585,
+    "systematic_fraction": 0.000992416073665895
+   },
+   "vit.encoder.layer.1.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007924704290746366,
+    "systematic_fraction": 6.648688474181875e-06
+   },
+   "vit.encoder.layer.1.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.0423769585477931,
+    "systematic_fraction": 0.04179742440043731
+   },
+   "vit.encoder.layer.1.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01224692464382012,
+    "systematic_fraction": 0.003367560621892204
+   },
+   "vit.encoder.layer.1.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010970526152657093,
+    "systematic_fraction": 0.00029587239616402593
+   },
+   "vit.encoder.layer.1.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.027031679876638348,
+    "systematic_fraction": 0.01933041098439079
+   },
+   "vit.encoder.layer.2.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014576247032713424,
+    "systematic_fraction": 0.0016280704390744462
+   },
+   "vit.encoder.layer.2.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015694123769859604,
+    "systematic_fraction": 0.0012707138850550537
+   },
+   "vit.encoder.layer.2.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014334396414634416,
+    "systematic_fraction": 0.0013319968520544756
+   },
+   "vit.encoder.layer.2.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007896825500685163,
+    "systematic_fraction": 5.784282076966746e-06
+   },
+   "vit.encoder.layer.2.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.038886178366147606,
+    "systematic_fraction": 0.04022462766507843
+   },
+   "vit.encoder.layer.2.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014351404447680082,
+    "systematic_fraction": 0.0009500456799430422
+   },
+   "vit.encoder.layer.2.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010869605248661096,
+    "systematic_fraction": 0.00019554630048681978
+   },
+   "vit.encoder.layer.2.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.0277249422953564,
+    "systematic_fraction": 0.008989635000096648
+   },
+   "vit.encoder.layer.3.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015040796689061147,
+    "systematic_fraction": 0.0012501147477031822
+   },
+   "vit.encoder.layer.3.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015623724024713886,
+    "systematic_fraction": 0.001197539364297752
+   },
+   "vit.encoder.layer.3.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014526984151253159,
+    "systematic_fraction": 0.0012930741511946206
+   },
+   "vit.encoder.layer.3.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007868768882741729,
+    "systematic_fraction": 7.971765649791835e-06
+   },
+   "vit.encoder.layer.3.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.04074698711826056,
+    "systematic_fraction": 0.05282847711061717
+   },
+   "vit.encoder.layer.3.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014138102643106502,
+    "systematic_fraction": 0.001000613945685237
+   },
+   "vit.encoder.layer.3.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011320463820427442,
+    "systematic_fraction": 0.0004505377820997164
+   },
+   "vit.encoder.layer.3.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.029107737741129878,
+    "systematic_fraction": 0.012514412525695132
+   },
+   "vit.encoder.layer.4.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015329317449363257,
+    "systematic_fraction": 0.0011495417549559517
+   },
+   "vit.encoder.layer.4.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01557631734509058,
+    "systematic_fraction": 0.0011794703291179718
+   },
+   "vit.encoder.layer.4.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014230636699382487,
+    "systematic_fraction": 0.0010223960614131403
+   },
+   "vit.encoder.layer.4.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008259566158974906,
+    "systematic_fraction": 1.2999544823842187e-05
+   },
+   "vit.encoder.layer.4.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.053030986022161476,
+    "systematic_fraction": 0.08528318112241602
+   },
+   "vit.encoder.layer.4.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01425697643051321,
+    "systematic_fraction": 0.00048585604633002066
+   },
+   "vit.encoder.layer.4.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011308972686987476,
+    "systematic_fraction": 0.0004546789979788202
+   },
+   "vit.encoder.layer.4.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.028704755857723193,
+    "systematic_fraction": 0.013651619512080382
+   },
+   "vit.encoder.layer.5.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015199203906835487,
+    "systematic_fraction": 0.0012259917747170744
+   },
+   "vit.encoder.layer.5.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015544839987832989,
+    "systematic_fraction": 0.0010345073672755787
+   },
+   "vit.encoder.layer.5.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013651564542968328,
+    "systematic_fraction": 0.0010405882093849478
+   },
+   "vit.encoder.layer.5.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007804935838890029,
+    "systematic_fraction": 1.5008947462401428e-05
+   },
+   "vit.encoder.layer.5.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07063562242900275,
+    "systematic_fraction": 0.06351696620560844
+   },
+   "vit.encoder.layer.5.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.012893595926347154,
+    "systematic_fraction": 0.0008085423116333157
+   },
+   "vit.encoder.layer.5.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011691271738168514,
+    "systematic_fraction": 0.0006272434337867243
+   },
+   "vit.encoder.layer.5.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.029161777107952355,
+    "systematic_fraction": 0.015917548665702937
+   },
+   "vit.encoder.layer.6.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015176945361822684,
+    "systematic_fraction": 0.0010522415338979703
+   },
+   "vit.encoder.layer.6.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015721004495254508,
+    "systematic_fraction": 0.0012518526388142338
+   },
+   "vit.encoder.layer.6.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014188287071108502,
+    "systematic_fraction": 0.0007751766521987079
+   },
+   "vit.encoder.layer.6.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007725192967025258,
+    "systematic_fraction": 1.0568601454421752e-05
+   },
+   "vit.encoder.layer.6.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.054842631542552374,
+    "systematic_fraction": 0.06310257168818512
+   },
+   "vit.encoder.layer.6.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014881958115883295,
+    "systematic_fraction": 0.0010260176479547605
+   },
+   "vit.encoder.layer.6.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012228299860542892,
+    "systematic_fraction": 0.0007209579579366054
+   },
+   "vit.encoder.layer.6.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.028599658396240273,
+    "systematic_fraction": 0.015507203364963385
+   },
+   "vit.encoder.layer.7.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015215907891765346,
+    "systematic_fraction": 0.0009466409640276506
+   },
+   "vit.encoder.layer.7.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015673774207438804,
+    "systematic_fraction": 0.001108572128536862
+   },
+   "vit.encoder.layer.7.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014461208031169194,
+    "systematic_fraction": 0.0008141609631601985
+   },
+   "vit.encoder.layer.7.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.00791072531998908,
+    "systematic_fraction": 5.107815059339613e-06
+   },
+   "vit.encoder.layer.7.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05589938774787893,
+    "systematic_fraction": 0.07298229148452003
+   },
+   "vit.encoder.layer.7.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01439453522986829,
+    "systematic_fraction": 0.0012063294877125699
+   },
+   "vit.encoder.layer.7.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012667248762000856,
+    "systematic_fraction": 0.0011935730464326369
+   },
+   "vit.encoder.layer.7.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02609715838882914,
+    "systematic_fraction": 0.028207609929976344
+   },
+   "vit.encoder.layer.8.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015207146950272563,
+    "systematic_fraction": 0.0012820319383518746
+   },
+   "vit.encoder.layer.8.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015693604036783833,
+    "systematic_fraction": 0.0012140705650098074
+   },
+   "vit.encoder.layer.8.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014780429114091569,
+    "systematic_fraction": 0.00079479175579504
+   },
+   "vit.encoder.layer.8.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008378343574622114,
+    "systematic_fraction": 1.94667485295188e-05
+   },
+   "vit.encoder.layer.8.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07411045558283992,
+    "systematic_fraction": 0.053092403987046795
+   },
+   "vit.encoder.layer.8.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.019361325133495942,
+    "systematic_fraction": 0.0012377562510542505
+   },
+   "vit.encoder.layer.8.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.01305020981804422,
+    "systematic_fraction": 0.0020920657902978603
+   },
+   "vit.encoder.layer.8.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.021271385557077648,
+    "systematic_fraction": 0.0719292427553865
+   },
+   "vit.encoder.layer.9.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013784836881191323,
+    "systematic_fraction": 0.0029327036992336216
+   },
+   "vit.encoder.layer.9.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014976815036447839,
+    "systematic_fraction": 0.0016848391746860259
+   },
+   "vit.encoder.layer.9.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01380150430577018,
+    "systematic_fraction": 0.0011941558748791675
+   },
+   "vit.encoder.layer.9.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008726871362216138,
+    "systematic_fraction": 3.40160551143553e-05
+   },
+   "vit.encoder.layer.9.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.06349523277727652,
+    "systematic_fraction": 0.08714400677265713
+   },
+   "vit.encoder.layer.9.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.015164590709657434,
+    "systematic_fraction": 0.005117674404992213
+   },
+   "vit.encoder.layer.9.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012883371461551303,
+    "systematic_fraction": 0.0014576343358143034
+   },
+   "vit.encoder.layer.9.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.026718913191335042,
+    "systematic_fraction": 0.17810423768013872
+   },
+   "vit.encoder.layer.10.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013283371244177293,
+    "systematic_fraction": 0.0032318754377167395
+   },
+   "vit.encoder.layer.10.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014627109152544743,
+    "systematic_fraction": 0.0020594142743692776
+   },
+   "vit.encoder.layer.10.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014565513403509938,
+    "systematic_fraction": 0.0015075523765150742
+   },
+   "vit.encoder.layer.10.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007967051802500838,
+    "systematic_fraction": 6.3392137274573475e-06
+   },
+   "vit.encoder.layer.10.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.025814150332117692,
+    "systematic_fraction": 0.05927533413781503
+   },
+   "vit.encoder.layer.10.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.017035101750389293,
+    "systematic_fraction": 0.0036198258569411982
+   },
+   "vit.encoder.layer.10.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012879121336165558,
+    "systematic_fraction": 0.0018873902991109778
+   },
+   "vit.encoder.layer.10.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.0254478514907311,
+    "systematic_fraction": 0.06331885050583784
+   },
+   "vit.encoder.layer.11.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014656831887924904,
+    "systematic_fraction": 0.0013977825128738365
+   },
+   "vit.encoder.layer.11.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.016266894080847877,
+    "systematic_fraction": 0.0011191131865673546
+   },
+   "vit.encoder.layer.11.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01373441856927391,
+    "systematic_fraction": 0.0009503440740568059
+   },
+   "vit.encoder.layer.11.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008285005211300113,
+    "systematic_fraction": 8.841296064255816e-06
+   },
+   "vit.encoder.layer.11.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.0511069500580233,
+    "systematic_fraction": 0.06622187215183226
+   },
+   "vit.encoder.layer.11.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.015061253769089141,
+    "systematic_fraction": 0.001863156806923969
+   },
+   "vit.encoder.layer.11.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012195199031259945,
+    "systematic_fraction": 0.0010684689992787944
+   },
+   "vit.encoder.layer.11.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.03974806108930981,
+    "systematic_fraction": 0.26082681934113217
+   },
+   "class_labels_classifier.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.015753805865398467,
+    "systematic_fraction": 0.0018264259362179424
+   },
+   "class_labels_classifier.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.011923229000233605,
+    "systematic_fraction": 0.005989057900580071
+   },
+   "class_labels_classifier.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.011597854937634586,
+    "systematic_fraction": 0.07216395924633848
+   },
+   "bbox_predictor.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.012459783034229358,
+    "systematic_fraction": 0.006418393495460261
+   },
+   "bbox_predictor.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.007951504287275545,
+    "systematic_fraction": 0.01910262264831697
+   },
+   "bbox_predictor.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.007375188984217624,
+    "systematic_fraction": 0.0014793239684191678
+   }
+  },
+  "systematic_fraction_all_ops": 6.218215022644285e-05
+ },
+ "I_lr1e-5_s42": {
+  "ops": {
+   "vit.embeddings.patch_embeddings.projection#patch": {
+    "component": "patch",
+    "rel_err": 0.08031850610208796,
+    "systematic_fraction": 0.02115856946172295
+   },
+   "vit.encoder.layer.0.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01366926844171223,
+    "systematic_fraction": 0.0012405452182535465
+   },
+   "vit.encoder.layer.0.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015604393440204157,
+    "systematic_fraction": 0.0009300338430744575
+   },
+   "vit.encoder.layer.0.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.011807969794533593,
+    "systematic_fraction": 0.00150723668502998
+   },
+   "vit.encoder.layer.0.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008342946407046394,
+    "systematic_fraction": 0.00020348081903036122
+   },
+   "vit.encoder.layer.0.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.059628415101078844,
+    "systematic_fraction": 0.06429007516375304
+   },
+   "vit.encoder.layer.0.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.011589429800630147,
+    "systematic_fraction": 0.001905966975494734
+   },
+   "vit.encoder.layer.0.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011138613077677622,
+    "systematic_fraction": 0.000881268017971126
+   },
+   "vit.encoder.layer.0.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.023849320802418677,
+    "systematic_fraction": 0.07598063739381414
+   },
+   "vit.encoder.layer.1.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014662535446346254,
+    "systematic_fraction": 0.002500349412448387
+   },
+   "vit.encoder.layer.1.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015671678153635998,
+    "systematic_fraction": 0.0011649917442095566
+   },
+   "vit.encoder.layer.1.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013602486771620827,
+    "systematic_fraction": 0.00105261839158174
+   },
+   "vit.encoder.layer.1.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007919908488466701,
+    "systematic_fraction": 7.464655291535497e-06
+   },
+   "vit.encoder.layer.1.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.04267261761047796,
+    "systematic_fraction": 0.04496735374431788
+   },
+   "vit.encoder.layer.1.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.012367038547929352,
+    "systematic_fraction": 0.004728477464463474
+   },
+   "vit.encoder.layer.1.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010956174595353977,
+    "systematic_fraction": 0.000296301923050651
+   },
+   "vit.encoder.layer.1.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.026995791546882177,
+    "systematic_fraction": 0.018929438243373144
+   },
+   "vit.encoder.layer.2.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014573317613989561,
+    "systematic_fraction": 0.0016316439858050974
+   },
+   "vit.encoder.layer.2.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015703581835959317,
+    "systematic_fraction": 0.001331077647173552
+   },
+   "vit.encoder.layer.2.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01432958360768953,
+    "systematic_fraction": 0.0013632374325312589
+   },
+   "vit.encoder.layer.2.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007897900580622716,
+    "systematic_fraction": 5.825303144447552e-06
+   },
+   "vit.encoder.layer.2.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.03884050456773909,
+    "systematic_fraction": 0.04186153129476942
+   },
+   "vit.encoder.layer.2.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014340598263766486,
+    "systematic_fraction": 0.0010017133579538736
+   },
+   "vit.encoder.layer.2.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.01085904840438176,
+    "systematic_fraction": 0.00019619451761096007
+   },
+   "vit.encoder.layer.2.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.027744884254025427,
+    "systematic_fraction": 0.00878682361726438
+   },
+   "vit.encoder.layer.3.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015034995185510202,
+    "systematic_fraction": 0.0012633206270047772
+   },
+   "vit.encoder.layer.3.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015621797347733406,
+    "systematic_fraction": 0.0011133678192293583
+   },
+   "vit.encoder.layer.3.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01452472630251583,
+    "systematic_fraction": 0.0012606390516947162
+   },
+   "vit.encoder.layer.3.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.0078717186565965,
+    "systematic_fraction": 7.872777963147814e-06
+   },
+   "vit.encoder.layer.3.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.0407336462745809,
+    "systematic_fraction": 0.05247845124551269
+   },
+   "vit.encoder.layer.3.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014108535016477745,
+    "systematic_fraction": 0.000984985048283439
+   },
+   "vit.encoder.layer.3.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011304373953269225,
+    "systematic_fraction": 0.00046150695999678105
+   },
+   "vit.encoder.layer.3.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.029081603863680527,
+    "systematic_fraction": 0.012510455831128782
+   },
+   "vit.encoder.layer.4.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01532466071867635,
+    "systematic_fraction": 0.0011393182964646823
+   },
+   "vit.encoder.layer.4.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015571899914776512,
+    "systematic_fraction": 0.001083466761627674
+   },
+   "vit.encoder.layer.4.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014229322573715337,
+    "systematic_fraction": 0.0010586618154304278
+   },
+   "vit.encoder.layer.4.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.00826053148652742,
+    "systematic_fraction": 1.2356219467230308e-05
+   },
+   "vit.encoder.layer.4.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.052402738470852035,
+    "systematic_fraction": 0.08396075790949259
+   },
+   "vit.encoder.layer.4.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01421799580461597,
+    "systematic_fraction": 0.00045091626645632455
+   },
+   "vit.encoder.layer.4.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011294403904386748,
+    "systematic_fraction": 0.000455244270716879
+   },
+   "vit.encoder.layer.4.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02873183992525933,
+    "systematic_fraction": 0.013634679656817354
+   },
+   "vit.encoder.layer.5.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015197802186979617,
+    "systematic_fraction": 0.0012817212909967933
+   },
+   "vit.encoder.layer.5.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015544786330018425,
+    "systematic_fraction": 0.0009408423286079847
+   },
+   "vit.encoder.layer.5.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013648328621118434,
+    "systematic_fraction": 0.0011355923727855706
+   },
+   "vit.encoder.layer.5.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007803589333648287,
+    "systematic_fraction": 1.467920496243989e-05
+   },
+   "vit.encoder.layer.5.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07174300666396441,
+    "systematic_fraction": 0.06578957292723155
+   },
+   "vit.encoder.layer.5.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.012824032948247587,
+    "systematic_fraction": 0.0008102518559523771
+   },
+   "vit.encoder.layer.5.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011693434685146714,
+    "systematic_fraction": 0.0005822488999644241
+   },
+   "vit.encoder.layer.5.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02915614146516374,
+    "systematic_fraction": 0.015551354177533245
+   },
+   "vit.encoder.layer.6.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015173125109820442,
+    "systematic_fraction": 0.0010568299986222244
+   },
+   "vit.encoder.layer.6.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015715850181337476,
+    "systematic_fraction": 0.0011962336887029817
+   },
+   "vit.encoder.layer.6.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01417658362203883,
+    "systematic_fraction": 0.000739433536958494
+   },
+   "vit.encoder.layer.6.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007730794135254628,
+    "systematic_fraction": 9.86400258028651e-06
+   },
+   "vit.encoder.layer.6.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05519108145272308,
+    "systematic_fraction": 0.06203826699457475
+   },
+   "vit.encoder.layer.6.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014894549710370839,
+    "systematic_fraction": 0.0009700992304797433
+   },
+   "vit.encoder.layer.6.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012237603853154562,
+    "systematic_fraction": 0.0007134462266662619
+   },
+   "vit.encoder.layer.6.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.028569835276459142,
+    "systematic_fraction": 0.015483259093866109
+   },
+   "vit.encoder.layer.7.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015212486800058015,
+    "systematic_fraction": 0.0009621495397204765
+   },
+   "vit.encoder.layer.7.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.0156524573507303,
+    "systematic_fraction": 0.0010879647584720617
+   },
+   "vit.encoder.layer.7.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014450876481488488,
+    "systematic_fraction": 0.0008202317009649936
+   },
+   "vit.encoder.layer.7.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007902976748835153,
+    "systematic_fraction": 4.969033692940714e-06
+   },
+   "vit.encoder.layer.7.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05666967120077338,
+    "systematic_fraction": 0.07399067065225888
+   },
+   "vit.encoder.layer.7.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014455406519394325,
+    "systematic_fraction": 0.0012283586606855294
+   },
+   "vit.encoder.layer.7.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012678248072737623,
+    "systematic_fraction": 0.001167033674461494
+   },
+   "vit.encoder.layer.7.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02608429042944669,
+    "systematic_fraction": 0.0278976433082993
+   },
+   "vit.encoder.layer.8.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015211882256271674,
+    "systematic_fraction": 0.0012451915790478538
+   },
+   "vit.encoder.layer.8.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015680509518343006,
+    "systematic_fraction": 0.0013076320147410458
+   },
+   "vit.encoder.layer.8.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014779313102694635,
+    "systematic_fraction": 0.0007548606735897329
+   },
+   "vit.encoder.layer.8.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008366728894606537,
+    "systematic_fraction": 1.7911821113593262e-05
+   },
+   "vit.encoder.layer.8.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07477679639032225,
+    "systematic_fraction": 0.04988320036208529
+   },
+   "vit.encoder.layer.8.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01934102406992223,
+    "systematic_fraction": 0.001289519144511606
+   },
+   "vit.encoder.layer.8.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.013054748927723214,
+    "systematic_fraction": 0.0021104716973047704
+   },
+   "vit.encoder.layer.8.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.021248837180337196,
+    "systematic_fraction": 0.07180628426129844
+   },
+   "vit.encoder.layer.9.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013780553798714104,
+    "systematic_fraction": 0.00293833114200217
+   },
+   "vit.encoder.layer.9.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014966979223986631,
+    "systematic_fraction": 0.0016900916318030226
+   },
+   "vit.encoder.layer.9.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013806455477739177,
+    "systematic_fraction": 0.0011770491111167839
+   },
+   "vit.encoder.layer.9.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008714856464571341,
+    "systematic_fraction": 3.395758422366684e-05
+   },
+   "vit.encoder.layer.9.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.06335866195924339,
+    "systematic_fraction": 0.08618086116689973
+   },
+   "vit.encoder.layer.9.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01517383742898144,
+    "systematic_fraction": 0.005027678398242412
+   },
+   "vit.encoder.layer.9.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012882194171535606,
+    "systematic_fraction": 0.0014256506267439043
+   },
+   "vit.encoder.layer.9.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02684323436627927,
+    "systematic_fraction": 0.1797926837034252
+   },
+   "vit.encoder.layer.10.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013278859893393133,
+    "systematic_fraction": 0.0031120444581436
+   },
+   "vit.encoder.layer.10.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014623863717519898,
+    "systematic_fraction": 0.0020400244599860597
+   },
+   "vit.encoder.layer.10.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014571736176937057,
+    "systematic_fraction": 0.0015023539464316543
+   },
+   "vit.encoder.layer.10.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007957666025928681,
+    "systematic_fraction": 6.1488314948097605e-06
+   },
+   "vit.encoder.layer.10.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.02569080268863775,
+    "systematic_fraction": 0.05924157379872546
+   },
+   "vit.encoder.layer.10.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.017025139492959813,
+    "systematic_fraction": 0.0034725003121878497
+   },
+   "vit.encoder.layer.10.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012879149549788704,
+    "systematic_fraction": 0.0018667204051871467
+   },
+   "vit.encoder.layer.10.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.025480427735813316,
+    "systematic_fraction": 0.06273981753142224
+   },
+   "vit.encoder.layer.11.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01467518414525372,
+    "systematic_fraction": 0.0013066243307597208
+   },
+   "vit.encoder.layer.11.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01627069105588748,
+    "systematic_fraction": 0.0010119007497214044
+   },
+   "vit.encoder.layer.11.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013737392512537569,
+    "systematic_fraction": 0.0009359409377484668
+   },
+   "vit.encoder.layer.11.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008294494233408972,
+    "systematic_fraction": 8.83359852599929e-06
+   },
+   "vit.encoder.layer.11.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05177563777691952,
+    "systematic_fraction": 0.06809064012376514
+   },
+   "vit.encoder.layer.11.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.015063434353536445,
+    "systematic_fraction": 0.0019203132995789078
+   },
+   "vit.encoder.layer.11.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012206671468457705,
+    "systematic_fraction": 0.0010600525959741155
+   },
+   "vit.encoder.layer.11.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.039776516794106896,
+    "systematic_fraction": 0.2597675065331215
+   },
+   "class_labels_classifier.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.015750614694895918,
+    "systematic_fraction": 0.0017634847064568315
+   },
+   "class_labels_classifier.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.011916270320073216,
+    "systematic_fraction": 0.006015671240708733
+   },
+   "class_labels_classifier.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.011587459892237728,
+    "systematic_fraction": 0.07187862900722095
+   },
+   "bbox_predictor.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.012470544530624749,
+    "systematic_fraction": 0.006576398289464318
+   },
+   "bbox_predictor.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.007867963670429896,
+    "systematic_fraction": 0.01920655428665337
+   },
+   "bbox_predictor.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.007353884417234947,
+    "systematic_fraction": 0.0027862590182026812
+   }
+  },
+  "systematic_fraction_all_ops": 6.189061785034396e-05
+ },
+ "I_lr1e-5_s123": {
+  "ops": {
+   "vit.embeddings.patch_embeddings.projection#patch": {
+    "component": "patch",
+    "rel_err": 0.07939731683514782,
+    "systematic_fraction": 0.021072026244116474
+   },
+   "vit.encoder.layer.0.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013638167364034648,
+    "systematic_fraction": 0.001251613470555532
+   },
+   "vit.encoder.layer.0.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015637068663114588,
+    "systematic_fraction": 0.0009565698439999145
+   },
+   "vit.encoder.layer.0.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.011773205877352677,
+    "systematic_fraction": 0.0015050323601607843
+   },
+   "vit.encoder.layer.0.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008326715302500343,
+    "systematic_fraction": 0.00020447976163287998
+   },
+   "vit.encoder.layer.0.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.059805061646041754,
+    "systematic_fraction": 0.06389107028383939
+   },
+   "vit.encoder.layer.0.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.011655773569787996,
+    "systematic_fraction": 0.002289932880322426
+   },
+   "vit.encoder.layer.0.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011138556721934588,
+    "systematic_fraction": 0.000899283385976441
+   },
+   "vit.encoder.layer.0.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.0238536745633409,
+    "systematic_fraction": 0.07549729576714359
+   },
+   "vit.encoder.layer.1.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014664501725627742,
+    "systematic_fraction": 0.002465024293182245
+   },
+   "vit.encoder.layer.1.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.0156612007887682,
+    "systematic_fraction": 0.0012303950645983074
+   },
+   "vit.encoder.layer.1.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01359170282534989,
+    "systematic_fraction": 0.0010816940178086745
+   },
+   "vit.encoder.layer.1.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007924889658382442,
+    "systematic_fraction": 7.367302757831219e-06
+   },
+   "vit.encoder.layer.1.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.04265936501124065,
+    "systematic_fraction": 0.04417015223727618
+   },
+   "vit.encoder.layer.1.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01242355456306727,
+    "systematic_fraction": 0.004859843628305634
+   },
+   "vit.encoder.layer.1.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010955659737202392,
+    "systematic_fraction": 0.00029841349129492947
+   },
+   "vit.encoder.layer.1.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.027013748534865333,
+    "systematic_fraction": 0.018654478353109582
+   },
+   "vit.encoder.layer.2.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01456901318609974,
+    "systematic_fraction": 0.0016838480254246727
+   },
+   "vit.encoder.layer.2.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015704136230203964,
+    "systematic_fraction": 0.0013977840183814153
+   },
+   "vit.encoder.layer.2.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01432575360047709,
+    "systematic_fraction": 0.001380093224652075
+   },
+   "vit.encoder.layer.2.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007897032218995008,
+    "systematic_fraction": 5.586427513187408e-06
+   },
+   "vit.encoder.layer.2.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.03895737307249037,
+    "systematic_fraction": 0.041051916970013126
+   },
+   "vit.encoder.layer.2.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014353324087632223,
+    "systematic_fraction": 0.0009433612215737046
+   },
+   "vit.encoder.layer.2.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010862029007574247,
+    "systematic_fraction": 0.00018724582219731745
+   },
+   "vit.encoder.layer.2.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02769289104572126,
+    "systematic_fraction": 0.00878889668567083
+   },
+   "vit.encoder.layer.3.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015037823342355941,
+    "systematic_fraction": 0.0013320199511432794
+   },
+   "vit.encoder.layer.3.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015622747892540112,
+    "systematic_fraction": 0.0012215616036634616
+   },
+   "vit.encoder.layer.3.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.0145234467811396,
+    "systematic_fraction": 0.0013254879656840683
+   },
+   "vit.encoder.layer.3.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007867380553680435,
+    "systematic_fraction": 8.001407664532904e-06
+   },
+   "vit.encoder.layer.3.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.04064450330991711,
+    "systematic_fraction": 0.052182971419173906
+   },
+   "vit.encoder.layer.3.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01410388548827929,
+    "systematic_fraction": 0.0009689543177412711
+   },
+   "vit.encoder.layer.3.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011305505840188778,
+    "systematic_fraction": 0.00044356251360530726
+   },
+   "vit.encoder.layer.3.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02910491155996781,
+    "systematic_fraction": 0.01236222144888593
+   },
+   "vit.encoder.layer.4.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015319036221737132,
+    "systematic_fraction": 0.0011368144202772933
+   },
+   "vit.encoder.layer.4.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015571590958748745,
+    "systematic_fraction": 0.001004074600324827
+   },
+   "vit.encoder.layer.4.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014234292666677997,
+    "systematic_fraction": 0.001130568804971014
+   },
+   "vit.encoder.layer.4.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008254893373781916,
+    "systematic_fraction": 1.2689927404313292e-05
+   },
+   "vit.encoder.layer.4.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05243042716425051,
+    "systematic_fraction": 0.08413545936930825
+   },
+   "vit.encoder.layer.4.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014247507905524452,
+    "systematic_fraction": 0.0004706640338839058
+   },
+   "vit.encoder.layer.4.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011295678291940635,
+    "systematic_fraction": 0.000453045882900788
+   },
+   "vit.encoder.layer.4.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.028699745374241085,
+    "systematic_fraction": 0.01341424209823093
+   },
+   "vit.encoder.layer.5.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015185868473616458,
+    "systematic_fraction": 0.0011657755562619917
+   },
+   "vit.encoder.layer.5.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015547422936728929,
+    "systematic_fraction": 0.0009662760375946871
+   },
+   "vit.encoder.layer.5.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013645911138148885,
+    "systematic_fraction": 0.0010649518784247335
+   },
+   "vit.encoder.layer.5.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007805662781133177,
+    "systematic_fraction": 1.4368305652058136e-05
+   },
+   "vit.encoder.layer.5.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07153863229234768,
+    "systematic_fraction": 0.06436290069433932
+   },
+   "vit.encoder.layer.5.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.012820584226517577,
+    "systematic_fraction": 0.0008146800146651331
+   },
+   "vit.encoder.layer.5.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011683440559189335,
+    "systematic_fraction": 0.0006176969951270463
+   },
+   "vit.encoder.layer.5.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.029173447614329013,
+    "systematic_fraction": 0.015557337206394654
+   },
+   "vit.encoder.layer.6.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015176389455168734,
+    "systematic_fraction": 0.001080321963576197
+   },
+   "vit.encoder.layer.6.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01571097701066,
+    "systematic_fraction": 0.0012141999600082613
+   },
+   "vit.encoder.layer.6.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014185262446152851,
+    "systematic_fraction": 0.0007060289615309496
+   },
+   "vit.encoder.layer.6.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007734219001742483,
+    "systematic_fraction": 1.037084238043829e-05
+   },
+   "vit.encoder.layer.6.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.055362133955365836,
+    "systematic_fraction": 0.06325932704681438
+   },
+   "vit.encoder.layer.6.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014884238606481245,
+    "systematic_fraction": 0.0010678154426330974
+   },
+   "vit.encoder.layer.6.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012236009817657963,
+    "systematic_fraction": 0.000702774289093867
+   },
+   "vit.encoder.layer.6.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.028593086624507796,
+    "systematic_fraction": 0.01548185235965131
+   },
+   "vit.encoder.layer.7.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015207617976897528,
+    "systematic_fraction": 0.0009539625368793558
+   },
+   "vit.encoder.layer.7.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015654762737464488,
+    "systematic_fraction": 0.0010669313025650608
+   },
+   "vit.encoder.layer.7.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014461256132922304,
+    "systematic_fraction": 0.0008242005466203852
+   },
+   "vit.encoder.layer.7.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007901960196180629,
+    "systematic_fraction": 5.1770653318267e-06
+   },
+   "vit.encoder.layer.7.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.057204860371243664,
+    "systematic_fraction": 0.07604750041392791
+   },
+   "vit.encoder.layer.7.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01446464206287782,
+    "systematic_fraction": 0.0012806944981555378
+   },
+   "vit.encoder.layer.7.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.01267768264846724,
+    "systematic_fraction": 0.001179140389433499
+   },
+   "vit.encoder.layer.7.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02607245052115828,
+    "systematic_fraction": 0.028024300730739398
+   },
+   "vit.encoder.layer.8.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015210937023883904,
+    "systematic_fraction": 0.0013983279695540516
+   },
+   "vit.encoder.layer.8.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015688005437154623,
+    "systematic_fraction": 0.0012594034860738854
+   },
+   "vit.encoder.layer.8.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014773914632797324,
+    "systematic_fraction": 0.0007902836582979707
+   },
+   "vit.encoder.layer.8.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008385062170131389,
+    "systematic_fraction": 1.8487095943534812e-05
+   },
+   "vit.encoder.layer.8.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07488473760670165,
+    "systematic_fraction": 0.05197293705116254
+   },
+   "vit.encoder.layer.8.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01932387913676692,
+    "systematic_fraction": 0.00132925589523766
+   },
+   "vit.encoder.layer.8.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.01305410514812663,
+    "systematic_fraction": 0.002071652435761824
+   },
+   "vit.encoder.layer.8.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02127518138872425,
+    "systematic_fraction": 0.0718743835830988
+   },
+   "vit.encoder.layer.9.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013793099968659897,
+    "systematic_fraction": 0.00286945461746433
+   },
+   "vit.encoder.layer.9.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01497314500407211,
+    "systematic_fraction": 0.0016871406316987725
+   },
+   "vit.encoder.layer.9.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013820070244107047,
+    "systematic_fraction": 0.0011904222867587999
+   },
+   "vit.encoder.layer.9.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008714778021443421,
+    "systematic_fraction": 3.2855811413849065e-05
+   },
+   "vit.encoder.layer.9.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.06468598109483202,
+    "systematic_fraction": 0.08911213101443712
+   },
+   "vit.encoder.layer.9.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01518771362342025,
+    "systematic_fraction": 0.004921960072426339
+   },
+   "vit.encoder.layer.9.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012883461472374062,
+    "systematic_fraction": 0.0014024622099596974
+   },
+   "vit.encoder.layer.9.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02686707576985318,
+    "systematic_fraction": 0.1786337772312271
+   },
+   "vit.encoder.layer.10.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013289517579916105,
+    "systematic_fraction": 0.0032355090458792667
+   },
+   "vit.encoder.layer.10.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014633613672988662,
+    "systematic_fraction": 0.0020479542894299993
+   },
+   "vit.encoder.layer.10.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014573606650174499,
+    "systematic_fraction": 0.0014426430781636186
+   },
+   "vit.encoder.layer.10.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007960559074420295,
+    "systematic_fraction": 6.071019990966638e-06
+   },
+   "vit.encoder.layer.10.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.026033428352265985,
+    "systematic_fraction": 0.06095633776447859
+   },
+   "vit.encoder.layer.10.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01700970668421485,
+    "systematic_fraction": 0.0035114763945477533
+   },
+   "vit.encoder.layer.10.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.01287454285004178,
+    "systematic_fraction": 0.001898381640440506
+   },
+   "vit.encoder.layer.10.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02542928891844365,
+    "systematic_fraction": 0.06296915802246862
+   },
+   "vit.encoder.layer.11.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014666959649722575,
+    "systematic_fraction": 0.0014144766467146395
+   },
+   "vit.encoder.layer.11.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.016279608974593456,
+    "systematic_fraction": 0.0010748760942109533
+   },
+   "vit.encoder.layer.11.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013720449348208923,
+    "systematic_fraction": 0.0009493615424168804
+   },
+   "vit.encoder.layer.11.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008290355369105273,
+    "systematic_fraction": 9.327306168390695e-06
+   },
+   "vit.encoder.layer.11.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.051400802673264856,
+    "systematic_fraction": 0.06796301876267757
+   },
+   "vit.encoder.layer.11.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.015071584968166966,
+    "systematic_fraction": 0.001904492667092008
+   },
+   "vit.encoder.layer.11.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012204372380918368,
+    "systematic_fraction": 0.0010978174616541885
+   },
+   "vit.encoder.layer.11.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.0396295605304725,
+    "systematic_fraction": 0.2592838256421479
+   },
+   "class_labels_classifier.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.015752276947556265,
+    "systematic_fraction": 0.0016570042883976707
+   },
+   "class_labels_classifier.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.011923080580840564,
+    "systematic_fraction": 0.006198032881045067
+   },
+   "class_labels_classifier.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.011587660709093258,
+    "systematic_fraction": 0.0724527179189073
+   },
+   "bbox_predictor.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.012482491680712825,
+    "systematic_fraction": 0.006706497781298164
+   },
+   "bbox_predictor.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.00786759924024239,
+    "systematic_fraction": 0.019895876788278824
+   },
+   "bbox_predictor.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.007479762799753907,
+    "systematic_fraction": 0.0016723261544645553
+   }
+  },
+  "systematic_fraction_all_ops": 6.202901374618125e-05
+ },
+ "B_lr1e-5_s42": {
+  "ops": {
+   "vit.embeddings.patch_embeddings.projection#patch": {
+    "component": "patch",
+    "rel_err": 0.07967156886997467,
+    "systematic_fraction": 0.021362524214492144
+   },
+   "vit.encoder.layer.0.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013648589922623506,
+    "systematic_fraction": 0.001342007376419969
+   },
+   "vit.encoder.layer.0.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015643010850837136,
+    "systematic_fraction": 0.0009495774085123332
+   },
+   "vit.encoder.layer.0.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01179415744891391,
+    "systematic_fraction": 0.001556607150152894
+   },
+   "vit.encoder.layer.0.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008344863514152744,
+    "systematic_fraction": 0.0002945397117438384
+   },
+   "vit.encoder.layer.0.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.059528111587657986,
+    "systematic_fraction": 0.06487968173589673
+   },
+   "vit.encoder.layer.0.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.011594136421432782,
+    "systematic_fraction": 0.0015114859582085602
+   },
+   "vit.encoder.layer.0.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011136982833882035,
+    "systematic_fraction": 0.0009217054952802076
+   },
+   "vit.encoder.layer.0.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.023838544917319578,
+    "systematic_fraction": 0.07483349148892793
+   },
+   "vit.encoder.layer.1.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01464701545595591,
+    "systematic_fraction": 0.00243078140968741
+   },
+   "vit.encoder.layer.1.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015628564928263363,
+    "systematic_fraction": 0.001155555774359492
+   },
+   "vit.encoder.layer.1.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013577112735582023,
+    "systematic_fraction": 0.0009847576076813158
+   },
+   "vit.encoder.layer.1.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007927908010524287,
+    "systematic_fraction": 6.4794903949941415e-06
+   },
+   "vit.encoder.layer.1.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.04278747252022556,
+    "systematic_fraction": 0.04227408011656142
+   },
+   "vit.encoder.layer.1.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01232363255864049,
+    "systematic_fraction": 0.003553173274210322
+   },
+   "vit.encoder.layer.1.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010963080281749155,
+    "systematic_fraction": 0.0002942318968066866
+   },
+   "vit.encoder.layer.1.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02703178476583255,
+    "systematic_fraction": 0.019061280223286587
+   },
+   "vit.encoder.layer.2.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014571631722456334,
+    "systematic_fraction": 0.001608929879273837
+   },
+   "vit.encoder.layer.2.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015698844132243425,
+    "systematic_fraction": 0.0013469866677578524
+   },
+   "vit.encoder.layer.2.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014336480637054406,
+    "systematic_fraction": 0.0013154866153510716
+   },
+   "vit.encoder.layer.2.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007899028275152098,
+    "systematic_fraction": 5.655441893033255e-06
+   },
+   "vit.encoder.layer.2.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.03911367762777315,
+    "systematic_fraction": 0.04023607887054104
+   },
+   "vit.encoder.layer.2.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01434583788338782,
+    "systematic_fraction": 0.0009303794076579062
+   },
+   "vit.encoder.layer.2.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.010865281252260339,
+    "systematic_fraction": 0.00018726330829029302
+   },
+   "vit.encoder.layer.2.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.02773918024510438,
+    "systematic_fraction": 0.008972320164974294
+   },
+   "vit.encoder.layer.3.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015038949225600928,
+    "systematic_fraction": 0.0013135281656107064
+   },
+   "vit.encoder.layer.3.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015623479483925997,
+    "systematic_fraction": 0.0012140341061765013
+   },
+   "vit.encoder.layer.3.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01452170644941906,
+    "systematic_fraction": 0.0012777354243433132
+   },
+   "vit.encoder.layer.3.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007869367508665872,
+    "systematic_fraction": 8.041682840180265e-06
+   },
+   "vit.encoder.layer.3.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.04079018809950129,
+    "systematic_fraction": 0.05282096852657451
+   },
+   "vit.encoder.layer.3.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014141193713713899,
+    "systematic_fraction": 0.0009653838165508103
+   },
+   "vit.encoder.layer.3.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011306231739696148,
+    "systematic_fraction": 0.0004508082689988395
+   },
+   "vit.encoder.layer.3.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.029102860625189124,
+    "systematic_fraction": 0.012443086348555997
+   },
+   "vit.encoder.layer.4.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015326674919008017,
+    "systematic_fraction": 0.0011285182098861226
+   },
+   "vit.encoder.layer.4.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015577024671458588,
+    "systematic_fraction": 0.0011255911651057795
+   },
+   "vit.encoder.layer.4.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014225244296093809,
+    "systematic_fraction": 0.001100431749797599
+   },
+   "vit.encoder.layer.4.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008256936058154231,
+    "systematic_fraction": 1.2703607118409398e-05
+   },
+   "vit.encoder.layer.4.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.052749321595759756,
+    "systematic_fraction": 0.08652985014697612
+   },
+   "vit.encoder.layer.4.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014200817004842301,
+    "systematic_fraction": 0.0004758381300938059
+   },
+   "vit.encoder.layer.4.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011301028090954936,
+    "systematic_fraction": 0.00045664513516469215
+   },
+   "vit.encoder.layer.4.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.028757074347010154,
+    "systematic_fraction": 0.013722626313156815
+   },
+   "vit.encoder.layer.5.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015189053674069633,
+    "systematic_fraction": 0.0012074846235912659
+   },
+   "vit.encoder.layer.5.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015549893067868394,
+    "systematic_fraction": 0.0009046870529554255
+   },
+   "vit.encoder.layer.5.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01364491728595872,
+    "systematic_fraction": 0.0011195996290309697
+   },
+   "vit.encoder.layer.5.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.0078025715396985605,
+    "systematic_fraction": 1.4611511011156863e-05
+   },
+   "vit.encoder.layer.5.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07198723918750667,
+    "systematic_fraction": 0.06364325359860744
+   },
+   "vit.encoder.layer.5.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.012857957424683491,
+    "systematic_fraction": 0.000812274316417011
+   },
+   "vit.encoder.layer.5.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.011685575403015212,
+    "systematic_fraction": 0.0006251257628066198
+   },
+   "vit.encoder.layer.5.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.029171206342928652,
+    "systematic_fraction": 0.015686336037631577
+   },
+   "vit.encoder.layer.6.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015178550003569826,
+    "systematic_fraction": 0.0011190477420141849
+   },
+   "vit.encoder.layer.6.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015707942337328456,
+    "systematic_fraction": 0.001214793822647667
+   },
+   "vit.encoder.layer.6.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014173781665676455,
+    "systematic_fraction": 0.0007700783790747277
+   },
+   "vit.encoder.layer.6.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007728469673443905,
+    "systematic_fraction": 1.1097056209329762e-05
+   },
+   "vit.encoder.layer.6.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05494434175209149,
+    "systematic_fraction": 0.0639940535116646
+   },
+   "vit.encoder.layer.6.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014866767104942457,
+    "systematic_fraction": 0.0010047376298719516
+   },
+   "vit.encoder.layer.6.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.01222617516895271,
+    "systematic_fraction": 0.0007127137725072018
+   },
+   "vit.encoder.layer.6.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.0285753064510347,
+    "systematic_fraction": 0.01546033615895301
+   },
+   "vit.encoder.layer.7.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015215329632085224,
+    "systematic_fraction": 0.00098007460897019
+   },
+   "vit.encoder.layer.7.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015649467335840436,
+    "systematic_fraction": 0.0010716949230919145
+   },
+   "vit.encoder.layer.7.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014457034567196303,
+    "systematic_fraction": 0.0007648224466360114
+   },
+   "vit.encoder.layer.7.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007901978803402484,
+    "systematic_fraction": 4.8887653567706905e-06
+   },
+   "vit.encoder.layer.7.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.056685787628012664,
+    "systematic_fraction": 0.07570752085413109
+   },
+   "vit.encoder.layer.7.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.014458952632162668,
+    "systematic_fraction": 0.0012683434960308558
+   },
+   "vit.encoder.layer.7.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012680108270955098,
+    "systematic_fraction": 0.0012015532072667803
+   },
+   "vit.encoder.layer.7.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.026093934243712168,
+    "systematic_fraction": 0.028170869887207135
+   },
+   "vit.encoder.layer.8.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01521998640758184,
+    "systematic_fraction": 0.0013600912307617182
+   },
+   "vit.encoder.layer.8.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.015681275140901473,
+    "systematic_fraction": 0.0012464278579929823
+   },
+   "vit.encoder.layer.8.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01479681355666417,
+    "systematic_fraction": 0.0007981126227363736
+   },
+   "vit.encoder.layer.8.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008371437350310486,
+    "systematic_fraction": 1.8872616666974305e-05
+   },
+   "vit.encoder.layer.8.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.07414795991844106,
+    "systematic_fraction": 0.05335780219435653
+   },
+   "vit.encoder.layer.8.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01938906349688287,
+    "systematic_fraction": 0.0013696820304102521
+   },
+   "vit.encoder.layer.8.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.013060961669135935,
+    "systematic_fraction": 0.002100424291407532
+   },
+   "vit.encoder.layer.8.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.021256832262989498,
+    "systematic_fraction": 0.07210797249138826
+   },
+   "vit.encoder.layer.9.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013779958003931772,
+    "systematic_fraction": 0.00302015954483582
+   },
+   "vit.encoder.layer.9.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014964598326289333,
+    "systematic_fraction": 0.001738082349508606
+   },
+   "vit.encoder.layer.9.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01381251889588258,
+    "systematic_fraction": 0.0011484307313137812
+   },
+   "vit.encoder.layer.9.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.00871585602125701,
+    "systematic_fraction": 3.580744874649487e-05
+   },
+   "vit.encoder.layer.9.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.06361241612409203,
+    "systematic_fraction": 0.08887717931607947
+   },
+   "vit.encoder.layer.9.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.0151744827823934,
+    "systematic_fraction": 0.004953334157084625
+   },
+   "vit.encoder.layer.9.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012885412098890868,
+    "systematic_fraction": 0.0014709730270657465
+   },
+   "vit.encoder.layer.9.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.026879242091361524,
+    "systematic_fraction": 0.17953638458108612
+   },
+   "vit.encoder.layer.10.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013285655456159265,
+    "systematic_fraction": 0.003227148890330316
+   },
+   "vit.encoder.layer.10.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014632131547527056,
+    "systematic_fraction": 0.0020915009440391776
+   },
+   "vit.encoder.layer.10.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01458964537473663,
+    "systematic_fraction": 0.0014544868299371531
+   },
+   "vit.encoder.layer.10.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.007960754700997994,
+    "systematic_fraction": 5.9453907208841195e-06
+   },
+   "vit.encoder.layer.10.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.025685741963238765,
+    "systematic_fraction": 0.05922012150273752
+   },
+   "vit.encoder.layer.10.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.01703770739207768,
+    "systematic_fraction": 0.0035038344228990985
+   },
+   "vit.encoder.layer.10.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012875852654203119,
+    "systematic_fraction": 0.001854991279508248
+   },
+   "vit.encoder.layer.10.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.025471566409340254,
+    "systematic_fraction": 0.06310623159761383
+   },
+   "vit.encoder.layer.11.attention.attention.key#qkv": {
+    "component": "qkv",
+    "rel_err": 0.014670628160104941,
+    "systematic_fraction": 0.0013597822888842751
+   },
+   "vit.encoder.layer.11.attention.attention.value#qkv": {
+    "component": "qkv",
+    "rel_err": 0.01627943611281769,
+    "systematic_fraction": 0.001047517068103875
+   },
+   "vit.encoder.layer.11.attention.attention.query#qkv": {
+    "component": "qkv",
+    "rel_err": 0.013753177542489673,
+    "systematic_fraction": 0.000947539712429198
+   },
+   "vit.encoder.layer.11.attention.attention#qk": {
+    "component": "qk",
+    "rel_err": 0.008287539169257415,
+    "systematic_fraction": 9.124667059272127e-06
+   },
+   "vit.encoder.layer.11.attention.attention#av": {
+    "component": "av",
+    "rel_err": 0.05096483315157697,
+    "systematic_fraction": 0.06681159738056955
+   },
+   "vit.encoder.layer.11.attention.output.dense#attn_out": {
+    "component": "attn_out",
+    "rel_err": 0.015085008907007784,
+    "systematic_fraction": 0.0018494659166004984
+   },
+   "vit.encoder.layer.11.intermediate.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.012201364975197517,
+    "systematic_fraction": 0.0010440547569176561
+   },
+   "vit.encoder.layer.11.output.dense#mlp": {
+    "component": "mlp",
+    "rel_err": 0.039591286629254825,
+    "systematic_fraction": 0.2604674916028346
+   },
+   "class_labels_classifier.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.015771347477484026,
+    "systematic_fraction": 0.001761019269305147
+   },
+   "class_labels_classifier.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.011945560026304546,
+    "systematic_fraction": 0.0061264937214560045
+   },
+   "class_labels_classifier.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.011574455702269436,
+    "systematic_fraction": 0.07222227002417629
+   },
+   "bbox_predictor.layers.0#head": {
+    "component": "head",
+    "rel_err": 0.01243456198858743,
+    "systematic_fraction": 0.006863525454901739
+   },
+   "bbox_predictor.layers.1#head": {
+    "component": "head",
+    "rel_err": 0.007863611508140965,
+    "systematic_fraction": 0.0200946248591793
+   },
+   "bbox_predictor.layers.2#head": {
+    "component": "head",
+    "rel_err": 0.0073700221684648275,
+    "systematic_fraction": 0.0023187690924446128
+   }
+  },
+  "systematic_fraction_all_ops": 6.240875015788609e-05
+ }
+}
