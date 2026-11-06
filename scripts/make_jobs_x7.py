@@ -2,9 +2,8 @@
 
 Methods: ref_I, ref_B (runs/e8) and the 13 X2 variants (runs/x2); seeds 42, 123, 456, 789, 1011.
 Arithmetics: none, all, cbest, chunk128, e8m13 (scripts/eval_grid.py), each on full val, val-A, val-B.
-Also: the pretrained model in the same 5 arithmetics (deterministic, one run), and the VisDrone transfer
-(X5, B and I) extended from 3 to 5 seeds and evaluated in the 5 arithmetics on VisDrone val.
-Prints two blocks: lines for "--before x6_" and lines for "--after x5_vd_I_s456" (see __main__).
+Also: the pretrained model in the same 5 arithmetics (deterministic, one run).
+Prints job lines for "--before x6_" (see __main__).
 """
 import re
 import sys
@@ -39,22 +38,6 @@ for m in methods:
         (grid_old if (m, s) in existing else grid_new).append(line)
 before_x6 = [f"x7g_pretrained\t{G} --prefix results/x7/pretrained"] + grid_old + train + grid_new
 
-# VisDrone transfer: 2 more seeds of B and I, then all x5 checkpoints in the 5 arithmetics
-x5 = {l.split("\t")[0]: l.split("\t", 1)[1] for l in Path("queue/jobs.tsv").read_text().splitlines()
-      if l.startswith("x5_vd_")}
-after_x5 = []
-for s in (789, 1011):
-    for v in ("B", "I"):
-        cmd = re.sub(r"--seed \d+", f"--seed {s}", x5[f"x5_vd_{v}_s42"]).replace(f"vd_{v}_s42", f"vd_{v}_s{s}")
-        after_x5.append(f"x5_vd_{v}_s{s}\t{cmd}")
-for s in SEEDS:
-    for v in ("B", "I"):
-        after_x5.append(f"x7v_{v}_s{s}\t{G} --ckpt runs/x5/vd_{v}_s{s}/final.pt --prefix results/x7v/{v}_s{s} "
-                        f"--dataset visdrone_val_native --size 800x800 --new_head_from visdrone_train_native "
-                        f"--batch_size 16")
-
-
-
 # YOLOS-small: ref_I / ref_B (recipe of E5: batch 32 x grad_accum 2, LR 1e-5, 300 steps), 5 seeds, same 5 arithmetics.
 # Seeds 42/123/456 exist in runs/e5; 789 and 1011 are added. Grid outputs: results/x7/small_<method>_s<seed>_<arith>.
 def small_block():
@@ -75,8 +58,8 @@ def small_block():
     return lines
 
 
-if __name__ == "__main__":  # d: before x6_; v: after x5_vd_I_s456; s: YOLOS-small refs, before x6_ (after block d)
+if __name__ == "__main__":  # d: before x6_; s: YOLOS-small refs, before x6_ (after block d)
     block = sys.argv[1]
-    lines = {"d": before_x6, "v": after_x5, "s": small_block()}[block]
+    lines = {"d": before_x6, "s": small_block()}[block]
     print("\n".join(lines))
     print(f"{block}: {len(lines)} jobs", file=sys.stderr)

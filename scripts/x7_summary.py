@@ -3,7 +3,7 @@
 Source: results/x7/<method>_s<seed>_<arith>.json (scripts/eval_grid.py); the pretrained model is
 results/x7/pretrained_<arith>.json (deterministic; compared by a one-sample t-test of the reference's seeds).
 p: paired t-test over common seeds, same arithmetic, same val split. Writes results/x7/summary_<val>.md and
-results/x7/summary.json for val in (full, valA, valB). Also: --dir results/x7v --methods B,I for VisDrone.
+results/x7/summary.json for val in (full, valA, valB).
 """
 import argparse
 import json

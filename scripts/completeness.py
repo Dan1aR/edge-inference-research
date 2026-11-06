@@ -66,15 +66,6 @@ for v in ("I", "B"):
 pre = ["✓" if Path(f"results/x7/small_pretrained_{a}.json").exists() else SYM[jstat("x7sg_pretrained")] for a in ARITHS]
 L += ["| исходная (детерм.) | — | " + " | ".join(pre) + " |", ""]
 
-L += ["## X5: перенос на VisDrone (YOLOS-tiny 800×800, новая голова), B и I", "",
-      "| вариант | обучение | " + " | ".join(ARITHS) + " |", "|---|---|" + "---|" * len(ARITHS)]
-for v in ("B", "I"):
-    tr = "".join(SYM[jstat(f"x5_vd_{v}_s{s}")] for s in SEEDS)
-    cells = ["".join("✓" if Path(f"results/x7v/{v}_s{s}_{a}.json").exists() else SYM[jstat(f"x7v_{v}_s{s}")]
-                     for s in SEEDS) for a in ARITHS]
-    L.append(f"| {v} | {tr} | " + " | ".join(cells) + " |")
-L.append("")
-
 L += ["## Инференс (детерминированный; сидов нет — неопределённость через парный бутстреп по изображениям)", "",
       "| группа | заданий | ✓ | q | F |", "|---|---:|---:|---:|---:|"]
 groups = defaultdict(lambda: defaultdict(int))

@@ -32,7 +32,6 @@ def cls_peak(*tags):
 AR = ("none", "all", "chunk128")
 RULES = [  # (name regex, command regex or None, measured tags)
     (r"^x7g_|^x7sg_", None, ("grid_tiny", "grid_small")),
-    (r"^x7v_", None, ("grid_vd",)),
     (r"^x1_base_", r"--batch_size 32", tuple(f"base_{a}" for a in AR)),
     (r"^x4_rtdetr_r18_", None, tuple(f"rtdetr_r18_{a}" for a in AR)),
     (r"^x4_rtdetr_r50_", None, tuple(f"rtdetr_r50_{a}" for a in AR)),
