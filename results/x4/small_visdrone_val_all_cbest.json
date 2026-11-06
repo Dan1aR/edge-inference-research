@@ -1,0 +1,27 @@
+{
+  "model": "small",
+  "ckpt": null,
+  "dataset": "visdrone_val",
+  "arith": "all",
+  "accum": "fma,sequential",
+  "center": "av:b,patch:a,qk:a",
+  "exclude": "",
+  "size": null,
+  "metrics": {
+    "AP": 0.027126362109362468,
+    "AP50": 0.057962113825482955,
+    "AP75": 0.023142149726702137,
+    "AP_small": 0.002950131083288961,
+    "AP_medium": 0.03303836554270415,
+    "AP_large": 0.29085814609249655,
+    "AR_1": 0.01853315869551429,
+    "AR_10": 0.04301135701824306,
+    "AR_100": 0.057790359324097956,
+    "AR_small": 0.008505975672049896,
+    "AR_medium": 0.09051169742642932,
+    "AR_large": 0.4459058152690992,
+    "num_images": 548
+  },
+  "seconds": 29.3,
+  "gpu": "NVIDIA L40S"
+}

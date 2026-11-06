@@ -1,0 +1,27 @@
+{
+  "model": "rtdetr_r50",
+  "ckpt": null,
+  "dataset": "coco_val",
+  "arith": "all",
+  "accum": "fp8_tc,fma,sequential",
+  "center": "",
+  "exclude": "",
+  "size": null,
+  "metrics": {
+    "AP": 0.5189030515501919,
+    "AP50": 0.7010275711621813,
+    "AP75": 0.5602687917560697,
+    "AP_small": 0.3394640241672641,
+    "AP_medium": 0.566939215236189,
+    "AP_large": 0.6808574289860004,
+    "AR_1": 0.3839284217077123,
+    "AR_10": 0.6499096797814675,
+    "AR_100": 0.7143700260350456,
+    "AR_small": 0.5382828767073328,
+    "AR_medium": 0.7592170824342617,
+    "AR_large": 0.871982168021718,
+    "num_images": 5000
+  },
+  "seconds": 244.2,
+  "gpu": "NVIDIA L40S"
+}

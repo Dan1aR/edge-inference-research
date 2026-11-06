@@ -1,0 +1,27 @@
+{
+  "model": "detr_r50",
+  "ckpt": null,
+  "dataset": "coco_val",
+  "arith": "all",
+  "accum": "fp8_exact,fma,sequential",
+  "center": "",
+  "exclude": "",
+  "size": null,
+  "metrics": {
+    "AP": 0.4017768621496039,
+    "AP50": 0.6125172315867937,
+    "AP75": 0.4240643884438049,
+    "AP_small": 0.1668596263987915,
+    "AP_medium": 0.44534506002280616,
+    "AP_large": 0.5845736084596491,
+    "AR_1": 0.3245124606017312,
+    "AR_10": 0.5124289939476769,
+    "AR_100": 0.5534779386394306,
+    "AR_small": 0.2699793990096856,
+    "AR_medium": 0.5956587181967282,
+    "AR_large": 0.7735433021200744,
+    "num_images": 1000
+  },
+  "seconds": 135.6,
+  "gpu": "NVIDIA L40S"
+}
