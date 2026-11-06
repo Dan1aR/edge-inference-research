@@ -117,16 +117,9 @@ def build_category_mapping(
     Returns:
         Dictionary mapping YOLOS label index -> COCO category_id
     """
-    id2label = model.config.id2label
-    name_to_cat_id = {cat["name"]: cid for cid, cat in coco_gt.cats.items()}
+    from ..labels import category_mapping  # the single mapping path (normalized names, all GT classes covered)
 
-    yolos_idx_to_coco_id: dict[int, int] = {}
-    for idx, name in id2label.items():
-        idx = int(idx)
-        if name in name_to_cat_id:
-            yolos_idx_to_coco_id[idx] = name_to_cat_id[name]
-
-    return yolos_idx_to_coco_id
+    return category_mapping(model.config.id2label, coco_gt.cats)
 
 
 def convert_predictions_to_coco_format(
