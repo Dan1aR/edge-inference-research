@@ -141,10 +141,17 @@ def arith_context(arith: str, ctrl):
     return torch.autocast("cuda", dtype=torch.bfloat16)
 
 
+# VOC-style label names used by some HF configs (PekingU/rtdetr_*: 6 of the 80 COCO classes) -> COCO names.
+# Consulted only when the model's label name is not a GT category name, so exact-name mappings are unchanged.
+LABEL_ALIASES = {"aeroplane": "airplane", "diningtable": "dining table", "motorbike": "motorcycle",
+                 "pottedplant": "potted plant", "sofa": "couch", "tvmonitor": "tv"}
+
+
 def _category_mapping(model, coco_gt) -> Dict[int, int]:
     name_to_cat = {cat["name"]: cid for cid, cat in coco_gt.cats.items()}
     mapping = {}
     for idx, name in model.config.id2label.items():
+        name = name if name in name_to_cat else LABEL_ALIASES.get(name, name)
         if name in name_to_cat:
             mapping[int(idx)] = name_to_cat[name]
     return mapping
