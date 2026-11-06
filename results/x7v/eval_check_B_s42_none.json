@@ -1,0 +1,110 @@
+{
+ "gt": {
+  "images": 548,
+  "objects": 38759,
+  "per_image_mean": 70.7,
+  "per_image_max": 317,
+  "frac_images_gt100": 0.195,
+  "frac_objects_beyond_100": 0.11,
+  "classes": {
+   "pedestrian": 8844,
+   "people": 5125,
+   "bicycle": 1287,
+   "car": 14064,
+   "van": 1975,
+   "truck": 750,
+   "tricycle": 1045,
+   "awning-tricycle": 532,
+   "bus": 251,
+   "motor": 4886
+  },
+  "source_classes_in_gt": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "ignore_boxes_unique": 1410,
+  "ignore_source_classes": [
+   0,
+   11
+  ]
+ },
+ "dets": {
+  "total": 54800,
+  "per_image_max": 100,
+  "per_image_min": 100,
+  "categories": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ]
+ },
+ "ap_maxdets100": {
+  "AP": 0.0284,
+  "AP50": 0.0719,
+  "AP75": 0.0192,
+  "AR@100": 0.0539
+ },
+ "ap_maxdets500": {
+  "AP": 0.0284,
+  "AP50": 0.0719,
+  "AP75": 0.0192,
+  "AR@500": 0.0539
+ },
+ "oracle_all_gt": {
+  "AP": 1.0,
+  "AP50": 1.0,
+  "AP75": 1.0,
+  "AR@500": 1.0
+ },
+ "oracle_gt_100_largest": {
+  "AP": 0.9139,
+  "AP50": 0.9139,
+  "AP75": 0.9139,
+  "AR@100": 0.918
+ },
+ "oracle_gt_100_random": {
+  "AP": 0.8851,
+  "AP50": 0.8851,
+  "AP75": 0.8851,
+  "AR@100": 0.889
+ },
+ "perturb_read_as_xyxy": {
+  "AP": 0.0,
+  "AP50": 0.0,
+  "AP75": 0.0,
+  "AR@100": 0.0
+ },
+ "perturb_swap_hw_scale": {
+  "AP": 0.0,
+  "AP50": 0.0,
+  "AP75": 0.0,
+  "AR@100": 0.0002
+ },
+ "perturb_shift_half_px": {
+  "AP": 0.0282,
+  "AP50": 0.0708,
+  "AP75": 0.019,
+  "AR@100": 0.0537
+ },
+ "perturb_center_as_corner": {
+  "AP": 0.0002,
+  "AP50": 0.001,
+  "AP75": 0.0,
+  "AR@100": 0.0024
+ }
+}
