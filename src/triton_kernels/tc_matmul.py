@@ -103,9 +103,11 @@ def tc_matmul(a: torch.Tensor, b: torch.Tensor, acc: str = "fp16", in_dtype: str
         b3 = b3.transpose(1, 2).contiguous().transpose(1, 2)
     c3 = torch.empty((nb, M, N), device=a.device, dtype=out_dtype)
     bm, bn, bk = block
-    grid = (triton.cdiv(M, bm), triton.cdiv(N, bn), nb)
-    _tc_kernel[grid](a3, b3, c3, M, N, K, a3.stride(0), a3.stride(1), a3.stride(2), b3.stride(0), b3.stride(1),
-                     b3.stride(2), c3.stride(0), c3.stride(1), c3.stride(2),
-                     BLOCK_M=bm, BLOCK_N=bn, BLOCK_K=bk, ACC_FP16=acc == "fp16", PROMOTE=promote,
-                     num_warps=8, num_stages=3 if bk <= 64 else 2)
+    for s in range(0, nb, 65535):  # CUDA grid.z <= 65535: launch batch slices (batch entries are independent)
+        e = min(nb, s + 65535)
+        grid = (triton.cdiv(M, bm), triton.cdiv(N, bn), e - s)
+        _tc_kernel[grid](a3[s:e], b3[s:e], c3[s:e], M, N, K, a3.stride(0), a3.stride(1), a3.stride(2), b3.stride(0),
+                         b3.stride(1), b3.stride(2), c3.stride(0), c3.stride(1), c3.stride(2),
+                         BLOCK_M=bm, BLOCK_N=bn, BLOCK_K=bk, ACC_FP16=acc == "fp16", PROMOTE=promote,
+                         num_warps=8, num_stages=3 if bk <= 64 else 2)
     return c3.reshape(*batch, M, N)
